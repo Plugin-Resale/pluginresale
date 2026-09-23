@@ -3,7 +3,7 @@ export default function Home() {
   return (
     <main
       style={{
-        minHeight: "100dvh",
+        minHeight: "calc(100dvh - 65px)",
         display: "grid",
         placeItems: "center",
         padding: "24px 16px",

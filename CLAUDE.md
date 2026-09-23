@@ -61,7 +61,12 @@ Design reference (mockup v1, 4 pages): https://claude.ai/artifact/KiyRncyZgYt9eo
 3. Developers/plugins tables + seed data + developer pages.
 4. Sell form + listings + Browse + Listing page.
 5. Deals flow + reviews + messages.
-6. Ad slots, legal pages, polish, launch.
+6. Ad slots, legal pages, polish, launch. **Before launch: custom SMTP in Supabase Auth** (default Supabase mailer only sends to project team members, ~2 emails/hour).
+
+## Supabase setup (done by hand in the dashboard)
+- SQL migrations live in `supabase/migrations/` and are pasted into the SQL Editor in order.
+- Auth email templates (Magic Link + Confirm signup) use `supabase/templates/magic-link.html` → link to `/auth/confirm?token_hash=…&type=email`.
+- Auth URL config: Site URL `https://www.pluginresale.com`; redirect URLs include production, localhost:3000 and Vercel previews.
 
 ## Important
 - Namecheap DNS already has email forwarding (MX + SPF). When pointing the domain to Vercel, **only add A / CNAME records, never touch MX or the SPF TXT.**
