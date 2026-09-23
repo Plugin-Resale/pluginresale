@@ -1360,3 +1360,76 @@ main {
   gap: 12px;
   align-items: flex-start;
 }
+
+/* ---------- Ratings & reviews ---------- */
+
+.rating {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.rating-empty {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.review-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-list li {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.review-list li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.review-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.review-list p {
+  margin: 0;
+}
+
+.profile-head {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 8px;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 16px 0 0;
+}
+
+.profile-stats div {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-stats .price {
+  font-size: 24px;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}

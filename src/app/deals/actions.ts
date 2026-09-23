@@ -52,3 +52,25 @@ export async function advanceDeal(formData: FormData) {
   revalidatePath("/", "layout");
   redirect(`/deals/${dealId}`);
 }
+
+// Either side of a completed deal rates and reviews the other.
+export async function addReview(formData: FormData) {
+  const dealId = Number(formData.get("deal_id"));
+  const rating = Number(formData.get("rating"));
+  const comment = String(formData.get("comment") ?? "");
+  if (!Number.isInteger(dealId) || !Number.isInteger(rating)) return;
+
+  const supabase = await createClient();
+  const { error } = await supabase.rpc("add_review", {
+    p_deal_id: dealId,
+    p_rating: rating,
+    p_comment: comment,
+  });
+  if (error) {
+    console.error("add_review failed:", error.message);
+    redirect(`/deals/${dealId}?error=1`);
+  }
+
+  revalidatePath("/", "layout");
+  redirect(`/deals/${dealId}`);
+}

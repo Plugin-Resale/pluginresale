@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ListingGrid } from "@/components/ListingCard";
+import { Rating } from "@/components/Rating";
 import { TransferRules } from "@/components/TransferRules";
 import {
   CATEGORIES,
@@ -203,15 +204,18 @@ export default async function ListingPage({
             </p>
           </div>
 
-          <div className="card seller-card">
+          <Link href={`/u/${listing.seller_username}`} className="card seller-card">
             <span className="avatar" aria-hidden="true">
               {listing.seller_username?.[0]?.toUpperCase()}
             </span>
             <div>
               <strong>@{listing.seller_username}</strong>
               <p className="muted">Member since {formatDate(listing.seller_since.slice(0, 10))}</p>
+              <p className="muted">
+                <Rating avg={listing.seller_avg_rating} count={listing.seller_review_count} />
+              </p>
             </div>
-          </div>
+          </Link>
 
           <a
             className="report-link"

@@ -63,6 +63,9 @@ Design reference (mockup v1, 4 pages): https://claude.ai/artifact/KiyRncyZgYt9eo
 5. Deals flow + reviews + messages. **5a done** (deals table + `/deals/[id]` + My sales/purchases, tested end-to-end with 2 accounts: victor.malvolti@gmail.com as seller, contact@pluginresale.com as buyer). **5b done** (messages table + `send_message` RPC + `/listings/[id]/messages` thread + seller inbox per listing + Messages section on the account page; tested end-to-end). Next: 5c reviews + profile. Public seller profile `/u/[username]`: completed sales count, average rating (1–5) + number of reviews, list of reviews. Show the same stats on listing cards and the listing page seller card (mockup: "★ 4.9 (32)").
 6. Ad slots, legal pages, polish, launch. **Custom SMTP done** (Resend, connected in Supabase Auth SMTP settings; magic-link.html template live for Magic Link + Confirm signup). Next: email notifications for deals (new buyer, payment confirmed, license received) and new messages.
 
+## Backlog (not scheduled yet)
+- **Make an offer**: let a buyer propose a price below the listing price instead of buying at the listed price outright. Needs design (where it fits in the deal flow, how the seller accepts/declines/counters). Raised by Victor 2026-09-23, explicitly not urgent.
+
 ## Supabase setup (done by hand in the dashboard)
 - SQL migrations live in `supabase/migrations/` and are pasted into the SQL Editor in order.
 - Auth emails: custom SMTP is live (Resend, domain pluginresale.com verified via DNS — DKIM/SPF/DMARC records on `resend._domainkey` / `rsend` / `send` / `_dmarc`, no impact on the existing MX/SPF for inbound forwarding). Magic Link and Confirm signup templates use `supabase/templates/magic-link.html` (token_hash link, works cross-device/cross-browser). Auth rate limit raised to 30 emails/hour.

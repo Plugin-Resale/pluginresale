@@ -9,9 +9,10 @@ import {
   type ListingCard,
 } from "@/lib/catalog";
 import type { Deal } from "@/lib/deals";
+import type { Review } from "@/lib/reviews";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
-import { advanceDeal } from "../actions";
+import { addReview, advanceDeal } from "../actions";
 
 export const metadata: Metadata = { title: "Purchase", robots: { index: false } };
 
@@ -71,6 +72,14 @@ export default async function DealPage({ params, searchParams }: PageProps<"/dea
     .select(DEVELOPER_COLUMNS)
     .eq("id", listing.developer_id)
     .single<Developer>();
+
+  // Reviews are public, so no RLS filtering: both sides' reviews for this deal come back.
+  const { data: reviews } =
+    deal.status === "completed"
+      ? await supabase.from("reviews").select("*").eq("deal_id", deal.id).returns<Review[]>()
+      : { data: null };
+  const myReview = reviews?.find((r) => r.author_id === user.id) ?? null;
+  const otherUsername = isBuyer ? listing.seller_username : buyer?.username;
 
   const price = formatPrice(deal.price_eur);
   const current = stepIndex(deal);
@@ -199,6 +208,37 @@ export default async function DealPage({ params, searchParams }: PageProps<"/dea
                     ? "Enjoy your plugin! Thanks for buying second-hand."
                     : "The buyer confirmed they received the license. Thanks for selling on Plugin Resale."}
                 </p>
+
+                {myReview ? (
+                  <p className="muted">
+                    You rated @{otherUsername} {myReview.rating}★
+                    {myReview.comment ? `: “${myReview.comment}”` : ""}
+                  </p>
+                ) : (
+                  <form action={addReview} className="review-form">
+                    <input type="hidden" name="deal_id" value={deal.id} />
+                    <label className="field">
+                      <span className="field-label">Rate @{otherUsername}</span>
+                      <select className="input" name="rating" defaultValue="5" required>
+                        {[5, 4, 3, 2, 1].map((n) => (
+                          <option key={n} value={n}>
+                            {n}★
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    <textarea
+                      className="input textarea"
+                      name="comment"
+                      rows={2}
+                      maxLength={1000}
+                      placeholder="Optional comment…"
+                    />
+                    <button className="btn btn-primary" type="submit">
+                      Leave a review
+                    </button>
+                  </form>
+                )}
               </section>
             )}
 

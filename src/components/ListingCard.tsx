@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { formatPrice, type ListingCard as Listing } from "@/lib/catalog";
+import { Rating } from "./Rating";
 import { TransferBadge } from "./TransferBadge";
 
 export function ListingCard({ listing }: { listing: Listing }) {
@@ -20,7 +21,10 @@ export function ListingCard({ listing }: { listing: Listing }) {
             </span>
           )}
         </div>
-        <span className="listing-seller">@{listing.seller_username}</span>
+        <span className="listing-seller">
+          @{listing.seller_username} ·{" "}
+          <Rating avg={listing.seller_avg_rating} count={listing.seller_review_count} />
+        </span>
       </div>
     </Link>
   );

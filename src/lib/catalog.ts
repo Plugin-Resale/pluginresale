@@ -66,6 +66,8 @@ export type ListingCard = {
   seller_id: string;
   seller_username: string | null;
   seller_since: string;
+  seller_avg_rating: number | null;
+  seller_review_count: number;
   plugin_id: number;
   plugin_name: string;
   category: Category;
