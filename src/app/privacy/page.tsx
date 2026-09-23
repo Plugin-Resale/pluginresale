@@ -13,9 +13,9 @@ export default function PrivacyPage() {
 
       <p>
         This policy explains what personal data Plugin Resale (pluginresale.com) collects and
-        why. The data controller is SAS Boring Vic. [Registered address and SIRET to be added
-        here before launch.] Contact us about privacy at{" "}
-        <a href="mailto:contact@pluginresale.com">contact@pluginresale.com</a>.
+        why. The data controller is SAS Boring Vic, registered address 5 rue Henry Le
+        Chatelier, 38000 Grenoble, France — 978 440 972 R.C.S. Grenoble. Contact us about
+        privacy at <a href="mailto:contact@pluginresale.com">contact@pluginresale.com</a>.
       </p>
 
       <h2>1. Data we collect</h2>

@@ -13,8 +13,8 @@ export default function TermsPage() {
 
       <p>
         Plugin Resale (pluginresale.com) is operated by SAS Boring Vic (&quot;we&quot;,
-        &quot;us&quot;). [Registered address and SIRET to be added here before launch.] You can
-        reach us at{" "}
+        &quot;us&quot;), registered address 5 rue Henry Le Chatelier, 38000 Grenoble, France —
+        978 440 972 R.C.S. Grenoble. You can reach us at{" "}
         <a href="mailto:contact@pluginresale.com">contact@pluginresale.com</a>. By creating an
         account or using the site, you agree to these terms.
       </p>
