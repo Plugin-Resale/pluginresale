@@ -65,7 +65,7 @@ Design reference (mockup v1, 4 pages): https://claude.ai/artifact/KiyRncyZgYt9eo
 
 ## Supabase setup (done by hand in the dashboard)
 - SQL migrations live in `supabase/migrations/` and are pasted into the SQL Editor in order.
-- Auth email templates (Magic Link + Confirm signup) use `supabase/templates/magic-link.html` → link to `/auth/confirm?token_hash=…&type=email`.
+- Auth emails: default Supabase templates for now (PKCE `?code=` link → `/auth/confirm`, same browser only). Templates are locked until custom SMTP; then paste `supabase/templates/magic-link.html` into Magic Link + Confirm signup (token_hash link, works cross-device).
 - Auth URL config: Site URL `https://www.pluginresale.com`; redirect URLs include production, localhost:3000 and Vercel previews.
 
 ## Important

@@ -19,7 +19,7 @@ export async function sendMagicLink(_prev: SignInState, formData: FormData): Pro
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithOtp({
     email,
-    options: { emailRedirectTo: origin },
+    options: { emailRedirectTo: `${origin}/auth/confirm` },
   });
 
   if (error) {

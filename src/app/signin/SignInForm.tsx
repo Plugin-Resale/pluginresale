@@ -11,8 +11,8 @@ export function SignInForm() {
   if (state.status === "sent") {
     return (
       <p className="notice notice-success">
-        Check your inbox: we sent a sign-in link to <strong>{state.message}</strong>. You can
-        close this tab.
+        Check your inbox: we sent a sign-in link to <strong>{state.message}</strong>. Open it on
+        this device, in this browser.
       </p>
     );
   }

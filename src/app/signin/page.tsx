@@ -21,7 +21,7 @@ export default async function SignInPage({ searchParams }: PageProps<"/signin">)
         </p>
         {error === "link" && (
           <p className="notice notice-error">
-            That sign-in link is invalid or has expired. Please request a new one.
+            That sign-in link is invalid or has expired. Please request a new one, and open it in this same browser.
           </p>
         )}
         <SignInForm />

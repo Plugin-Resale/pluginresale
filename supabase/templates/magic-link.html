@@ -1,8 +1,8 @@
-<!-- Paste into Supabase → Authentication → Emails → "Magic Link" AND "Confirm signup" templates. -->
+<!-- Requires custom SMTP (step 6). Paste into Supabase → Authentication → Emails → "Magic Link" AND "Confirm signup" templates. -->
 <h2>Sign in to Plugin Resale</h2>
 <p>Click the button below to sign in. The link expires in 1 hour and works once.</p>
 <p>
-  <a href="{{ .RedirectTo }}/auth/confirm?token_hash={{ .TokenHash }}&type=email"
+  <a href="{{ .RedirectTo }}?token_hash={{ .TokenHash }}&type=email"
      style="display:inline-block;padding:12px 20px;background:#C2410C;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:600">
     Sign in to Plugin Resale
   </a>
