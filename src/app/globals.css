@@ -1,0 +1,49 @@
+:root {
+  --ground: #f2efe8;
+  --surface: #ffffff;
+  --ink: #17171b;
+  --muted: #55545c;
+  --line: #d9d4c9;
+  --accent: #c2410c;
+  --accent-hover: #9a3412;
+  --success: #1f6b44;
+  --success-bg: #e1f0e6;
+
+  --radius-sm: 8px;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --control-height: 44px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+}
