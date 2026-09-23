@@ -60,8 +60,8 @@ Design reference (mockup v1, 4 pages): https://claude.ai/artifact/KiyRncyZgYt9eo
 2. Auth + profiles.
 3. Developers/plugins tables + seed data + developer pages.
 4. Sell form + listings + Browse + Listing page.
-5. Deals flow + reviews + messages. Public seller profile `/u/[username]`: completed sales count, average rating (1–5) + number of reviews, list of reviews. Show the same stats on listing cards and the listing page seller card (mockup: "★ 4.9 (32)").
-6. Ad slots, legal pages, polish, launch. **Before launch: custom SMTP in Supabase Auth** (default Supabase mailer only sends to project team members, ~2 emails/hour).
+5. Deals flow + reviews + messages. **5a done** (deals table + `/deals/[id]` + My sales/purchases; not yet tested end-to-end with 2 accounts: invite contact@pluginresale.com to the Supabase team to get a 2nd test account). Next: 5b messages, 5c reviews + profile. Public seller profile `/u/[username]`: completed sales count, average rating (1–5) + number of reviews, list of reviews. Show the same stats on listing cards and the listing page seller card (mockup: "★ 4.9 (32)").
+6. Ad slots, legal pages, polish, launch. **Before launch: custom SMTP in Supabase Auth** (default Supabase mailer only sends to project team members, ~2 emails/hour). Then add email notifications for deals (new buyer, payment confirmed, license received) and new messages.
 
 ## Supabase setup (done by hand in the dashboard)
 - SQL migrations live in `supabase/migrations/` and are pasted into the SQL Editor in order.
