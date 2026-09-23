@@ -1,12 +1,13 @@
+import Link from "next/link";
+
 // Temporary landing page until the real Home is built (build order step 4).
 export default function Home() {
   return (
     <main
       style={{
-        minHeight: "calc(100dvh - 65px)",
-        display: "grid",
+                display: "grid",
         placeItems: "center",
-        padding: "24px 16px",
+        padding: "72px 16px",
       }}
     >
       <div style={{ maxWidth: 560, textAlign: "center" }}>
@@ -29,8 +30,10 @@ export default function Home() {
           The free marketplace for second-hand audio plugin licenses. No fees, no
           commission — and every developer&apos;s transfer rules in one place.
         </p>
-        <p style={{ marginTop: 32, fontSize: 15 }}>
-          <a href="mailto:contact@pluginresale.com">contact@pluginresale.com</a>
+        <p style={{ marginTop: 32 }}>
+          <Link href="/developers" className="btn btn-primary">
+            Browse developer transfer rules
+          </Link>
         </p>
       </div>
     </main>

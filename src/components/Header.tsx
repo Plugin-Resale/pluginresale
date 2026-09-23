@@ -8,9 +8,12 @@ export async function Header() {
     <header className="site-header">
       <div className="container">
         <Link href="/" className="logo">
-          Plugin<span>Resale</span>
+          plugin<span>resale</span>
         </Link>
-        <nav>
+        <nav className="site-nav">
+          <Link href="/developers" className="nav-link">
+            Developers
+          </Link>
           {user ? (
             <Link href="/account" className="btn">
               {profile?.username ?? "My account"}
