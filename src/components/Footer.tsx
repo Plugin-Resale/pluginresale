@@ -15,6 +15,8 @@ export function Footer() {
         </div>
         <nav className="footer-links" aria-label="Footer">
           <Link href="/developers">Transfer rules</Link>
+          <Link href="/terms">Terms</Link>
+          <Link href="/privacy">Privacy</Link>
           <a href="mailto:contact@pluginresale.com">contact@pluginresale.com</a>
         </nav>
       </div>

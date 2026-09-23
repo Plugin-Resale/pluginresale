@@ -280,6 +280,32 @@ main {
   color: var(--accent);
 }
 
+/* ---------- Legal pages ---------- */
+
+.legal h2 {
+  font-size: 20px;
+  margin: 40px 0 12px;
+}
+
+.legal h2:first-of-type {
+  margin-top: 24px;
+}
+
+.legal p,
+.legal li {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.legal ul {
+  padding-left: 20px;
+  margin: 0 0 16px;
+}
+
+.legal strong {
+  color: var(--ink);
+}
+
 /* ---------- Header nav ---------- */
 
 .site-nav {
