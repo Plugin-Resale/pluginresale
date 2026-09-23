@@ -38,3 +38,16 @@ export async function saveUsername(
   revalidatePath("/", "layout");
   return { status: "saved", message: username };
 }
+
+// Seller removes a listing or puts it back online (RLS only allows active <-> removed).
+export async function setListingStatus(formData: FormData) {
+  const id = Number(formData.get("id"));
+  const status = String(formData.get("status"));
+  if (!Number.isInteger(id) || !["active", "removed"].includes(status)) return;
+
+  const supabase = await createClient();
+  const { error } = await supabase.from("listings").update({ status }).eq("id", id);
+  if (error) console.error("listing status update failed:", error.message);
+
+  revalidatePath("/", "layout");
+}

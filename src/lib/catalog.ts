@@ -13,6 +13,7 @@ export type Developer = {
   restrictions: string | null;
   source_url: string | null;
   last_verified: string | null;
+  no_fee: boolean;
 };
 
 export type Plugin = {
@@ -38,7 +39,7 @@ export const CATEGORIES = {
 export type Category = keyof typeof CATEGORIES;
 
 export const DEVELOPER_COLUMNS =
-  "id, name, slug, website, transferable, fee, who_pays, process, typical_delay, restrictions, source_url, last_verified";
+  "id, name, slug, website, transferable, fee, who_pays, process, typical_delay, restrictions, source_url, last_verified, no_fee";
 
 export function formatDate(iso: string) {
   return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", {
@@ -47,4 +48,41 @@ export function formatDate(iso: string) {
     year: "numeric",
     timeZone: "UTC",
   });
+}
+
+export const FORMATS = ["VST3", "AU", "AAX", "VST2", "Standalone"] as const;
+
+export type ListingStatus = "active" | "reserved" | "sold" | "removed";
+
+// A row of the `listing_cards` view.
+export type ListingCard = {
+  id: number;
+  status: ListingStatus;
+  price_eur: number;
+  version: string | null;
+  formats: string[];
+  description: string;
+  created_at: string;
+  seller_id: string;
+  seller_username: string | null;
+  seller_since: string;
+  plugin_id: number;
+  plugin_name: string;
+  category: Category;
+  developer_id: number;
+  developer_name: string;
+  developer_slug: string;
+  transferable: boolean;
+  no_fee: boolean;
+};
+
+const priceFormat = new Intl.NumberFormat("en-IE", {
+  style: "currency",
+  currency: "EUR",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 2,
+});
+
+export function formatPrice(eur: number) {
+  return priceFormat.format(Number(eur));
 }
