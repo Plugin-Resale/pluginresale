@@ -14,6 +14,14 @@ import {
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
 import { setListingStatus } from "../../account/actions";
+import { startDeal } from "../../deals/actions";
+
+const BUY_ERRORS: Record<string, string> = {
+  username: "Choose a username in My account before buying.",
+  unavailable: "Someone just reserved this license. It may come back if their purchase is cancelled.",
+  own: "This is your own listing.",
+  unknown: "Something went wrong. Please try again.",
+};
 
 async function getListing(rawId: string) {
   const id = Number(rawId);
@@ -42,7 +50,7 @@ export default async function ListingPage({
 }: PageProps<"/listings/[id]">) {
   const listing = await getListing((await params).id);
   if (!listing) notFound();
-  const { published } = await searchParams;
+  const { published, error: buyError } = await searchParams;
 
   const supabase = await createClient();
   const [{ user }, { data: developer }, { data: more }] = await Promise.all([
@@ -64,6 +72,15 @@ export default async function ListingPage({
   ]);
 
   const isSeller = user?.id === listing.seller_id;
+  const { data: myDeal } = user
+    ? await supabase
+        .from("deals")
+        .select("id")
+        .eq("listing_id", listing.id)
+        .eq("buyer_id", user.id)
+        .in("status", ["requested", "paid"])
+        .maybeSingle()
+    : { data: null };
   const reportSubject = encodeURIComponent(`Report listing #${listing.id}`);
 
   return (
@@ -133,6 +150,9 @@ export default async function ListingPage({
           <div className="card price-card">
             <span className="price price-lg">{formatPrice(listing.price_eur)}</span>
             <span className="muted listing-id">Listing #{listing.id}</span>
+            {typeof buyError === "string" && BUY_ERRORS[buyError] && (
+              <p className="notice notice-error">{BUY_ERRORS[buyError]}</p>
+            )}
             {isSeller ? (
               <form action={setListingStatus}>
                 <input type="hidden" name="id" value={listing.id} />
@@ -147,17 +167,33 @@ export default async function ListingPage({
                   </button>
                 )}
               </form>
-            ) : (
+            ) : myDeal ? (
+              <Link href={`/deals/${myDeal.id}`} className="btn btn-primary btn-lg">
+                Go to your purchase
+              </Link>
+            ) : listing.status === "active" ? (
               <>
-                <button className="btn btn-primary btn-lg" type="button" disabled>
-                  Buy with PayPal
-                </button>
+                {user ? (
+                  <form action={startDeal} className="buy-form">
+                    <input type="hidden" name="listing_id" value={listing.id} />
+                    <button className="btn btn-primary btn-lg btn-block" type="submit">
+                      Buy with PayPal
+                    </button>
+                  </form>
+                ) : (
+                  <Link href="/signin" className="btn btn-primary btn-lg">
+                    Sign in to buy
+                  </Link>
+                )}
                 <button className="btn btn-lg" type="button" disabled>
                   Message seller
                 </button>
-                <p className="hint">Buying and messaging open very soon.</p>
+                <p className="hint">
+                  Buying reserves the license for you and shows you the seller&apos;s PayPal
+                  details.
+                </p>
               </>
-            )}
+            ) : null}
             <p className="hint">
               You pay the seller directly with PayPal Goods &amp; Services, which gives you PayPal
               Buyer Protection. Plugin Resale never holds your money.

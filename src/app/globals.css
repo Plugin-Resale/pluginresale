@@ -1213,3 +1213,102 @@ main {
 .my-listings .price {
   font-size: 16px;
 }
+
+/* ---------- Deals ---------- */
+
+.deal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+}
+
+@media (min-width: 1000px) {
+  .deal-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: start;
+  }
+}
+
+.deal-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.deal-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  counter-reset: step;
+}
+
+.deal-steps li {
+  counter-increment: step;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 4px solid var(--line);
+  padding-top: 8px;
+}
+
+.deal-steps li::before {
+  content: counter(step) ". ";
+  font-family: var(--font-mono), monospace;
+}
+
+.deal-steps li.done {
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.deal-steps li.current {
+  border-color: var(--accent);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.deal-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.deal-box .section-title,
+.deal-box p {
+  margin: 0;
+}
+
+.deal-box form {
+  width: 100%;
+}
+
+.pay-steps {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.paypal-email {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: 18px;
+  font-weight: 600;
+  word-break: break-all;
+  user-select: all;
+}
+
+.account-title {
+  font-size: 24px;
+  margin: 0 0 16px;
+}
+
+.buy-form {
+  width: 100%;
+}

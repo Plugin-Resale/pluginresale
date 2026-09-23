@@ -1,0 +1,219 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound, redirect } from "next/navigation";
+import { TransferRules } from "@/components/TransferRules";
+import {
+  DEVELOPER_COLUMNS,
+  formatPrice,
+  type Developer,
+  type ListingCard,
+} from "@/lib/catalog";
+import type { Deal } from "@/lib/deals";
+import { createClient } from "@/lib/supabase/server";
+import { getCurrentUser } from "@/lib/supabase/user";
+import { advanceDeal } from "../actions";
+
+export const metadata: Metadata = { title: "Purchase", robots: { index: false } };
+
+const STEPS = ["Reserved", "Payment sent", "Payment received", "License received"];
+
+function stepIndex(deal: Deal) {
+  if (deal.status === "completed") return 4;
+  if (deal.status === "paid") return 3;
+  return 1;
+}
+
+function StepButton({ deal, step, label, primary = false }: {
+  deal: Deal;
+  step: "paid" | "completed" | "cancel";
+  label: string;
+  primary?: boolean;
+}) {
+  return (
+    <form action={advanceDeal}>
+      <input type="hidden" name="deal_id" value={deal.id} />
+      <input type="hidden" name="step" value={step} />
+      <button className={`btn btn-block ${primary ? "btn-primary btn-lg" : ""}`} type="submit">
+        {label}
+      </button>
+    </form>
+  );
+}
+
+export default async function DealPage({ params, searchParams }: PageProps<"/deals/[id]">) {
+  const { user } = await getCurrentUser();
+  if (!user) redirect("/signin");
+
+  const id = Number((await params).id);
+  if (!Number.isInteger(id)) notFound();
+  const { error: actionError } = await searchParams;
+
+  const supabase = await createClient();
+  // RLS: only the buyer and the seller can read the deal.
+  const { data: deal } = await supabase.from("deals").select("*").eq("id", id).maybeSingle<Deal>();
+  if (!deal) notFound();
+
+  const isBuyer = deal.buyer_id === user.id;
+  const [{ data: listing }, { data: buyer }, { data: privateInfo }] = await Promise.all([
+    supabase.from("listing_cards").select("*").eq("id", deal.listing_id).single<ListingCard>(),
+    supabase.from("profiles").select("username").eq("id", deal.buyer_id).single(),
+    // RLS: visible to the seller, and to the buyer while the deal is open.
+    supabase
+      .from("listing_private")
+      .select("paypal_email")
+      .eq("listing_id", deal.listing_id)
+      .maybeSingle(),
+  ]);
+  if (!listing) notFound();
+
+  const { data: developer } = await supabase
+    .from("developers")
+    .select(DEVELOPER_COLUMNS)
+    .eq("id", listing.developer_id)
+    .single<Developer>();
+
+  const price = formatPrice(deal.price_eur);
+  const current = stepIndex(deal);
+
+  return (
+    <main className="container page">
+      <nav aria-label="Breadcrumb" className="breadcrumb">
+        <Link href="/account">My account</Link>
+        <span aria-hidden="true">/</span>
+        <span>
+          {isBuyer ? "Purchase" : "Sale"} #{deal.id}
+        </span>
+      </nav>
+      <h1 className="page-title">
+        {listing.developer_name} {listing.plugin_name}
+      </h1>
+      <p className="lead">
+        {price} · {isBuyer ? `sold by @${listing.seller_username}` : `bought by @${buyer?.username}`}{" "}
+        · <Link href={`/listings/${listing.id}`}>Listing #{listing.id}</Link>
+      </p>
+
+      {actionError && (
+        <p className="notice notice-error">
+          That action isn&apos;t possible anymore. The page below shows the current status.
+        </p>
+      )}
+
+      {deal.status === "cancelled" ? (
+        <div className="card">
+          <h2 className="section-title">This purchase was cancelled</h2>
+          <p className="muted">
+            {deal.cancelled_by === user.id ? "You" : isBuyer ? "The seller" : "The buyer"} cancelled
+            it before the payment was confirmed. The listing is back online.
+          </p>
+        </div>
+      ) : (
+        <div className="deal-layout">
+          <div className="deal-main">
+            <ol className="deal-steps" aria-label="Progress">
+              {STEPS.map((label, i) => (
+                <li key={label} className={i < current ? "done" : i === current ? "current" : ""}>
+                  {label}
+                </li>
+              ))}
+            </ol>
+
+            {deal.status === "requested" && isBuyer && (
+              <section className="card deal-box">
+                <h2 className="section-title">Pay the seller with PayPal</h2>
+                <ol className="pay-steps">
+                  <li>
+                    Open PayPal and send <strong>{price}</strong> to:
+                    <span className="paypal-email">{privateInfo?.paypal_email}</span>
+                  </li>
+                  <li>
+                    Choose <strong>Goods and Services</strong>. Never &quot;Friends and
+                    Family&quot;: it removes your PayPal Buyer Protection.
+                  </li>
+                  <li>
+                    In the note, write: <strong>Plugin Resale listing #{listing.id}</strong>
+                  </li>
+                </ol>
+                <a
+                  className="btn btn-primary btn-lg"
+                  href="https://www.paypal.com/myaccount/transfer/homepage/pay"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open PayPal
+                </a>
+                <p className="hint">
+                  Once the seller confirms they received the payment, they start the license
+                  transfer. Come back to this page (My account → My purchases) to follow it.
+                </p>
+              </section>
+            )}
+
+            {deal.status === "requested" && !isBuyer && (
+              <section className="card deal-box">
+                <h2 className="section-title">@{buyer?.username} wants to buy your license</h2>
+                <p>
+                  They were asked to send <strong>{price}</strong> to your PayPal (
+                  {privateInfo?.paypal_email}) with <strong>Goods and Services</strong> and the note
+                  &quot;Plugin Resale listing #{listing.id}&quot;.
+                </p>
+                <p>
+                  Check your PayPal account. Only when the payment has arrived, confirm it below,
+                  then start the license transfer.
+                </p>
+                <StepButton deal={deal} step="paid" label="I received the payment" primary />
+              </section>
+            )}
+
+            {deal.status === "paid" && isBuyer && (
+              <section className="card deal-box">
+                <h2 className="section-title">The seller received your payment</h2>
+                <p>
+                  @{listing.seller_username} is now transferring the license to you, following{" "}
+                  {listing.developer_name}&apos;s process (see below). When the license shows up in
+                  your {listing.developer_name} account, confirm it here.
+                </p>
+                <StepButton deal={deal} step="completed" label="I received the license" primary />
+                <p className="hint">
+                  A problem with the payment or the transfer? Open a case in PayPal&apos;s
+                  Resolution Center: Plugin Resale doesn&apos;t handle refunds or disputes.
+                </p>
+              </section>
+            )}
+
+            {deal.status === "paid" && !isBuyer && (
+              <section className="card deal-box">
+                <h2 className="section-title">Now transfer the license</h2>
+                <p>
+                  Uninstall the plugin and transfer the license to @{buyer?.username} following{" "}
+                  {listing.developer_name}&apos;s process below. The buyer confirms on their side
+                  once it&apos;s in their account, and the sale is complete.
+                </p>
+              </section>
+            )}
+
+            {deal.status === "completed" && (
+              <section className="card deal-box">
+                <h2 className="section-title">Deal completed</h2>
+                <p>
+                  {isBuyer
+                    ? "Enjoy your plugin! Thanks for buying second-hand."
+                    : "The buyer confirmed they received the license. Thanks for selling on Plugin Resale."}
+                </p>
+              </section>
+            )}
+
+            {deal.status === "requested" && (
+              <StepButton
+                deal={deal}
+                step="cancel"
+                label={isBuyer ? "Cancel this purchase" : "Cancel this sale"}
+              />
+            )}
+          </div>
+
+          {developer && deal.status !== "completed" && <TransferRules developer={developer} />}
+        </div>
+      )}
+    </main>
+  );
+}

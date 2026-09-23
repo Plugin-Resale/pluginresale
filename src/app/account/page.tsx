@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { formatPrice, type ListingCard } from "@/lib/catalog";
+import { DEAL_STATUS_LABELS, type Deal } from "@/lib/deals";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
 import { UsernameForm } from "./UsernameForm";
@@ -21,6 +22,26 @@ export default async function AccountPage() {
     .eq("seller_id", user.id)
     .order("created_at", { ascending: false })
     .returns<ListingCard[]>();
+
+  // RLS returns only deals where the user is the buyer or the seller.
+  const { data: deals } = await supabase
+    .from("deals")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .returns<Deal[]>();
+  const dealListingIds = [...new Set((deals ?? []).map((d) => d.listing_id))];
+  const { data: dealListings } = dealListingIds.length
+    ? await supabase
+        .from("listing_cards")
+        .select("id, developer_name, plugin_name")
+        .in("id", dealListingIds)
+    : { data: [] };
+  const titleOf = (listingId: number) => {
+    const l = dealListings?.find((x) => x.id === listingId);
+    return l ? `${l.developer_name} ${l.plugin_name}` : `Listing #${listingId}`;
+  };
+  const purchases = (deals ?? []).filter((d) => d.buyer_id === user.id);
+  const sales = (deals ?? []).filter((d) => d.seller_id === user.id);
 
   return (
     <main className="narrow narrow-wide">
@@ -62,6 +83,34 @@ export default async function AccountPage() {
           <p className="muted">You haven&apos;t listed anything yet.</p>
         )}
       </section>
+
+      {[
+        { title: "My sales", items: sales, empty: "No sales yet." },
+        { title: "My purchases", items: purchases, empty: "No purchases yet." },
+      ].map((section) => (
+        <section key={section.title} className="card account-section">
+          <h2 className="account-title">{section.title}</h2>
+          {section.items.length > 0 ? (
+            <ul className="my-listings">
+              {section.items.map((d) => (
+                <li key={d.id}>
+                  <Link href={`/deals/${d.id}`}>{titleOf(d.listing_id)}</Link>
+                  <span className="price">{formatPrice(d.price_eur)}</span>
+                  <span
+                    className={`badge ${
+                      d.status === "requested" || d.status === "paid" ? "badge-ok" : "badge-muted"
+                    }`}
+                  >
+                    {DEAL_STATUS_LABELS[d.status]}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="muted">{section.empty}</p>
+          )}
+        </section>
+      ))}
 
       <form action="/auth/signout" method="post" style={{ marginTop: 16, textAlign: "center" }}>
         <button className="btn" type="submit">
