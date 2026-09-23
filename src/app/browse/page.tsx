@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { ListingGrid } from "@/components/ListingCard";
 import { CATEGORIES, type Category, type ListingCard } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/server";
@@ -84,6 +85,8 @@ export default async function BrowsePage({ searchParams }: PageProps<"/browse">)
       .returns<ListingCard[]>(),
     supabase.from("developers").select("name, slug").eq("transferable", true).order("name"),
   ]);
+  // Page past the last result (e.g. an old link): go back to the first page.
+  if (error?.code === "PGRST103") redirect(pageHref(filters, 1));
   if (error) throw error;
 
   const total = count ?? 0;
@@ -95,7 +98,18 @@ export default async function BrowsePage({ searchParams }: PageProps<"/browse">)
     <main className="container page browse-layout">
       <FiltersDisclosure>
         <form action="/browse" className="filters-form">
-          {filters.q && <input type="hidden" name="q" value={filters.q} />}
+          <fieldset>
+            <legend>
+              <label htmlFor="browse-q">Search</label>
+            </legend>
+            <input
+              id="browse-q"
+              name="q"
+              className="input"
+              placeholder="Plugin or developer"
+              defaultValue={filters.q}
+            />
+          </fieldset>
           <input type="hidden" name="sort" value={filters.sort} />
 
           <fieldset>
