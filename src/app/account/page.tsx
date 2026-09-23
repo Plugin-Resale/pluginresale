@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { formatPrice, type ListingCard } from "@/lib/catalog";
 import { DEAL_STATUS_LABELS, type Deal } from "@/lib/deals";
+import type { Message } from "@/lib/messages";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
 import { UsernameForm } from "./UsernameForm";
@@ -42,6 +43,30 @@ export default async function AccountPage() {
   };
   const purchases = (deals ?? []).filter((d) => d.buyer_id === user.id);
   const sales = (deals ?? []).filter((d) => d.seller_id === user.id);
+
+  // RLS returns only messages where the user is the sender or recipient.
+  const { data: messages } = await supabase
+    .from("messages")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .returns<Message[]>();
+  const conversations = new Map<string, { listingId: number; otherId: string; last: Message }>();
+  for (const m of messages ?? []) {
+    const otherId = m.from_id === user.id ? m.to_id : m.from_id;
+    const key = `${m.listing_id}:${otherId}`;
+    if (!conversations.has(key)) conversations.set(key, { listingId: m.listing_id, otherId, last: m });
+  }
+  const convoListingIds = [...new Set([...conversations.values()].map((c) => c.listingId))];
+  const { data: convoListings } = convoListingIds.length
+    ? await supabase
+        .from("listing_cards")
+        .select("id, developer_name, plugin_name, seller_id")
+        .in("id", convoListingIds)
+    : { data: [] };
+  const convoOtherIds = [...new Set([...conversations.values()].map((c) => c.otherId))];
+  const { data: convoProfiles } = convoOtherIds.length
+    ? await supabase.from("profiles").select("id, username").in("id", convoOtherIds)
+    : { data: [] };
 
   return (
     <main className="narrow narrow-wide">
@@ -111,6 +136,32 @@ export default async function AccountPage() {
           )}
         </section>
       ))}
+
+      <section className="card account-section">
+        <h2 className="account-title">Messages</h2>
+        {conversations.size > 0 ? (
+          <ul className="my-listings">
+            {[...conversations.values()].map(({ listingId, otherId, last }) => {
+              const l = convoListings?.find((x) => x.id === listingId);
+              const isSeller = l?.seller_id === user.id;
+              const username = convoProfiles?.find((p) => p.id === otherId)?.username ?? "user";
+              return (
+                <li key={`${listingId}:${otherId}`}>
+                  <Link
+                    href={`/listings/${listingId}/messages${isSeller ? `?with=${otherId}` : ""}`}
+                  >
+                    {l ? `${l.developer_name} ${l.plugin_name}` : `Listing #${listingId}`} · @
+                    {username}
+                  </Link>
+                  <span className="muted">{last.body.slice(0, 60)}</span>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <p className="muted">No messages yet.</p>
+        )}
+      </section>
 
       <form action="/auth/signout" method="post" style={{ marginTop: 16, textAlign: "center" }}>
         <button className="btn" type="submit">

@@ -185,9 +185,12 @@ export default async function ListingPage({
                     Sign in to buy
                   </Link>
                 )}
-                <button className="btn btn-lg" type="button" disabled>
+                <Link
+                  href={user ? `/listings/${listing.id}/messages` : "/signin"}
+                  className="btn btn-lg"
+                >
                   Message seller
-                </button>
+                </Link>
                 <p className="hint">
                   Buying reserves the license for you and shows you the seller&apos;s PayPal
                   details.
