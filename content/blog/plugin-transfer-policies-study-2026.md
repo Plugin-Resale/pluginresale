@@ -49,7 +49,7 @@ A few of the most popular products in music production can't be resold:
 
 Among the 106 developers that allow transfers:
 
-- **21 charge nothing at all**. Ableton, XLN Audio, Kilohearts, D16 Group, Voxengo and Output are among them.
+- **20 charge nothing at all**. Ableton, XLN Audio, Kilohearts, D16 Group, Voxengo and Output are among them.
 - **15 only pass on the iLok fee** that PACE charges ($25 for one license, $50 for several in one transaction). See our [iLok guide](/blog/ilok-license-transfer-explained).
 - **7 charge a percentage of the product's price**, from **5%** at Waves (with a $10 minimum and a $150 maximum) up to **25%** at Wavesfactory. MeldaProduction, United Plugins and Sonimus charge 20%, and Vienna Symphonic Library 10% with a €50 minimum.
 - Others charge a flat fee, like FabFilter's License Transfer (about €10) or Toontrack's $15 per serial number, and a few policies don't mention a fee at all.
