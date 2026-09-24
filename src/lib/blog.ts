@@ -1,5 +1,6 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
+import { connection } from "next/server";
 import { marked } from "marked";
 
 // Blog posts live in content/blog/<slug>.md. Each file starts with a front matter block:
@@ -12,6 +13,8 @@ import { marked } from "marked";
 // ---
 //
 // Files whose name starts with "_" are drafts and are not published.
+// A post with a date in the future is scheduled: it stays hidden (404, not in the index)
+// until that day, Paris time, then appears on its own without a redeploy.
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 
@@ -74,23 +77,45 @@ async function readPost(slug: string): Promise<{ meta: PostMeta; body: string } 
   };
 }
 
-export async function getAllPosts(): Promise<PostMeta[]> {
+// Today's date in Paris, as YYYY-MM-DD.
+function today() {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Paris" }).format(new Date());
+}
+
+async function readAllPosts() {
   const files = await readdir(BLOG_DIR);
   const slugs = files
     .filter((file) => file.endsWith(".md") && !file.startsWith("_"))
     .map((file) => file.slice(0, -3));
   const posts = await Promise.all(slugs.map(readPost));
-  return posts
-    .filter((post) => post !== null)
-    .map((post) => post.meta)
+  return posts.filter((post) => post !== null).map((post) => post.meta);
+}
+
+export async function getAllPosts(): Promise<PostMeta[]> {
+  // Publication depends on today's date: always render at request time.
+  await connection();
+  const now = today();
+  return (await readAllPosts())
+    .filter((post) => post.date <= now)
     .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
 }
 
 export async function getPost(slug: string): Promise<Post | null> {
   if (!/^[a-z0-9-]+$/.test(slug)) return null;
+  await connection();
+  const now = today();
   const post = await readPost(slug);
-  if (!post) return null;
-  return { ...post.meta, html: await marked.parse(post.body) };
+  if (!post || post.meta.date > now) return null;
+
+  // Links to posts that aren't published yet become plain text until they are.
+  const scheduled = new Set(
+    (await readAllPosts()).filter((p) => p.date > now).map((p) => p.slug),
+  );
+  const html = (await marked.parse(post.body)).replace(
+    /<a href="\/blog\/([a-z0-9-]+)">([\s\S]*?)<\/a>/g,
+    (link, target: string, text: string) => (scheduled.has(target) ? text : link),
+  );
+  return { ...post.meta, html };
 }
 
 export function formatPostDate(date: string) {

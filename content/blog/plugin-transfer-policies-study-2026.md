@@ -1,7 +1,7 @@
 ---
 title: "We checked the license transfer policies of 191 audio software developers. Here's what we found"
 description: Can you resell your plugins? We went through the official transfer policies of 191 plugin, sample library and DAW makers. Just over half allow transfers, sample libraries are the hardest to resell, and fees range from nothing to 25% of the price.
-date: 2026-09-24
+date: 2026-10-01
 ---
 
 At Plugin Resale, every listing shows the developer's license transfer rules next to the price. To do that, we built a database of transfer policies, going through each developer's official support pages and license agreements one by one.

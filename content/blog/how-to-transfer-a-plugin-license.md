@@ -1,7 +1,7 @@
 ---
 title: "How to transfer a plugin license: the complete guide"
 description: Every developer moves licenses differently. Here are the five transfer systems you'll run into, what they cost, how long they take, and a checklist for buyers and sellers.
-date: 2026-09-24
+date: 2026-09-26
 ---
 
 Selling a plugin is easy. Getting the license into the buyer's name is the part that trips people up. There is no universal "transfer" button: each developer decides whether licenses can change hands, how, when and for how much.
