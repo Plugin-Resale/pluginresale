@@ -83,7 +83,7 @@ export default async function BrowsePage({ searchParams }: PageProps<"/browse">)
       .order("id", { ascending: false })
       .range(from, from + PAGE_SIZE - 1)
       .returns<ListingCard[]>(),
-    supabase.from("developers").select("name, slug").eq("transferable", true).order("name"),
+    supabase.from("developers").select("name, slug").not("transferable", "is", false).order("name"),
   ]);
   // Page past the last result (e.g. an old link): go back to the first page.
   if (error?.code === "PGRST103") redirect(pageHref(filters, 1));

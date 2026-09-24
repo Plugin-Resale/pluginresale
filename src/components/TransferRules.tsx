@@ -3,7 +3,10 @@ import { TransferBadge } from "./TransferBadge";
 
 // The developer's license-transfer rules box (developer page, listing page, sell form).
 export function TransferRules({ developer }: { developer: Developer }) {
-  const rows: [string, string | null][] = developer.transferable
+  const unverified = developer.transferable === null;
+  const rows: [string, string | null][] = unverified
+    ? [["What we know", developer.restrictions]]
+    : developer.transferable
     ? [
         ["Developer transfer fee", developer.fee],
         ["Who pays the fee", developer.who_pays],
@@ -24,6 +27,23 @@ export function TransferRules({ developer }: { developer: Developer }) {
         <h2>{developer.name} transfer rules</h2>
         <TransferBadge transferable={developer.transferable} />
       </div>
+      {unverified && (
+        <p className="rules-warning">
+          We haven&apos;t found an official transfer policy for {developer.name} yet.{" "}
+          <strong>
+            Before buying or selling, ask {developer.name} whether this license can be transferred,
+            and how.
+          </strong>
+          {developer.website && (
+            <>
+              {" "}
+              <a href={developer.website} target="_blank" rel="noopener noreferrer">
+                {developer.name} website
+              </a>
+            </>
+          )}
+        </p>
+      )}
       <dl>
         {rows
           .filter(([, value]) => value)

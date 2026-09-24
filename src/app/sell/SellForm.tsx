@@ -20,7 +20,8 @@ export function SellForm({ plugins }: { plugins: PluginOption[] }) {
   const initial = plugins.find((p) => String(p.id) === values?.pluginId);
   const [query, setQuery] = useState(initial ? optionLabel(initial) : "");
   const selected = byLabel.get(query.trim().toLowerCase()) ?? null;
-  const blocked = selected !== null && !selected.developer.transferable;
+  const blocked = selected !== null && selected.developer.transferable === false;
+  const unverified = selected !== null && selected.developer.transferable === null;
 
   return (
     <div className="sell-layout">
@@ -172,6 +173,13 @@ export function SellForm({ plugins }: { plugins: PluginOption[] }) {
             <TransferBadge transferable={selected.developer.transferable} />
             {blocked ? (
               <p>{selected.developer.restrictions ?? "This developer doesn't allow transfers."}</p>
+            ) : unverified ? (
+              <p>
+                We haven&apos;t found an official transfer policy for {selected.developer.name}.
+                Before listing, check with {selected.developer.name} that your license can be
+                transferred, and how.{" "}
+                {selected.developer.restrictions}
+              </p>
             ) : (
               <dl>
                 <dt>Developer fee</dt>

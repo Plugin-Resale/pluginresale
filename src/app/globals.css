@@ -369,6 +369,11 @@ main {
   background: #fdeae1;
 }
 
+.badge-warn {
+  color: #7a4b00;
+  background: #fbefd2;
+}
+
 /* ---------- Developers ---------- */
 
 .dev-grid {
@@ -493,6 +498,20 @@ main {
   margin: 0;
   font-size: 15px;
   font-weight: 500;
+}
+
+.rules-warning {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: #fbefd2;
+  color: #5c3900;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.rules-warning a {
+  color: inherit;
 }
 
 .rules-foot {

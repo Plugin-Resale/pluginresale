@@ -36,7 +36,11 @@ export default async function DevelopersPage() {
               <span className="dev-card-name">{dev.name}</span>
               <TransferBadge transferable={dev.transferable} />
               <span className="dev-card-fee">
-                {dev.transferable ? (dev.fee ?? "Fee not stated") : "Licenses can't be resold"}
+                {dev.transferable === null
+                  ? "Check with the developer"
+                  : dev.transferable
+                    ? (dev.fee ?? "Fee not stated")
+                    : "Licenses can't be resold"}
               </span>
               <span className="dev-card-link">Transfer rules →</span>
             </Link>

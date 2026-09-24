@@ -5,7 +5,7 @@ export type Developer = {
   name: string;
   slug: string;
   website: string | null;
-  transferable: boolean;
+  transferable: boolean | null; // null = policy not verified yet
   fee: string | null;
   who_pays: string | null;
   process: string | null;
@@ -27,9 +27,12 @@ export type Plugin = {
 export const CATEGORIES = {
   eq: "EQ",
   compression: "Compression",
+  "channel-strips": "Channel strips & preamps",
   "reverb-delay": "Reverb & Delay",
   saturation: "Saturation",
   mastering: "Mastering",
+  "guitar-amps": "Guitar & amps",
+  microphones: "Microphones",
   synths: "Synths",
   "sample-libraries": "Sample libraries",
   bundles: "Bundles",
@@ -74,7 +77,7 @@ export type ListingCard = {
   developer_id: number;
   developer_name: string;
   developer_slug: string;
-  transferable: boolean;
+  transferable: boolean | null;
   no_fee: boolean;
 };
 
