@@ -36,12 +36,23 @@ export default async function DeveloperPage({ params }: PageProps<"/developers/[
   if (!developer) notFound();
 
   const supabase = await createClient();
-  const { data: plugins } = await supabase
-    .from("plugins")
-    .select("id, developer_id, name, slug, category")
-    .eq("developer_id", developer.id)
-    .order("name")
-    .returns<Plugin[]>();
+
+  // A single select caps out at 1,000 rows: some developers (Native Instruments, Toontrack,
+  // 8dio...) have more plugins than that, so page through until a batch comes back short.
+  const PAGE_SIZE = 1000;
+  const plugins: Plugin[] = [];
+  for (let from = 0; ; from += PAGE_SIZE) {
+    const { data: page, error } = await supabase
+      .from("plugins")
+      .select("id, developer_id, name, slug, category")
+      .eq("developer_id", developer.id)
+      .order("name")
+      .range(from, from + PAGE_SIZE - 1)
+      .returns<Plugin[]>();
+    if (error) throw error;
+    plugins.push(...page);
+    if (page.length < PAGE_SIZE) break;
+  }
 
   return (
     <main className="container page">

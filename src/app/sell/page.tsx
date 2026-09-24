@@ -32,12 +32,23 @@ export default async function SellPage() {
   }
 
   const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("plugins")
-    .select(`id, name, category, developers!inner (${DEVELOPER_COLUMNS})`)
-    .order("name")
-    .returns<PluginRow[]>();
-  if (error) throw error;
+
+  // Supabase caps a single select at 1,000 rows: with 3,700+ plugins now in the catalogue,
+  // one query would silently cut off everything past the 1,000th row (sorted by plugin
+  // name), so plugins were missing from this list depending on their name's first letter.
+  const PAGE_SIZE = 1000;
+  const data: PluginRow[] = [];
+  for (let from = 0; ; from += PAGE_SIZE) {
+    const { data: page, error } = await supabase
+      .from("plugins")
+      .select(`id, name, category, developers!inner (${DEVELOPER_COLUMNS})`)
+      .order("name")
+      .range(from, from + PAGE_SIZE - 1)
+      .returns<PluginRow[]>();
+    if (error) throw error;
+    data.push(...page);
+    if (page.length < PAGE_SIZE) break;
+  }
 
   const plugins: PluginOption[] = data
     .map((p) => ({ id: p.id, name: p.name, category: p.category, developer: p.developers }))
