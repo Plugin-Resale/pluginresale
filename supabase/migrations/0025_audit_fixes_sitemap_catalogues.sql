@@ -3,18 +3,17 @@
 -- official stores (their product feeds give the exact name, price and vendor):
 --   - 8dio / Spitfire Audio: official product names (the import had turned "Adagio Violins
 --     2.0" into "Adagio Violins", "BBC Symphony Orchestra" into "Bbc...", and left SEO junk
---     in 8dio slugs such as "-for-kontakt-vst-au-aax-samples"); free products and a gift card
---     removed; duplicates merged.
+--     in 8dio slugs such as "-for-kontakt-vst-au-aax-samples"), free products and a gift card
+--     removed, duplicates merged.
 --   - Plugin Alliance: "marketplace" items are sold by PA but published and licensed by
 --     their own developers (Baby Audio, Krotos, GForce, Mastering The Mix, Fuse Audio Labs):
 --     moved to those developers, or merged when already listed there. BEATSURFING (not in
---     the catalogue) removed. Categories fixed from PA's own product descriptions (many
+--     the catalogue) removed. Categories fixed from PA’s own product descriptions (many
 --     compressors, reverbs and amps had landed in "utilities").
---   - MeldaProduction: the free MFreeFXBundle plugins removed; categories fixed.
+--   - MeldaProduction: the free MFreeFXBundle plugins removed, categories fixed.
 --   - Toontrack / Universal Audio: brand spelling (EZkeys, EZmix, EZbass, UAD, roman numerals).
 -- Idempotent, same rules as 0024.
 
-begin;
 
 -- Removed: not a real product of this developer, free, hardware, or not sold on its own (2)
 -- A product that already has a listing is kept (nothing is deleted under a seller).
@@ -424,8 +423,8 @@ where p.developer_id = d.id and d.slug = v.dev and p.slug = v.old_slug
 -- Duplicates / old versions merged into the kept product (2)
 -- Move any listing to the kept product, then drop the duplicate.
 with v(dev, slug, target_dev, target_slug) as (values
-  ('8dio', 'century-strings', '8dio', 'century-strings-bundle'), -- not a product on its own; sold as the Century Strings Bundle | https://8dio.com/products/century-strings-series
-  ('8dio', 'century-brass', '8dio', 'all-century-brass-bundle') -- not a product on its own; sold as the All Century Brass Bundle | https://8dio.com/products/century-brass-bundle
+  ('8dio', 'century-strings', '8dio', 'century-strings-bundle'), -- not a product on its own, sold as the Century Strings Bundle | https://8dio.com/products/century-strings-series
+  ('8dio', 'century-brass', '8dio', 'all-century-brass-bundle') -- not a product on its own, sold as the All Century Brass Bundle | https://8dio.com/products/century-brass-bundle
 ), pairs as (
   select s.id as source_id, t.id as target_id
   from v
@@ -438,8 +437,8 @@ update public.listings l set plugin_id = pairs.target_id from pairs where l.plug
 
 delete from public.plugins p
 using public.developers d, (values
-  ('8dio', 'century-strings', '8dio', 'century-strings-bundle'), -- not a product on its own; sold as the Century Strings Bundle | https://8dio.com/products/century-strings-series
-  ('8dio', 'century-brass', '8dio', 'all-century-brass-bundle') -- not a product on its own; sold as the All Century Brass Bundle | https://8dio.com/products/century-brass-bundle
+  ('8dio', 'century-strings', '8dio', 'century-strings-bundle'), -- not a product on its own, sold as the Century Strings Bundle | https://8dio.com/products/century-strings-series
+  ('8dio', 'century-brass', '8dio', 'all-century-brass-bundle') -- not a product on its own, sold as the All Century Brass Bundle | https://8dio.com/products/century-brass-bundle
 ) as v(dev, slug, target_dev, target_slug)
 where p.developer_id = d.id and d.slug = v.dev and p.slug = v.slug
   and exists (select 1 from public.plugins t join public.developers td on td.id = t.developer_id
@@ -1402,4 +1401,3 @@ from public.developers d, (values
 where p.developer_id = d.id and d.slug = v.dev and p.slug = v.slug;
 
 
-commit;

@@ -1,11 +1,11 @@
 -- Step 24: catalogue audit, part 1 of 3 (paste 0024, then 0025, then 0026).
 -- Audit run on 2026-09-24 against the catalogue as built by migrations 0003-0023
--- (191 developers, 4324 plugins). Every change below was checked against the developer's
--- own site (product pages, store, EULA, support KB); the source is given on each line.
+-- (191 developers, 4324 plugins). Every change below was checked against the developer’s
+-- own site (product pages, store, EULA, support KB), the source is given on each line.
 --
 -- This file: the smaller developers added in 0011/0013 and deepened in 0016/0017, plus
 -- version and developer-record fixes.
---   - Product names that don't exist at that developer (fabricated, or another company's
+--   - Product names that don’t exist at that developer (fabricated, or another company’s
 --     product): deleted, and replaced by real products from the official catalogue where
 --     that was the only content of the developer (Aaron Venture, Auddict, Fracture Sounds,
 --     Rast Sound, Cinematique Instruments, Denise, Wave Alchemy, Precisionsound...).
@@ -14,7 +14,7 @@
 --   - Outdated versions renamed to the current one (Altiverb 8, Pianoteq 9, Heat Up 3,
 --     Music Production Suite 9, FX Collection 6, SpectraLayers Pro 13...), and old-version
 --     duplicates merged into the current product (Pro-Q 3 -> Pro-Q 4...): the version a
---     seller owns goes in the listing's own "version" field.
+--     seller owns goes in the listing’s own "version" field.
 --   - Duplicates (same product under two slugs), wrong categories, developer records
 --     (missing/unofficial policy source, last_verified on unverified policies).
 --
@@ -22,7 +22,6 @@
 -- on conflict do nothing, and a product is never deleted if a listing points at it
 -- (listings of a merged duplicate are moved to the kept product first).
 
-begin;
 
 -- Wrong name or outdated version -> official current name (49)
 update public.plugins p
@@ -100,10 +99,10 @@ with v(dev, slug, target_dev, target_slug) as (values
   ('soundiron', 'apocalypse-percussion', 'soundiron', 'apocalypse-percussion-ensemble'), -- https://soundiron.com/collections/all
   ('ample-sound', 'abp-bass-precision', 'ample-sound', 'ample-bass-p'), -- https://www.amplesound.net/en/index.asp
   ('strezov-sampling', 'afflatus-strings', 'strezov-sampling', 'afflatus-chapter-i-strings'), -- https://www.strezov-sampling.com/products/
-  ('fabfilter', 'pro-q-3', 'fabfilter', 'pro-q-4'), -- https://www.fabfilter.com/products (old version; version goes in the listing)
+  ('fabfilter', 'pro-q-3', 'fabfilter', 'pro-q-4'), -- https://www.fabfilter.com/products (old version, version goes in the listing)
   ('fabfilter', 'pro-c-2', 'fabfilter', 'pro-c-3'), -- https://www.fabfilter.com/products
   ('rob-papen', 'predator-2', 'rob-papen', 'predator-3'), -- https://www.robpapen.com/
-  ('rob-papen', 'subboombass-3', 'rob-papen', 'subboombass-2'), -- https://www.robpapen.com/ (SubBoomBass 3 doesn't exist; current is SubBoomBass 2)
+  ('rob-papen', 'subboombass-3', 'rob-papen', 'subboombass-2'), -- https://www.robpapen.com/ (SubBoomBass 3 doesn’t exist, current is SubBoomBass 2)
   ('sonible', 'smart-eq-3', 'sonible', 'smart-eq-4'), -- https://www.sonible.com (old version)
   ('acon-digital', 'restoration-suite-2', 'acon-digital', 'restoration-suite-3'), -- old version
   ('uvi', 'falcon', 'uvi', 'falcon-3'), -- duplicate of Falcon 3
@@ -140,10 +139,10 @@ using public.developers d, (values
   ('soundiron', 'apocalypse-percussion', 'soundiron', 'apocalypse-percussion-ensemble'), -- https://soundiron.com/collections/all
   ('ample-sound', 'abp-bass-precision', 'ample-sound', 'ample-bass-p'), -- https://www.amplesound.net/en/index.asp
   ('strezov-sampling', 'afflatus-strings', 'strezov-sampling', 'afflatus-chapter-i-strings'), -- https://www.strezov-sampling.com/products/
-  ('fabfilter', 'pro-q-3', 'fabfilter', 'pro-q-4'), -- https://www.fabfilter.com/products (old version; version goes in the listing)
+  ('fabfilter', 'pro-q-3', 'fabfilter', 'pro-q-4'), -- https://www.fabfilter.com/products (old version, version goes in the listing)
   ('fabfilter', 'pro-c-2', 'fabfilter', 'pro-c-3'), -- https://www.fabfilter.com/products
   ('rob-papen', 'predator-2', 'rob-papen', 'predator-3'), -- https://www.robpapen.com/
-  ('rob-papen', 'subboombass-3', 'rob-papen', 'subboombass-2'), -- https://www.robpapen.com/ (SubBoomBass 3 doesn't exist; current is SubBoomBass 2)
+  ('rob-papen', 'subboombass-3', 'rob-papen', 'subboombass-2'), -- https://www.robpapen.com/ (SubBoomBass 3 doesn’t exist, current is SubBoomBass 2)
   ('sonible', 'smart-eq-3', 'sonible', 'smart-eq-4'), -- https://www.sonible.com (old version)
   ('acon-digital', 'restoration-suite-2', 'acon-digital', 'restoration-suite-3'), -- old version
   ('uvi', 'falcon', 'uvi', 'falcon-3'), -- duplicate of Falcon 3
@@ -198,7 +197,7 @@ using public.developers d, (values
   ('nomad-factory', 'magnetic-ii'), -- (real: Magnetics Bundle v3) | https://www.nomadfactory.com
   ('nomad-factory', 'bus-driver'), -- https://www.nomadfactory.com
   ('black-rooster-audio', 'ariva-n'), -- https://blackroosteraudio.com/en/products
-  ('kush-audio', 'ubk-fatso-jr'), -- (Fatso Jr is Empirical Labs/UAD; Kush sells UBK-2) | https://thehouseofkush.com
+  ('kush-audio', 'ubk-fatso-jr'), -- (Fatso Jr is Empirical Labs/UAD, Kush sells UBK-2) | https://thehouseofkush.com
   ('ddmf', 'nyq'), -- https://ddmf.eu
   ('initial-audio', 'poly-verse'), -- https://initialaudio.com
   ('initial-audio', 'dirty-tape'), -- https://initialaudio.com
@@ -229,15 +228,15 @@ using public.developers d, (values
   ('projectsam', 'forzo'), -- (Heavyocity product, already listed there) | https://heavyocity.com/products/forzo
   ('projectsam', 'animato'), -- not a ProjectSAM library | https://projectsam.com/libraries/
   ('heavyocity', 'aeon'), -- https://heavyocity.com/products/
-  ('tokyo-dawn-records', 'tdr-nova'), -- free version (cannot be resold); paid Nova GE already listed | https://www.tokyodawn.net/tokyo-dawn-labs/
-  ('tokyo-dawn-records', 'tdr-kotelnikov'), -- free version; Kotelnikov GE already listed | https://www.tokyodawn.net/tokyo-dawn-labs/
-  ('tokyo-dawn-records', 'tdr-vos-slickeq'), -- free version; SlickEQ GE already listed | https://www.tokyodawn.net/tokyo-dawn-labs/
+  ('tokyo-dawn-records', 'tdr-nova'), -- free version (cannot be resold), paid Nova GE already listed | https://www.tokyodawn.net/tokyo-dawn-labs/
+  ('tokyo-dawn-records', 'tdr-kotelnikov'), -- free version, Kotelnikov GE already listed | https://www.tokyodawn.net/tokyo-dawn-labs/
+  ('tokyo-dawn-records', 'tdr-vos-slickeq'), -- free version, SlickEQ GE already listed | https://www.tokyodawn.net/tokyo-dawn-labs/
   ('ujam', 'virtual-guitarist'), -- product family, only sold as editions (IRON 2 etc.) | https://www.ujam.com/
   ('ujam', 'virtual-bassist'), -- product family, only sold as editions | https://www.ujam.com/
   ('ujam', 'virtual-drummer'), -- product family, only sold as editions | https://www.ujam.com/
   ('ujam', 'usynth-rise'), -- no such Usynth edition | https://www.ujam.com/
   ('garritan', 'jazz-and-big-band-4'), -- current version is Jazz & Big Band 3 | https://www.garritan.com/
-  ('impact-soundworks', 'shreddage-3'), -- not a product; sold as Shreddage 3 Stratus/Hydra/Argent/Darkwall | https://impactsoundworks.com/products/
+  ('impact-soundworks', 'shreddage-3'), -- not a product, sold as Shreddage 3 Stratus/Hydra/Argent/Darkwall | https://impactsoundworks.com/products/
   ('getgood-drums', 'elevate-drums'), -- https://ggd.co/collections/all
   ('sonic-academy', 'bassline'), -- not a Sonic Academy product | https://www.sonicacademy.com/products
   ('polyverse-music', 'wider'), -- free plugin, nothing to resell | https://polyversemusic.com/products/wider/
@@ -343,7 +342,7 @@ on conflict (developer_id, slug) do nothing;
 -- Developer records ---------------------------------------------------------
 
 -- Adobe: "not transferable" had no source. Adobe General Terms, section 18.4 (Non-Assignment):
--- rights under the Terms can't be transferred without Adobe's written consent.
+-- rights under the Terms can’t be transferred without Adobe’s written consent.
 update public.developers set source_url = 'https://www.adobe.com/legal/terms.html'
 where slug = 'adobe' and source_url is null;
 
@@ -357,7 +356,7 @@ update public.developers set
   last_verified = '2026-09-24'
 where slug = 'audio-modeling';
 
--- Exponential Audio's own domain no longer resolves; the products are now sold by iZotope.
+-- Exponential Audio’s own domain no longer resolves, the products are now sold by iZotope.
 update public.developers set website = 'https://www.izotope.com'
 where slug = 'exponential-audio' and website = 'https://www.exponentialaudio.com';
 
@@ -365,4 +364,3 @@ where slug = 'exponential-audio' and website = 'https://www.exponentialaudio.com
 update public.developers set last_verified = null
 where transferable is null and last_verified is not null;
 
-commit;
