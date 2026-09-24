@@ -333,6 +333,12 @@ main {
 
 /* ---------- Blog ---------- */
 
+/* Full width up to the narrow max-width, so wide tables scroll inside the article
+   instead of stretching the page on small screens. */
+.blog-page {
+  width: 100%;
+}
+
 .post-list {
   list-style: none;
   padding: 0;
@@ -431,6 +437,41 @@ main {
   border: 0;
   border-top: 1px solid var(--line);
   margin: 40px 0;
+}
+
+.post-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 0 0 24px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.post-body th,
+.post-body td {
+  padding: 10px 12px 10px 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.post-body th:last-child,
+.post-body td:last-child {
+  padding-right: 0;
+}
+
+.post-body th {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.post-body tbody tr:last-child td {
+  border-bottom: 0;
 }
 
 .post-body em {
