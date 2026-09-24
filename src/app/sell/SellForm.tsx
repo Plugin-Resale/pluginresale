@@ -11,9 +11,11 @@ const optionLabel = (p: PluginOption) => `${p.developer.name} ${p.name}`;
 
 export function SellForm({
   plugins,
+  developers,
   defaultPaypalEmail,
 }: {
   plugins: PluginOption[];
+  developers: Developer[];
   defaultPaypalEmail?: string;
 }) {
   const [state, action, pending] = useActionState<SellState, FormData>(createListing, {});
@@ -26,8 +28,19 @@ export function SellForm({
   const initial = plugins.find((p) => String(p.id) === values?.pluginId);
   const [query, setQuery] = useState(initial ? optionLabel(initial) : "");
   const selected = byLabel.get(query.trim().toLowerCase()) ?? null;
-  const blocked = selected !== null && selected.developer.transferable === false;
-  const unverified = selected !== null && selected.developer.transferable === null;
+
+  // Typed a plugin that isn't in the catalogue yet: pick its developer (still from our
+  // list, since that's where the transfer-rules policy lives) and add it on the fly.
+  const [newDeveloperId, setNewDeveloperId] = useState(values?.developerId ?? "");
+  const [newPluginName, setNewPluginName] = useState(values?.newPluginName ?? "");
+  const [newCategory, setNewCategory] = useState<Category | "">(
+    (values?.newPluginCategory as Category) ?? "",
+  );
+  const newDeveloper = developers.find((d) => String(d.id) === newDeveloperId) ?? null;
+
+  const activeDeveloper = selected?.developer ?? newDeveloper;
+  const blocked = activeDeveloper?.transferable === false;
+  const unverified = activeDeveloper != null && activeDeveloper.transferable === null;
 
   return (
     <div className="sell-layout">
@@ -53,19 +66,73 @@ export function SellForm({
             ))}
           </datalist>
           <input type="hidden" name="plugin_id" value={selected?.id ?? ""} />
-          {query && !selected && (
-            <p className="hint">
-              Not in the list? Email{" "}
-              <a href="mailto:contact@pluginresale.com?subject=Missing plugin">
-                contact@pluginresale.com
-              </a>{" "}
-              and we&apos;ll add it.
-            </p>
-          )}
-          {selected && (
-            <p className="hint">Category: {CATEGORIES[selected.category]}</p>
-          )}
+          {selected && <p className="hint">Category: {CATEGORIES[selected.category]}</p>}
         </div>
+
+        {query && !selected && (
+          <div className="card new-plugin">
+            <p className="hint">
+              Not in the list? Add it: pick the developer and a category, and we&apos;ll add{" "}
+              <strong>{query}</strong> to the catalogue for everyone.
+            </p>
+            <div className="field">
+              <label className="field-label" htmlFor="developer_id">
+                Developer
+              </label>
+              <select
+                id="developer_id"
+                name="developer_id"
+                className="input"
+                value={newDeveloperId}
+                onChange={(e) => setNewDeveloperId(e.target.value)}
+                required
+              >
+                <option value="">Choose a developer…</option>
+                {developers.map((d) => (
+                  <option key={d.id} value={d.id}>
+                    {d.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="field-row">
+              <div className="field">
+                <label className="field-label" htmlFor="new_plugin_name">
+                  Plugin name
+                </label>
+                <input
+                  id="new_plugin_name"
+                  name="new_plugin_name"
+                  className="input"
+                  value={newPluginName || query}
+                  onChange={(e) => setNewPluginName(e.target.value)}
+                  maxLength={80}
+                  required
+                />
+              </div>
+              <div className="field">
+                <label className="field-label" htmlFor="new_plugin_category">
+                  Category
+                </label>
+                <select
+                  id="new_plugin_category"
+                  name="new_plugin_category"
+                  className="input"
+                  value={newCategory}
+                  onChange={(e) => setNewCategory(e.target.value as Category)}
+                  required
+                >
+                  <option value="">Choose a category…</option>
+                  {Object.entries(CATEGORIES).map(([value, label]) => (
+                    <option key={value} value={value}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="field-row">
           <div className="field">
@@ -174,41 +241,41 @@ export function SellForm({
 
       <aside className="rules-panel" aria-live="polite">
         <span className="rules-panel-eyebrow">Auto-filled from our database</span>
-        {selected ? (
+        {activeDeveloper ? (
           <>
-            <h2>{selected.developer.name} transfer rules</h2>
-            <TransferBadge transferable={selected.developer.transferable} />
+            <h2>{activeDeveloper.name} transfer rules</h2>
+            <TransferBadge transferable={activeDeveloper.transferable} />
             {blocked ? (
-              <p>{selected.developer.restrictions ?? "This developer doesn't allow transfers."}</p>
+              <p>{activeDeveloper.restrictions ?? "This developer doesn't allow transfers."}</p>
             ) : unverified ? (
               <p>
-                We haven&apos;t found an official transfer policy for {selected.developer.name}.
-                Before listing, check with {selected.developer.name} that your license can be
+                We haven&apos;t found an official transfer policy for {activeDeveloper.name}.
+                Before listing, check with {activeDeveloper.name} that your license can be
                 transferred, and how.{" "}
-                {selected.developer.restrictions}
+                {activeDeveloper.restrictions}
               </p>
             ) : (
               <dl>
                 <dt>Developer fee</dt>
-                <dd>{selected.developer.fee ?? "Not stated"}</dd>
-                {selected.developer.who_pays && (
+                <dd>{activeDeveloper.fee ?? "Not stated"}</dd>
+                {activeDeveloper.who_pays && (
                   <>
                     <dt>Who pays</dt>
-                    <dd>{selected.developer.who_pays}</dd>
+                    <dd>{activeDeveloper.who_pays}</dd>
                   </>
                 )}
                 <dt>Process</dt>
-                <dd>{selected.developer.process ?? "Not stated"}</dd>
-                {selected.developer.restrictions && (
+                <dd>{activeDeveloper.process ?? "Not stated"}</dd>
+                {activeDeveloper.restrictions && (
                   <>
                     <dt>Restrictions</dt>
-                    <dd>{selected.developer.restrictions}</dd>
+                    <dd>{activeDeveloper.restrictions}</dd>
                   </>
                 )}
               </dl>
             )}
-            {selected.developer.source_url && (
-              <a href={selected.developer.source_url} target="_blank" rel="noopener noreferrer">
+            {activeDeveloper.source_url && (
+              <a href={activeDeveloper.source_url} target="_blank" rel="noopener noreferrer">
                 Official source
               </a>
             )}

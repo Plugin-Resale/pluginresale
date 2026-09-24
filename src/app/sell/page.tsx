@@ -54,17 +54,25 @@ export default async function SellPage() {
     .map((p) => ({ id: p.id, name: p.name, category: p.category, developer: p.developers }))
     .sort((a, b) => `${a.developer.name} ${a.name}`.localeCompare(`${b.developer.name} ${b.name}`));
 
-  const { data: privateProfile } = await supabase
-    .from("profile_private")
-    .select("paypal_email")
-    .eq("user_id", user.id)
-    .maybeSingle<{ paypal_email: string | null }>();
+  const [{ data: privateProfile }, { data: developers, error: developersError }] = await Promise.all([
+    supabase
+      .from("profile_private")
+      .select("paypal_email")
+      .eq("user_id", user.id)
+      .maybeSingle<{ paypal_email: string | null }>(),
+    supabase.from("developers").select(DEVELOPER_COLUMNS).order("name").returns<Developer[]>(),
+  ]);
+  if (developersError) throw developersError;
 
   return (
     <main className="container page">
       <h1 className="page-title">Sell a plugin</h1>
       <p className="lead">Free to list, no commission. Buyers pay you directly via PayPal.</p>
-      <SellForm plugins={plugins} defaultPaypalEmail={privateProfile?.paypal_email ?? undefined} />
+      <SellForm
+        plugins={plugins}
+        developers={developers ?? []}
+        defaultPaypalEmail={privateProfile?.paypal_email ?? undefined}
+      />
     </main>
   );
 }

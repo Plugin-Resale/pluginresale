@@ -1397,6 +1397,17 @@ main {
   padding: 20px;
 }
 
+.new-plugin {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+}
+
+.new-plugin > .hint {
+  margin: 0;
+}
+
 .rules-panel {
   background: var(--ink);
   color: var(--ground);
