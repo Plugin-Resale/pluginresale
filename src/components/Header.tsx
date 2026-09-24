@@ -17,6 +17,9 @@ export async function Header() {
           <Link href="/developers" className="nav-link">
             Developers
           </Link>
+          <Link href="/blog" className="nav-link">
+            Blog
+          </Link>
         </nav>
         <form action="/browse" className="header-search" role="search">
           <label htmlFor="header-q" className="sr-only">
