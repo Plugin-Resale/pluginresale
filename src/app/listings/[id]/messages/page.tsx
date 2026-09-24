@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
+import type { ReactNode } from "react";
 import type { Message } from "@/lib/messages";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
@@ -17,7 +18,18 @@ export default async function ListingMessagesPage({
 
   const id = Number((await params).id);
   if (!Number.isInteger(id)) notFound();
-  const { with: withParam } = await searchParams;
+  const { with: withParam, error: sendError } = await searchParams;
+
+  const SEND_ERROR_MESSAGES: Record<string, ReactNode> = {
+    username: (
+      <>
+        Choose a username in <Link href={`/account?next=/listings/${id}/messages`}>My account</Link>{" "}
+        before messaging.
+      </>
+    ),
+    empty: "Your message was empty.",
+    unknown: "Something went wrong sending your message. Please try again.",
+  };
 
   const supabase = await createClient();
   const { data: listing } = await supabase
@@ -101,6 +113,9 @@ export default async function ListingMessagesPage({
   return (
     <main className="container page">
       {breadcrumb}
+      {typeof sendError === "string" && SEND_ERROR_MESSAGES[sendError] && (
+        <p className="notice notice-error">{SEND_ERROR_MESSAGES[sendError]}</p>
+      )}
       <h1 className="page-title">
         {isSeller ? `Conversation with @${otherUsername ?? "buyer"}` : `Message @${otherUsername}`}
       </h1>

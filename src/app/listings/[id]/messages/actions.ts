@@ -8,6 +8,13 @@ import { createClient } from "@/lib/supabase/server";
 import { getUserEmail } from "@/lib/supabase/admin";
 import { getCurrentUser } from "@/lib/supabase/user";
 
+const SEND_ERRORS: Record<string, string> = {
+  USERNAME_REQUIRED: "username",
+  NOT_ALLOWED: "unknown",
+  EMPTY_BODY: "empty",
+  UNKNOWN_LISTING: "unknown",
+};
+
 // Posts one message on a listing thread: a buyer to the seller, or the seller's reply.
 export async function sendMessage(formData: FormData) {
   const listingId = Number(formData.get("listing_id"));
@@ -23,8 +30,10 @@ export async function sendMessage(formData: FormData) {
     p_body: body,
   });
   if (error) {
-    console.error("send_message failed:", error.message);
-    redirect(`/listings/${listingId}/messages?with=${toId}&error=1`);
+    if (error.message === "NOT_SIGNED_IN") redirect("/signin");
+    const code = SEND_ERRORS[error.message];
+    if (!code) console.error("send_message failed:", error.message);
+    redirect(`/listings/${listingId}/messages?with=${toId}&error=${code ?? "unknown"}`);
   }
 
   const [toEmail, { data: listing }] = await Promise.all([

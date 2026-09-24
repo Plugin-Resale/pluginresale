@@ -18,7 +18,6 @@ import { setListingStatus } from "../../account/actions";
 import { startDeal } from "../../deals/actions";
 
 const BUY_ERRORS: Record<string, string> = {
-  username: "Choose a username in My account before buying.",
   unavailable: "Someone just reserved this license. It may come back if their purchase is cancelled.",
   own: "This is your own listing.",
   unknown: "Something went wrong. Please try again.",
@@ -150,6 +149,13 @@ export default async function ListingPage({
           <div className="card price-card">
             <span className="price price-lg">{formatPrice(listing.price_eur)}</span>
             <span className="muted listing-id">Listing #{listing.id}</span>
+            {buyError === "username" && (
+              <p className="notice notice-error">
+                Choose a username in{" "}
+                <Link href={`/account?next=/listings/${listing.id}`}>My account</Link> before
+                buying.
+              </p>
+            )}
             {typeof buyError === "string" && BUY_ERRORS[buyError] && (
               <p className="notice notice-error">{BUY_ERRORS[buyError]}</p>
             )}

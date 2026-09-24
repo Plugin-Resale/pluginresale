@@ -9,11 +9,18 @@ export type UsernameState = { status: "idle" | "saved" | "error"; message?: stri
 
 const USERNAME_RE = /^[a-z0-9_]{3,20}$/;
 
+// Only redirect back to a path within this site, never to an attacker-supplied URL.
+function safeNext(next: FormDataEntryValue | null): string | null {
+  const value = String(next ?? "");
+  return value.startsWith("/") && !value.startsWith("//") ? value : null;
+}
+
 export async function saveUsername(
   _prev: UsernameState,
   formData: FormData,
 ): Promise<UsernameState> {
   const username = String(formData.get("username") ?? "").trim().toLowerCase();
+  const next = safeNext(formData.get("next"));
   if (!USERNAME_RE.test(username)) {
     return {
       status: "error",
@@ -52,6 +59,7 @@ export async function saveUsername(
   }
 
   revalidatePath("/", "layout");
+  if (next) redirect(next);
   return { status: "saved", message: username };
 }
 

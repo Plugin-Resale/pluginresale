@@ -7,9 +7,11 @@ import { saveUsername, type UsernameState } from "./actions";
 export function UsernameForm({
   current,
   termsAccepted,
+  next,
 }: {
   current: string | null;
   termsAccepted: boolean;
+  next?: string;
 }) {
   const [state, action, pending] = useActionState<UsernameState, FormData>(saveUsername, {
     status: "idle",
@@ -17,6 +19,7 @@ export function UsernameForm({
 
   return (
     <form action={action}>
+      {next && <input type="hidden" name="next" value={next} />}
       <label className="label" htmlFor="username">
         Username
       </label>
@@ -50,7 +53,7 @@ export function UsernameForm({
         </label>
       )}
       <button className="btn btn-primary btn-block" type="submit" disabled={pending}>
-        {pending ? "Saving…" : "Save username"}
+        {pending ? "Saving…" : next ? "Save and continue" : "Save username"}
       </button>
       {state.status === "saved" && (
         <p className="notice notice-success">Saved. You are now @{state.message}.</p>

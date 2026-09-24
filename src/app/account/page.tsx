@@ -13,9 +13,10 @@ export const metadata: Metadata = { title: "My account" };
 
 const STATUS_LABELS = { active: "Online", reserved: "Reserved", sold: "Sold", removed: "Removed" };
 
-export default async function AccountPage() {
+export default async function AccountPage({ searchParams }: PageProps<"/account">) {
   const { user, profile } = await getCurrentUser();
   if (!user) redirect("/signin");
+  const { next } = await searchParams;
 
   const supabase = await createClient();
   const { data: listings } = await supabase
@@ -91,6 +92,7 @@ export default async function AccountPage() {
         <UsernameForm
           current={profile?.username ?? null}
           termsAccepted={Boolean(profile?.terms_accepted_at)}
+          next={typeof next === "string" ? next : undefined}
         />
       </div>
 

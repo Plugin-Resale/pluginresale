@@ -23,7 +23,7 @@ export default async function SellPage() {
             Choose a username and accept the Terms of Service before you publish your first
             listing.
           </p>
-          <Link href="/account" className="btn btn-primary btn-block">
+          <Link href="/account?next=/sell" className="btn btn-primary btn-block">
             Finish setting up my account
           </Link>
         </div>
