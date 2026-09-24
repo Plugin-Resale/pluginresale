@@ -6,6 +6,7 @@ import { DEAL_STATUS_LABELS, type Deal } from "@/lib/deals";
 import type { Message } from "@/lib/messages";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
+import { DeleteAccountForm } from "./DeleteAccountForm";
 import { UsernameForm } from "./UsernameForm";
 
 export const metadata: Metadata = { title: "My account" };
@@ -75,12 +76,22 @@ export default async function AccountPage() {
         <p className="muted" style={{ margin: 0 }}>
           Signed in as <strong>{user.email}</strong>
         </p>
-        {!profile?.username && (
+        {!profile?.username ? (
           <p className="notice notice-success">
-            Welcome! Choose a username to finish setting up your account.
+            Welcome! Choose a username and accept the Terms to finish setting up your account.
           </p>
+        ) : (
+          !profile.terms_accepted_at && (
+            <p className="notice notice-success">
+              We&apos;ve updated our Terms of Service. Please accept them below to keep selling
+              and buying.
+            </p>
+          )
         )}
-        <UsernameForm current={profile?.username ?? null} />
+        <UsernameForm
+          current={profile?.username ?? null}
+          termsAccepted={Boolean(profile?.terms_accepted_at)}
+        />
       </div>
 
       <section className="card account-section">
@@ -168,6 +179,8 @@ export default async function AccountPage() {
           Sign out
         </button>
       </form>
+
+      <DeleteAccountForm />
     </main>
   );
 }

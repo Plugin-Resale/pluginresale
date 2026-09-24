@@ -14,14 +14,17 @@ export default async function SellPage() {
   const { user, profile } = await getCurrentUser();
   if (!user) redirect("/signin");
 
-  if (!profile?.username) {
+  if (!profile?.username || !profile.terms_accepted_at) {
     return (
       <main className="narrow">
         <div className="card">
           <h1>One more step</h1>
-          <p className="muted">Choose a username before you publish your first listing.</p>
+          <p className="muted">
+            Choose a username and accept the Terms of Service before you publish your first
+            listing.
+          </p>
           <Link href="/account" className="btn btn-primary btn-block">
-            Choose my username
+            Finish setting up my account
           </Link>
         </div>
       </main>

@@ -17,6 +17,8 @@ export function Footer() {
           <Link href="/developers">Transfer rules</Link>
           <Link href="/terms">Terms</Link>
           <Link href="/privacy">Privacy</Link>
+          <Link href="/legal">Legal notice</Link>
+          <Link href="/report">Report a problem</Link>
           <a href="mailto:contact@pluginresale.com">contact@pluginresale.com</a>
         </nav>
       </div>

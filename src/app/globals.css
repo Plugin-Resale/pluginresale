@@ -187,6 +187,16 @@ a {
   border-color: var(--accent-hover);
 }
 
+.btn-danger {
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn-danger:hover {
+  background: #fdeae1;
+  border-color: var(--accent-hover);
+}
+
 .btn:disabled {
   opacity: 0.6;
   cursor: default;
@@ -281,6 +291,21 @@ main {
 }
 
 /* ---------- Legal pages ---------- */
+
+.legal .lang-switch {
+  margin: 8px 0 0;
+  font-size: 14px;
+}
+
+.legal-fr {
+  margin-top: 72px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.legal [id] {
+  scroll-margin-top: 24px;
+}
 
 .legal h2 {
   font-size: 20px;
@@ -597,6 +622,10 @@ main {
   min-height: 32px;
   font-size: 15px;
   cursor: pointer;
+}
+
+.form-check {
+  margin-top: 20px;
 }
 
 .check input {
@@ -1072,6 +1101,40 @@ main {
   font-size: 14px;
   color: var(--muted);
   text-align: center;
+}
+
+.private-seller {
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.private-seller strong {
+  color: var(--ink);
+}
+
+/* ---------- Account deletion ---------- */
+
+.delete-account {
+  margin-top: 32px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.delete-account summary {
+  cursor: pointer;
+}
+
+.delete-account form {
+  margin-top: 16px;
+  padding: 20px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 
 /* ---------- Sell ---------- */

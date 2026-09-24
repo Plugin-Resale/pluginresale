@@ -49,7 +49,8 @@ export function TransferRules({ developer }: { developer: Developer }) {
         </div>
       </dl>
       <p className="rules-foot">
-        Policies change: always check the official source before paying.{" "}
+        For information only, provided as is: policies change without notice. Always check
+        the transfer conditions with the developer before paying.{" "}
         <a href={`mailto:contact@pluginresale.com?subject=${subject}`}>Report outdated info</a>
       </p>
     </section>

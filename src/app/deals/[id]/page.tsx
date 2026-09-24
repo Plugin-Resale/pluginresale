@@ -136,7 +136,7 @@ export default async function DealPage({ params, searchParams }: PageProps<"/dea
                   </li>
                   <li>
                     Choose <strong>Goods and Services</strong>. Never &quot;Friends and
-                    Family&quot;: it removes your PayPal Buyer Protection.
+                    Family&quot;: it has no PayPal Buyer Protection at all.
                   </li>
                   <li>
                     In the note, write: <strong>Plugin Resale listing #{listing.id}</strong>
@@ -197,6 +197,7 @@ export default async function DealPage({ params, searchParams }: PageProps<"/dea
                   {listing.developer_name}&apos;s process below. The buyer confirms on their side
                   once it&apos;s in their account, and the sale is complete.
                 </p>
+                <TaxNote />
               </section>
             )}
 
@@ -208,6 +209,7 @@ export default async function DealPage({ params, searchParams }: PageProps<"/dea
                     ? "Enjoy your plugin! Thanks for buying second-hand."
                     : "The buyer confirmed they received the license. Thanks for selling on Plugin Resale."}
                 </p>
+                {!isBuyer && <TaxNote />}
 
                 {myReview ? (
                   <p className="muted">
@@ -255,5 +257,23 @@ export default async function DealPage({ params, searchParams }: PageProps<"/dea
         </div>
       )}
     </main>
+  );
+}
+
+// French tax code (CGI art. 242 bis): platforms remind sellers of their tax obligations at each sale.
+function TaxNote() {
+  return (
+    <p className="hint">
+      Taxes: you&apos;re responsible for declaring any income from your sales where required. In
+      France, see{" "}
+      <a href="https://www.impots.gouv.fr" target="_blank" rel="noopener noreferrer">
+        impots.gouv.fr
+      </a>{" "}
+      and{" "}
+      <a href="https://www.urssaf.fr" target="_blank" rel="noopener noreferrer">
+        urssaf.fr
+      </a>
+      ; elsewhere, your national tax authority.
+    </p>
   );
 }

@@ -151,6 +151,10 @@ export function SellForm({ plugins }: { plugins: PluginOption[] }) {
             <input type="checkbox" name="will_transfer" required />I will uninstall the plugin and
             complete the developer&apos;s transfer after payment.
           </label>
+          <label className="check">
+            <input type="checkbox" name="private_seller" required />I&apos;m selling as a private
+            individual, not as part of a business.
+          </label>
         </div>
 
         {state.error && <p className="notice notice-error">{state.error}</p>}

@@ -82,7 +82,6 @@ export default async function ListingPage({
         .in("status", ["requested", "paid"])
         .maybeSingle()
     : { data: null };
-  const reportSubject = encodeURIComponent(`Report listing #${listing.id}`);
 
   return (
     <main className="container page">
@@ -199,8 +198,13 @@ export default async function ListingPage({
               </>
             ) : null}
             <p className="hint">
-              You pay the seller directly with PayPal Goods &amp; Services, which gives you PayPal
-              Buyer Protection. Plugin Resale never holds your money.
+              You pay the seller directly with PayPal Goods &amp; Services, which may be covered by
+              PayPal Buyer Protection under PayPal&apos;s own terms. Plugin Resale never holds your
+              money.
+            </p>
+            <p className="private-seller">
+              <strong>Private seller.</strong> The EU consumer rights that apply when buying from
+              a business (14-day withdrawal, legal guarantee) don&apos;t apply to this sale.
             </p>
           </div>
 
@@ -217,12 +221,9 @@ export default async function ListingPage({
             </div>
           </Link>
 
-          <a
-            className="report-link"
-            href={`mailto:contact@pluginresale.com?subject=${reportSubject}`}
-          >
+          <Link className="report-link" href={`/report?listing=${listing.id}`}>
             Report this listing
-          </a>
+          </Link>
         </aside>
       </div>
     </main>

@@ -52,8 +52,12 @@ export async function createListing(_prev: SellState, formData: FormData): Promi
     return fail("Unknown plugin format.");
   }
   if (!EMAIL_RE.test(values.paypalEmail)) return fail("Enter the email of your PayPal account.");
-  if (formData.get("owns_license") !== "on" || formData.get("will_transfer") !== "on") {
-    return fail("Please confirm both statements at the bottom of the form.");
+  if (
+    formData.get("owns_license") !== "on" ||
+    formData.get("will_transfer") !== "on" ||
+    formData.get("private_seller") !== "on"
+  ) {
+    return fail("Please confirm the three statements at the bottom of the form.");
   }
 
   const supabase = await createClient();

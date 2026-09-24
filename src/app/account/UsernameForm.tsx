@@ -1,9 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState } from "react";
 import { saveUsername, type UsernameState } from "./actions";
 
-export function UsernameForm({ current }: { current: string | null }) {
+export function UsernameForm({
+  current,
+  termsAccepted,
+}: {
+  current: string | null;
+  termsAccepted: boolean;
+}) {
   const [state, action, pending] = useActionState<UsernameState, FormData>(saveUsername, {
     status: "idle",
   });
@@ -26,6 +33,22 @@ export function UsernameForm({ current }: { current: string | null }) {
         required
       />
       <p className="hint">Shown publicly on your listings and reviews.</p>
+      {!termsAccepted && (
+        <label className="check form-check">
+          <input type="checkbox" name="accept_terms" required />
+          <span>
+            I&apos;m 18 or older and I agree to the{" "}
+            <Link href="/terms" target="_blank">
+              Terms of Service
+            </Link>
+            . I&apos;ve read the{" "}
+            <Link href="/privacy" target="_blank">
+              Privacy Policy
+            </Link>
+            .
+          </span>
+        </label>
+      )}
       <button className="btn btn-primary btn-block" type="submit" disabled={pending}>
         {pending ? "Saving…" : "Save username"}
       </button>

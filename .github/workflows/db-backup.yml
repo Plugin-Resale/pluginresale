@@ -1,0 +1,68 @@
+name: Database backup
+
+# Nightly backup of the Supabase database (the free plan has none).
+# This repository is public, so the dump is encrypted (AES-256, passphrase in the
+# BACKUP_PASSPHRASE secret) before it's stored as an artifact, and the logs never show
+# anything from the database. How to restore: see "Backups" in CLAUDE.md.
+on:
+  schedule:
+    - cron: "17 3 * * *" # every day at 03:17 UTC
+  workflow_dispatch: # "Run workflow" button in the Actions tab
+
+permissions:
+  contents: read
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check secrets
+        env:
+          DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
+        run: |
+          [ -n "$DB_URL" ] || { echo "::error::Missing secret SUPABASE_DB_URL"; exit 1; }
+          [ ${#PASSPHRASE} -ge 20 ] || { echo "::error::BACKUP_PASSPHRASE missing or shorter than 20 characters"; exit 1; }
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Dump roles, schema and data
+        env:
+          DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          mkdir backup
+          supabase db dump --db-url "$DB_URL" -f backup/roles.sql --role-only
+          supabase db dump --db-url "$DB_URL" -f backup/schema.sql
+          supabase db dump --db-url "$DB_URL" -f backup/data.sql --use-copy --data-only \
+            -x "storage.buckets_vectors" -x "storage.vector_indexes"
+          # Accounts (emails) live in the auth schema, which the dumps above leave out.
+          supabase db dump --db-url "$DB_URL" -f backup/auth_data.sql --use-copy --data-only \
+            --schema auth
+
+      - name: Sanity check (table names only, no data)
+        run: |
+          for table in public.profiles public.listings public.deals auth.users; do
+            schema=${table%.*}; name=${table#*.}
+            grep -qE "^COPY \"?$schema\"?\.\"?$name\"? " backup/*.sql \
+              || { echo "::error::$table missing from the dump"; exit 1; }
+          done
+          echo "Dump OK: $(grep -h '^COPY ' backup/*.sql | wc -l) tables, $(du -sh backup | cut -f1)"
+
+      - name: Encrypt
+        env:
+          PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
+        run: |
+          printf '%s' "$PASSPHRASE" > passphrase
+          tar czf - backup | gpg --batch --yes --pinentry-mode loopback --passphrase-file passphrase \
+            --symmetric --cipher-algo AES256 -o "pluginresale-db-$(date -u +%F).tar.gz.gpg"
+          rm -rf backup passphrase
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pluginresale-db-${{ github.run_id }}
+          path: pluginresale-db-*.tar.gz.gpg
+          retention-days: 30
+          if-no-files-found: error
