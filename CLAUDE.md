@@ -77,7 +77,7 @@ Design reference (mockup v1, 4 pages): https://claude.ai/artifact/KiyRncyZgYt9eo
 
 ## Backups
 - `.github/workflows/db-backup.yml` dumps the database every night (roles, schema, data, auth data) with the Supabase CLI, encrypts it with GPG (AES-256) and stores it as a GitHub Actions artifact kept 30 days. **The repo is public**: artifacts are downloadable by anyone, hence the encryption; never print database content in the workflow logs.
-- Repo secrets (GitHub → Settings → Secrets and variables → Actions): `SUPABASE_DB_URL` = Session pooler connection string (Supabase → Connect → Session pooler, with the DB password), `BACKUP_PASSPHRASE` = long random passphrase, kept by Victor in his password manager (lost passphrase = unusable backups).
+- Repo secrets (GitHub → Settings → Secrets and variables → Actions): `SUPABASE_DB_PASSWORD` = the database password only (Supabase → Database → Settings → Reset database password; the workflow builds the Session pooler URL itself), `BACKUP_PASSPHRASE` = long random passphrase, kept by Victor in his password manager (lost passphrase = unusable backups).
 - Restore: download the artifact (Actions → latest "Database backup" run), `gpg -d pluginresale-db-DATE.tar.gz.gpg | tar xz`, then in `backup/` run the psql restore from the Supabase docs (backup-restore guide) against the target project: `psql --single-transaction --variable ON_ERROR_STOP=1 --file roles.sql --file schema.sql --command 'SET session_replication_role = replica' --file auth_data.sql --file data.sql --dbname "<connection string>"` (on a fresh Supabase project, auth tables already exist: empty them first or drop `auth_data.sql` if `data.sql` already contains auth rows).
 
 ## Important

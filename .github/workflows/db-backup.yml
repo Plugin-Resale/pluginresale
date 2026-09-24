@@ -12,6 +12,11 @@ on:
 permissions:
   contents: read
 
+env:
+  # Not secret: the project ref is already public in the site's Supabase URL.
+  DB_USER: postgres.pwseqxvdvrkejeayroan
+  DB_HOST: aws-1-eu-west-1.pooler.supabase.com # Session pooler (IPv4)
+
 jobs:
   backup:
     runs-on: ubuntu-latest
@@ -19,10 +24,10 @@ jobs:
     steps:
       - name: Check secrets
         env:
-          DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
           PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
         run: |
-          [ -n "$DB_URL" ] || { echo "::error::Missing secret SUPABASE_DB_URL"; exit 1; }
+          [ -n "$DB_PASSWORD" ] || { echo "::error::Missing secret SUPABASE_DB_PASSWORD"; exit 1; }
           [ ${#PASSPHRASE} -ge 20 ] || { echo "::error::BACKUP_PASSPHRASE missing or shorter than 20 characters"; exit 1; }
 
       - uses: supabase/setup-cli@v1
@@ -31,8 +36,13 @@ jobs:
 
       - name: Dump roles, schema and data
         env:
-          DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
         run: |
+          # URL-encode the password so special characters can't break the connection string,
+          # and mask the encoded form too (GitHub only masks the raw secret).
+          encoded=$(jq -rn --arg p "$DB_PASSWORD" '$p|@uri')
+          echo "::add-mask::$encoded"
+          DB_URL="postgresql://$DB_USER:$encoded@$DB_HOST:5432/postgres"
           mkdir backup
           supabase db dump --db-url "$DB_URL" -f backup/roles.sql --role-only
           supabase db dump --db-url "$DB_URL" -f backup/schema.sql
