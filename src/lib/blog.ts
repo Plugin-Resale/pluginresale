@@ -83,7 +83,7 @@ export async function getAllPosts(): Promise<PostMeta[]> {
   return posts
     .filter((post) => post !== null)
     .map((post) => post.meta)
-    .sort((a, b) => b.date.localeCompare(a.date));
+    .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
 }
 
 export async function getPost(slug: string): Promise<Post | null> {

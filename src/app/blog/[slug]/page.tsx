@@ -45,7 +45,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
   };
 
   return (
-    <main className="narrow narrow-wide page">
+    <main className="narrow narrow-wide page blog-page">
       <nav aria-label="Breadcrumb" className="breadcrumb">
         <Link href="/blog">Blog</Link>
       </nav>
