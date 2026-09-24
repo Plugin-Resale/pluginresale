@@ -35,6 +35,7 @@ export const CATEGORIES = {
   microphones: "Microphones",
   synths: "Synths",
   "sample-libraries": "Sample libraries",
+  daw: "DAWs",
   bundles: "Bundles",
   utilities: "Utilities",
 } as const;
