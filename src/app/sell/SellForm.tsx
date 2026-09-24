@@ -9,7 +9,13 @@ export type PluginOption = { id: number; name: string; category: Category; devel
 
 const optionLabel = (p: PluginOption) => `${p.developer.name} ${p.name}`;
 
-export function SellForm({ plugins }: { plugins: PluginOption[] }) {
+export function SellForm({
+  plugins,
+  defaultPaypalEmail,
+}: {
+  plugins: PluginOption[];
+  defaultPaypalEmail?: string;
+}) {
   const [state, action, pending] = useActionState<SellState, FormData>(createListing, {});
   const values = state.values;
 
@@ -129,7 +135,8 @@ export function SellForm({ plugins }: { plugins: PluginOption[] }) {
             PayPal email
           </label>
           <p className="hint">
-            Where buyers send the payment. Only shown to the buyer after they click Buy.
+            Where buyers send the payment. Only shown to the buyer after they click Buy. We&apos;ll
+            remember it for your next listing.
           </p>
           <input
             id="paypal_email"
@@ -139,7 +146,7 @@ export function SellForm({ plugins }: { plugins: PluginOption[] }) {
             autoComplete="email"
             placeholder="you@example.com"
             required
-            defaultValue={values?.paypalEmail}
+            defaultValue={values?.paypalEmail ?? defaultPaypalEmail}
           />
         </div>
 

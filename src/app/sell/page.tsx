@@ -43,11 +43,17 @@ export default async function SellPage() {
     .map((p) => ({ id: p.id, name: p.name, category: p.category, developer: p.developers }))
     .sort((a, b) => `${a.developer.name} ${a.name}`.localeCompare(`${b.developer.name} ${b.name}`));
 
+  const { data: privateProfile } = await supabase
+    .from("profile_private")
+    .select("paypal_email")
+    .eq("user_id", user.id)
+    .maybeSingle<{ paypal_email: string | null }>();
+
   return (
     <main className="container page">
       <h1 className="page-title">Sell a plugin</h1>
       <p className="lead">Free to list, no commission. Buyers pay you directly via PayPal.</p>
-      <SellForm plugins={plugins} />
+      <SellForm plugins={plugins} defaultPaypalEmail={privateProfile?.paypal_email ?? undefined} />
     </main>
   );
 }
