@@ -953,6 +953,20 @@ main {
   margin-bottom: 8px;
 }
 
+.dev-search {
+  margin-bottom: 8px;
+}
+
+.dev-list {
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.dev-list .check[hidden] {
+  display: none;
+}
+
 .price-range {
   display: flex;
   align-items: center;

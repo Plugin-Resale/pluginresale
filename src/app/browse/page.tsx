@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { ListingGrid } from "@/components/ListingCard";
 import { CATEGORIES, type Category, type ListingCard } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/server";
+import { DeveloperFilter } from "./DeveloperFilter";
 import { FiltersDisclosure } from "./FiltersDisclosure";
 
 export const metadata: Metadata = {
@@ -127,20 +128,7 @@ export default async function BrowsePage({ searchParams }: PageProps<"/browse">)
             ))}
           </fieldset>
 
-          <fieldset>
-            <legend>Developer</legend>
-            {developers?.map((d) => (
-              <label key={d.slug} className="check">
-                <input
-                  type="checkbox"
-                  name="dev"
-                  value={d.slug}
-                  defaultChecked={filters.developers.includes(d.slug)}
-                />
-                {d.name}
-              </label>
-            ))}
-          </fieldset>
+          <DeveloperFilter developers={developers ?? []} selected={filters.developers} />
 
           <fieldset>
             <legend>Price (€)</legend>
