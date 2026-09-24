@@ -1,13 +1,24 @@
 "use client";
 
-import { useActionState, useMemo, useState } from "react";
+import { useActionState, useId, useMemo, useState, type KeyboardEvent } from "react";
 import { TransferBadge } from "@/components/TransferBadge";
 import { CATEGORIES, FORMATS, type Category, type Developer } from "@/lib/catalog";
 import { createListing, type SellState } from "./actions";
 
-export type PluginOption = { id: number; name: string; category: Category; developer: Developer };
+export type PluginOption = { id: number; name: string; category: Category; developer_id: number };
 
-const optionLabel = (p: PluginOption) => `${p.developer.name} ${p.name}`;
+type SearchEntry = { plugin: PluginOption; label: string; words: string; squashed: string };
+
+const MAX_RESULTS = 8;
+
+// Lowercase, accents and punctuation dropped: "Pro-Q 3" and "pro q3" find the same plugin.
+const normalize = (text: string) =>
+  text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
 
 export function SellForm({
   plugins,
@@ -20,14 +31,59 @@ export function SellForm({
 }) {
   const [state, action, pending] = useActionState<SellState, FormData>(createListing, {});
   const values = state.values;
+  const listId = useId();
 
-  const byLabel = useMemo(
-    () => new Map(plugins.map((p) => [optionLabel(p).toLowerCase(), p])),
-    [plugins],
+  const developerById = useMemo(() => new Map(developers.map((d) => [d.id, d])), [developers]);
+
+  // Search index, built once: "<developer> <plugin>" as typed words and without any spaces.
+  const entries = useMemo<SearchEntry[]>(
+    () =>
+      plugins
+        .map((plugin) => {
+          const label = `${developerById.get(plugin.developer_id)?.name ?? ""} ${plugin.name}`.trim();
+          const words = normalize(label);
+          return { plugin, label, words, squashed: words.replace(/ /g, "") };
+        })
+        .sort((a, b) => a.label.localeCompare(b.label)),
+    [plugins, developerById],
   );
-  const initial = plugins.find((p) => String(p.id) === values?.pluginId);
-  const [query, setQuery] = useState(initial ? optionLabel(initial) : "");
-  const selected = byLabel.get(query.trim().toLowerCase()) ?? null;
+
+  const initial = entries.find((e) => String(e.plugin.id) === values?.pluginId) ?? null;
+  const [query, setQuery] = useState(initial?.label ?? values?.newPluginName ?? "");
+  const [selected, setSelected] = useState<SearchEntry | null>(initial);
+  const [open, setOpen] = useState(false);
+  const [highlight, setHighlight] = useState(0);
+  const [adding, setAdding] = useState(Boolean(values?.developerId));
+
+  // Every typed word must appear, in the name or the developer. Plugin names starting with
+  // what was typed come first, then shorter names (the base product before its add-ons).
+  const results = useMemo(() => {
+    const tokens = normalize(query).split(" ").filter(Boolean);
+    if (tokens.length === 0 || selected) return [];
+    return entries
+      .filter((e) => tokens.every((t) => e.words.includes(t) || e.squashed.includes(t)))
+      .sort((a, b) => {
+        const aStarts = normalize(a.plugin.name).startsWith(tokens[0]) ? 0 : 1;
+        const bStarts = normalize(b.plugin.name).startsWith(tokens[0]) ? 0 : 1;
+        return aStarts - bStarts || a.label.length - b.label.length;
+      })
+      .slice(0, MAX_RESULTS);
+  }, [entries, query, selected]);
+
+  const typed = query.trim().length > 0;
+  const showAdd = typed && !selected && (adding || results.length === 0);
+  const showList = open && typed && !selected && !adding && results.length > 0;
+
+  const choose = (entry: SearchEntry) => {
+    setSelected(entry);
+    setQuery(entry.label);
+    setAdding(false);
+    setOpen(false);
+  };
+  const startAdding = () => {
+    setAdding(true);
+    setOpen(false);
+  };
 
   // Typed a plugin that isn't in the catalogue yet: pick its developer (still from our
   // list, since that's where the transfer-rules policy lives) and add it on the fly.
@@ -38,9 +94,35 @@ export function SellForm({
   );
   const newDeveloper = developers.find((d) => String(d.id) === newDeveloperId) ?? null;
 
-  const activeDeveloper = selected?.developer ?? newDeveloper;
+  const activeDeveloper = selected
+    ? developerById.get(selected.plugin.developer_id) ?? null
+    : showAdd
+    ? newDeveloper
+    : null;
   const blocked = activeDeveloper?.transferable === false;
   const unverified = activeDeveloper != null && activeDeveloper.transferable === null;
+
+  // Options: the matching plugins, then "Not in the list? Add it" as the last one.
+  const optionCount = showList ? results.length + 1 : 0;
+  const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (!showList) {
+      if (e.key === "ArrowDown" && typed && !selected) setOpen(true);
+      return;
+    }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setHighlight((h) => (h + 1) % optionCount);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setHighlight((h) => (h - 1 + optionCount) % optionCount);
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (highlight < results.length) choose(results[highlight]);
+      else startAdding();
+    } else if (e.key === "Escape") {
+      setOpen(false);
+    }
+  };
 
   return (
     <div className="sell-layout">
@@ -49,31 +131,92 @@ export function SellForm({
           <label className="field-label" htmlFor="plugin">
             Plugin
           </label>
-          <p className="hint">Start typing and pick your plugin from the list.</p>
-          <input
-            id="plugin"
-            className="input input-lg"
-            list="plugin-options"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="e.g. FabFilter Pro-Q 3"
-            autoComplete="off"
-            required
-          />
-          <datalist id="plugin-options">
-            {plugins.map((p) => (
-              <option key={p.id} value={optionLabel(p)} />
-            ))}
-          </datalist>
-          <input type="hidden" name="plugin_id" value={selected?.id ?? ""} />
-          {selected && <p className="hint">Category: {CATEGORIES[selected.category]}</p>}
+          <p className="hint">Start typing, then pick your plugin from the list.</p>
+          <div className="combo">
+            <input
+              id="plugin"
+              className="input input-lg"
+              role="combobox"
+              aria-expanded={showList}
+              aria-controls={listId}
+              aria-autocomplete="list"
+              aria-activedescendant={showList ? `${listId}-${highlight}` : undefined}
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setSelected(null);
+                setAdding(false);
+                setOpen(true);
+                setHighlight(0);
+              }}
+              onFocus={() => setOpen(true)}
+              // Closed a moment later, so a tap on an option still lands before the list goes.
+              onBlur={() => setTimeout(() => setOpen(false), 150)}
+              onKeyDown={onKeyDown}
+              placeholder="e.g. FabFilter Pro-Q 3"
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck={false}
+              enterKeyHint="search"
+              required
+            />
+            {selected && (
+              <button
+                type="button"
+                className="combo-clear"
+                aria-label="Clear the plugin"
+                onClick={() => {
+                  setSelected(null);
+                  setQuery("");
+                  document.getElementById("plugin")?.focus();
+                }}
+              >
+                ×
+              </button>
+            )}
+            {showList && (
+              // onMouseDown + preventDefault keeps the focus in the input, so the tap
+              // registers before the list closes on blur.
+              <ul id={listId} role="listbox" className="combo-list" onMouseDown={(e) => e.preventDefault()}>
+                {results.map((entry, i) => (
+                  <li
+                    key={entry.plugin.id}
+                    id={`${listId}-${i}`}
+                    role="option"
+                    aria-selected={i === highlight}
+                    className="combo-option"
+                    onClick={() => choose(entry)}
+                    onMouseEnter={() => setHighlight(i)}
+                  >
+                    <span className="combo-dev">
+                      {developerById.get(entry.plugin.developer_id)?.name}
+                    </span>{" "}
+                    {entry.plugin.name}
+                  </li>
+                ))}
+                <li
+                  id={`${listId}-${results.length}`}
+                  role="option"
+                  aria-selected={highlight === results.length}
+                  className="combo-option combo-add"
+                  onClick={startAdding}
+                  onMouseEnter={() => setHighlight(results.length)}
+                >
+                  Not in the list? Add <strong>{query.trim()}</strong>
+                </li>
+              </ul>
+            )}
+          </div>
+          <input type="hidden" name="plugin_id" value={selected?.plugin.id ?? ""} />
+          {selected && <p className="hint">Category: {CATEGORIES[selected.plugin.category]}</p>}
         </div>
 
-        {query && !selected && (
+        {showAdd && (
           <div className="card new-plugin">
             <p className="hint">
               Not in the list? Add it: pick the developer and a category, and we&apos;ll add{" "}
-              <strong>{query}</strong> to the catalogue for everyone.
+              <strong>{newPluginName || query.trim()}</strong> to the catalogue for everyone.
             </p>
             <div className="field">
               <label className="field-label" htmlFor="developer_id">
@@ -104,7 +247,7 @@ export function SellForm({
                   id="new_plugin_name"
                   name="new_plugin_name"
                   className="input"
-                  value={newPluginName || query}
+                  value={newPluginName || query.trim()}
                   onChange={(e) => setNewPluginName(e.target.value)}
                   maxLength={80}
                   required

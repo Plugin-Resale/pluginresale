@@ -1,5 +1,6 @@
 "use server";
 
+import { signInUrl } from "@/lib/next-path";
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -30,7 +31,7 @@ export async function sendMessage(formData: FormData) {
     p_body: body,
   });
   if (error) {
-    if (error.message === "NOT_SIGNED_IN") redirect("/signin");
+    if (error.message === "NOT_SIGNED_IN") redirect(signInUrl(`/listings/${listingId}/messages?with=${toId}`));
     const code = SEND_ERRORS[error.message];
     if (!code) console.error("send_message failed:", error.message);
     redirect(`/listings/${listingId}/messages?with=${toId}&error=${code ?? "unknown"}`);

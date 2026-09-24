@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
+import { signInUrl } from "@/lib/next-path";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { DEVELOPER_COLUMNS, type Category, type Developer } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
-import { SellForm, type PluginOption } from "./SellForm";
+import { SellForm } from "./SellForm";
 
 export const metadata: Metadata = { title: "Sell a plugin" };
 
-type PluginRow = { id: number; name: string; category: Category; developers: Developer };
+type PluginRow = { id: number; name: string; category: Category; developer_id: number };
 
 export default async function SellPage() {
   const { user, profile } = await getCurrentUser();
-  if (!user) redirect("/signin");
+  if (!user) redirect(signInUrl("/sell"));
 
   if (!profile?.username || !profile.terms_accepted_at) {
     return (
@@ -34,25 +35,23 @@ export default async function SellPage() {
   const supabase = await createClient();
 
   // Supabase caps a single select at 1,000 rows: with 3,700+ plugins now in the catalogue,
-  // one query would silently cut off everything past the 1,000th row (sorted by plugin
-  // name), so plugins were missing from this list depending on their name's first letter.
+  // one query would silently cut off everything past the 1,000th row, so plugins went
+  // missing from this list.
+  // Only the columns the search needs are sent to the browser: each developer's transfer
+  // rules travel once, in `developers`, not once per plugin (most visitors are on a phone).
   const PAGE_SIZE = 1000;
-  const data: PluginRow[] = [];
+  const plugins: PluginRow[] = [];
   for (let from = 0; ; from += PAGE_SIZE) {
     const { data: page, error } = await supabase
       .from("plugins")
-      .select(`id, name, category, developers!inner (${DEVELOPER_COLUMNS})`)
-      .order("name")
+      .select("id, name, category, developer_id")
+      .order("id")
       .range(from, from + PAGE_SIZE - 1)
       .returns<PluginRow[]>();
     if (error) throw error;
-    data.push(...page);
+    plugins.push(...page);
     if (page.length < PAGE_SIZE) break;
   }
-
-  const plugins: PluginOption[] = data
-    .map((p) => ({ id: p.id, name: p.name, category: p.category, developer: p.developers }))
-    .sort((a, b) => `${a.developer.name} ${a.name}`.localeCompare(`${b.developer.name} ${b.name}`));
 
   const [{ data: privateProfile }, { data: developers, error: developersError }] = await Promise.all([
     supabase

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { signInUrl } from "@/lib/next-path";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ListingGrid } from "@/components/ListingCard";
@@ -187,12 +188,12 @@ export default async function ListingPage({
                     </button>
                   </form>
                 ) : (
-                  <Link href="/signin" className="btn btn-primary btn-lg">
+                  <Link href={signInUrl(`/listings/${listing.id}`)} className="btn btn-primary btn-lg">
                     Sign in to buy
                   </Link>
                 )}
                 <Link
-                  href={user ? `/listings/${listing.id}/messages` : "/signin"}
+                  href={user ? `/listings/${listing.id}/messages` : signInUrl(`/listings/${listing.id}/messages`)}
                   className="btn btn-lg"
                 >
                   Message seller

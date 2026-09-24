@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { signInUrl } from "@/lib/next-path";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import type { ReactNode } from "react";
@@ -14,9 +15,10 @@ export default async function ListingMessagesPage({
   searchParams,
 }: PageProps<"/listings/[id]/messages">) {
   const { user } = await getCurrentUser();
-  if (!user) redirect("/signin");
+  const { id: rawId } = await params;
+  if (!user) redirect(signInUrl(`/listings/${rawId}/messages`));
 
-  const id = Number((await params).id);
+  const id = Number(rawId);
   if (!Number.isInteger(id)) notFound();
   const { with: withParam, error: sendError } = await searchParams;
 

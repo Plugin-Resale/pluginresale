@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { safeNext } from "@/lib/next-path";
 import { removeAuthUser } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
@@ -9,11 +10,6 @@ export type UsernameState = { status: "idle" | "saved" | "error"; message?: stri
 
 const USERNAME_RE = /^[a-z0-9_]{3,20}$/;
 
-// Only redirect back to a path within this site, never to an attacker-supplied URL.
-function safeNext(next: FormDataEntryValue | null): string | null {
-  const value = String(next ?? "");
-  return value.startsWith("/") && !value.startsWith("//") ? value : null;
-}
 
 export async function saveUsername(
   _prev: UsernameState,

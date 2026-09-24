@@ -1408,6 +1408,62 @@ main {
   margin: 0;
 }
 
+/* Plugin search on the Sell form (replaces <datalist>, which barely works on iPhone). */
+.combo {
+  position: relative;
+}
+.combo-clear {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.combo .input:has(+ .combo-clear) {
+  padding-right: 48px;
+}
+.combo-list {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: min(340px, 50vh);
+  margin: 0;
+  padding: 4px;
+  overflow-y: auto;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 24px rgb(23 23 27 / 0.12);
+}
+.combo-option {
+  display: block;
+  padding: 11px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.combo-option[aria-selected="true"] {
+  background: var(--ground);
+}
+.combo-dev {
+  color: var(--muted);
+}
+.combo-add {
+  margin-top: 4px;
+  border-top: 1px solid var(--line);
+  border-radius: 0 0 6px 6px;
+  color: var(--accent);
+}
+
 .rules-panel {
   background: var(--ink);
   color: var(--ground);

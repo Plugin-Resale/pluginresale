@@ -1,5 +1,6 @@
 "use server";
 
+import { signInUrl } from "@/lib/next-path";
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -49,7 +50,7 @@ export async function startDeal(formData: FormData) {
 
   if (error) {
     const code = START_ERRORS[error.message];
-    if (code === "signin") redirect("/signin");
+    if (code === "signin") redirect(signInUrl(`/listings/${listingId}`));
     if (!code) console.error("start_deal failed:", error.message);
     redirect(`/listings/${listingId}?error=${code ?? "unknown"}`);
   }

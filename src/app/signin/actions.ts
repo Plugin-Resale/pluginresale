@@ -1,6 +1,8 @@
 "use server";
 
 import { headers } from "next/headers";
+import { safeNext } from "@/lib/next-path";
+import { saveSignInNext } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
 export type SignInState = { status: "idle" | "sent" | "error"; message?: string };
@@ -32,6 +34,9 @@ export async function sendMagicLink(_prev: SignInState, formData: FormData): Pro
           : "We couldn't send the email. Please try again.",
     };
   }
+
+  const next = safeNext(formData.get("next"));
+  if (next) await saveSignInNext(email, next);
 
   return { status: "sent", message: email };
 }

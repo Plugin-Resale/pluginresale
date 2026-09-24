@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { signInUrl } from "@/lib/next-path";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { TransferRules } from "@/components/TransferRules";
@@ -43,9 +44,10 @@ function StepButton({ deal, step, label, primary = false }: {
 
 export default async function DealPage({ params, searchParams }: PageProps<"/deals/[id]">) {
   const { user } = await getCurrentUser();
-  if (!user) redirect("/signin");
+  const { id: rawId } = await params;
+  if (!user) redirect(signInUrl(`/deals/${rawId}`));
 
-  const id = Number((await params).id);
+  const id = Number(rawId);
   if (!Number.isInteger(id)) notFound();
   const { error: actionError } = await searchParams;
 

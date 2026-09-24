@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { safeNext } from "@/lib/next-path";
 import { getCurrentUser } from "@/lib/supabase/user";
 import { SignInForm } from "./SignInForm";
 
 export const metadata: Metadata = { title: "Sign in" };
 
 export default async function SignInPage({ searchParams }: PageProps<"/signin">) {
-  const { user } = await getCurrentUser();
-  if (user) redirect("/account");
+  const { error, deleted, next: rawNext } = await searchParams;
+  const next = safeNext(rawNext) ?? undefined;
 
-  const { error, deleted } = await searchParams;
+  const { user } = await getCurrentUser();
+  if (user) redirect(next ?? "/account");
 
   return (
     <main className="narrow">
@@ -25,10 +27,10 @@ export default async function SignInPage({ searchParams }: PageProps<"/signin">)
         )}
         {error === "link" && (
           <p className="notice notice-error">
-            That sign-in link is invalid or has expired. Please request a new one, and open it in this same browser.
+            That sign-in link is invalid or has expired. Please request a new one.
           </p>
         )}
-        <SignInForm />
+        <SignInForm next={next} />
         <p className="hint">
           New accounts accept our <Link href="/terms">Terms of Service</Link> when choosing a
           username. See how we handle your data in our <Link href="/privacy">Privacy Policy</Link>.
