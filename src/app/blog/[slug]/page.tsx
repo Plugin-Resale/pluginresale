@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { formatPostDate, getAllPosts, getPost } from "@/lib/blog";
-
-export const dynamicParams = false;
-
-export async function generateStaticParams() {
-  return (await getAllPosts()).map((post) => ({ slug: post.slug }));
-}
+import { formatPostDate, getPost } from "@/lib/blog";
 
 export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): Promise<Metadata> {
   const post = await getPost((await params).slug);
@@ -45,7 +39,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
   };
 
   return (
-    <main className="narrow narrow-wide page">
+    <main className="narrow narrow-wide page blog-page">
       <nav aria-label="Breadcrumb" className="breadcrumb">
         <Link href="/blog">Blog</Link>
       </nav>
