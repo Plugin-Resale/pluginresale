@@ -1,7 +1,7 @@
 ---
 title: How to transfer a Native Instruments license (Komplete, Kontakt, Massive…)
 description: Native Instruments has a free, self-service transfer system based on a Transfer ID. Here's how it works for sellers and buyers, and which NI products can't be transferred.
-date: 2026-09-24
+date: 2026-10-06
 ---
 
 Native Instruments makes some of the most popular instruments and bundles in music production: Komplete, Kontakt, Massive, Battery, Guitar Rig and many more. Komplete in particular is a big purchase, and a lot of people end up owning a version they've outgrown or never fully used.

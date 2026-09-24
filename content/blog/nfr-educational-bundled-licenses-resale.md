@@ -1,7 +1,7 @@
 ---
 title: "NFR, educational, bundled, upgrade: which plugin licenses can you resell?"
 description: Not every license can change hands, even with a developer that allows transfers. The license types that are usually excluded, real examples from developers' policies, and how to check yours.
-date: 2026-09-24
+date: 2026-10-14
 ---
 
 You've found out that your developer allows license transfers. Great, but that doesn't mean every license from that developer can be resold. The way you got the license matters just as much as who made it.

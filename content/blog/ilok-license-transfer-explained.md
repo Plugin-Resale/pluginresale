@@ -1,7 +1,7 @@
 ---
 title: "iLok license transfers explained: fees, the 90-day rule and common mistakes"
 description: Many plugins are protected by iLok, and their licenses change hands through iLok License Manager. How it works, what PACE charges, the rules that block transfers, and how to avoid sending a license to the wrong account.
-date: 2026-09-24
+date: 2026-10-09
 ---
 
 If you've bought plugins from Softube, Slate Digital, Sound Radix, Relab and many others, you already know iLok: the system that holds your licenses and lets your plugins run. When it's time to sell one of those plugins, iLok is also where the transfer happens.

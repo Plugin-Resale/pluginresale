@@ -1,7 +1,7 @@
 ---
 title: How to transfer a Waves license (and sell your Waves plugins)
 description: Waves allows license transfers, but only if three conditions are met. The requirements, the fee, the step-by-step process and the traps to avoid when you buy or sell a used Waves plugin.
-date: 2026-09-24
+date: 2026-10-04
 ---
 
 Waves is probably the most traded plugin brand on the second-hand market. Plenty of producers own dozens of Waves plugins picked up during sales, and many of them never get used.

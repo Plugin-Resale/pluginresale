@@ -1,7 +1,7 @@
 ---
 title: How to buy a used plugin without getting scammed
 description: Second-hand plugins can save you a lot of money, as long as you avoid the classic traps. The warning signs, the right way to pay, and what to check before you confirm a deal.
-date: 2026-09-24
+date: 2026-09-29
 ---
 
 Buying a plugin second-hand is one of the best ways to build a serious toolkit on a budget. It's also a place where a few people try their luck, because a license is invisible: there's no box to ship, just a name that has to change in a database.
