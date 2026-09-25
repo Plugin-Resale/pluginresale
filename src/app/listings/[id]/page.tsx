@@ -39,9 +39,19 @@ async function getListing(rawId: string) {
 export async function generateMetadata({ params }: PageProps<"/listings/[id]">): Promise<Metadata> {
   const listing = await getListing((await params).id);
   if (!listing) return {};
+  const title = `${listing.developer_name} ${listing.plugin_name} for ${formatPrice(listing.price_eur)}`;
+  const description = `Second-hand ${listing.developer_name} ${listing.plugin_name} license, sold by @${listing.seller_username}.`;
   return {
-    title: `${listing.developer_name} ${listing.plugin_name} for ${formatPrice(listing.price_eur)}`,
-    description: `Second-hand ${listing.developer_name} ${listing.plugin_name} license, sold by @${listing.seller_username}.`,
+    title,
+    description,
+    alternates: { canonical: `/listings/${listing.id}` },
+    openGraph: {
+      type: "website",
+      siteName: "Plugin Resale",
+      title,
+      description,
+      url: `/listings/${listing.id}`,
+    },
   };
 }
 

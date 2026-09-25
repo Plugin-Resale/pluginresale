@@ -20,14 +20,24 @@ export async function generateMetadata({
 }: PageProps<"/developers/[slug]">): Promise<Metadata> {
   const developer = await getDeveloper((await params).slug);
   if (!developer) return {};
+  const title = `${developer.name} license transfer rules`;
+  const description =
+    developer.transferable === null
+      ? `${developer.name} license transfers: no official policy found yet, check with the developer.`
+      : developer.transferable
+        ? `How to transfer a ${developer.name} license: fee, who pays, process and restrictions.`
+        : `${developer.name} licenses can't be transferred to another user.`;
   return {
-    title: `${developer.name} license transfer rules`,
-    description:
-      developer.transferable === null
-        ? `${developer.name} license transfers: no official policy found yet, check with the developer.`
-        : developer.transferable
-          ? `How to transfer a ${developer.name} license: fee, who pays, process and restrictions.`
-          : `${developer.name} licenses can't be transferred to another user.`,
+    title,
+    description,
+    alternates: { canonical: `/developers/${developer.slug}` },
+    openGraph: {
+      type: "website",
+      siteName: "Plugin Resale",
+      title,
+      description,
+      url: `/developers/${developer.slug}`,
+    },
   };
 }
 

@@ -24,13 +24,19 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pluginresale.com"),
+  // The site is served on www (the bare domain redirects there): canonical and og:url must match.
+  metadataBase: new URL("https://www.pluginresale.com"),
   title: {
     default: "Plugin Resale — Buy and sell used audio plugin licenses",
     template: "%s · Plugin Resale",
   },
   description:
     "The free marketplace for second-hand audio plugin licenses. No fees, no commission, with every developer's transfer rules in one place.",
+  // Link previews. No title here: a page without its own og:title falls back to its <title>.
+  // A page that sets its own `openGraph` replaces this whole object, so it must repeat
+  // siteName/type and have its own opengraph-image next to it.
+  openGraph: { type: "website", siteName: "Plugin Resale" },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

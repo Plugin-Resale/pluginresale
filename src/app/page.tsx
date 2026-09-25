@@ -1,7 +1,20 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ListingGrid } from "@/components/ListingCard";
 import { CATEGORIES, type ListingCard } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/server";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: "Plugin Resale",
+    title: "Plugin Resale — Buy and sell used audio plugin licenses",
+    description:
+      "Free to list, free to buy, no commission. Every developer's license transfer rules in one place.",
+    url: "/",
+  },
+};
 
 const STEPS = [
   {
