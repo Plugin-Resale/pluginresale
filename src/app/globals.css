@@ -331,6 +331,72 @@ main {
   color: var(--ink);
 }
 
+/* ---------- FAQ ---------- */
+
+.faq h2,
+.faq h2:first-of-type {
+  margin: 48px 0 8px;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: var(--control-height);
+  padding: 12px 0;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  flex-shrink: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 20px;
+  color: var(--accent);
+}
+
+.faq-item[open] summary::after {
+  content: "−";
+}
+
+.faq-item summary:hover {
+  color: var(--accent-hover);
+}
+
+.faq-answer {
+  padding-bottom: 16px;
+}
+
+.faq-answer p,
+.faq-answer ol {
+  margin: 0 0 12px;
+}
+
+.faq-answer ol {
+  padding-left: 20px;
+}
+
+.faq-answer li {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.faq-answer a {
+  color: var(--accent-hover);
+  font-weight: 600;
+}
+
 /* ---------- Blog ---------- */
 
 /* Full width up to the narrow max-width, so wide tables scroll inside the article
