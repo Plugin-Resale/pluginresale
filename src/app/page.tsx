@@ -117,6 +117,9 @@ export default async function Home() {
               </li>
             ))}
           </ol>
+          <p className="how-more">
+            Payment, transfers, safety: <Link href="/faq">read the FAQ →</Link>
+          </p>
         </div>
       </section>
 

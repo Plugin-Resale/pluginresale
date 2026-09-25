@@ -397,6 +397,32 @@ main {
   font-weight: 600;
 }
 
+.faq-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.faq-contact {
+  margin-top: 56px;
+}
+
+.faq .faq-contact h2 {
+  margin: 0 0 8px;
+}
+
+.faq-contact a:not(.btn) {
+  color: var(--accent-hover);
+  font-weight: 600;
+}
+
+.faq-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
 /* ---------- Blog ---------- */
 
 /* Full width up to the narrow max-width, so wide tables scroll inside the article
@@ -1107,6 +1133,16 @@ main {
 .steps p {
   margin: 0;
   color: #d6d1c6;
+}
+
+.how-more {
+  margin: 40px 0 0;
+  color: #d6d1c6;
+}
+
+.how-more a {
+  color: #f0a07a;
+  font-weight: 600;
 }
 
 .dev-teaser {
