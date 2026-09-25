@@ -12,13 +12,13 @@ With **191 developers** covered (plugin makers, sample library companies and DAW
 
 | Policy | Developers | Share |
 |---|---|---|
-| Transfers allowed | 110 | 57% |
+| Transfers allowed | 111 | 58% |
 | Transfers not allowed | 55 | 29% |
-| No official policy found | 26 | 14% |
+| No official policy found | 25 | 13% |
 
 So if you pick a developer at random, there's a slightly better than even chance you can resell its licenses.
 
-The "no official policy" group matters too: for **26 developers**, we couldn't find a clear, official answer. Some have simply never published one, others only answered the question on forums. We don't count forum posts as a policy, so these developers are marked "not verified" on the site, and we advise buyers and sellers to ask the developer before making a deal.
+The "no official policy" group matters too: for **25 developers**, we couldn't find a clear, official answer. Some have simply never published one, others only answered the question on forums. We don't count forum posts as a policy, so these developers are marked "not verified" on the site, and we advise buyers and sellers to ask the developer before making a deal.
 
 ## Sample libraries are the hardest to resell
 
@@ -26,7 +26,7 @@ The picture changes a lot depending on what the developer makes. We grouped deve
 
 | Main product | Developers | Allowed | Not allowed | Not verified |
 |---|---|---|---|---|
-| Plugins (effects, instruments) | 120 | 79 (66%) | 25 (21%) | 16 (13%) |
+| Plugins (effects, instruments) | 120 | 80 (67%) | 25 (21%) | 15 (12%) |
 | Sample libraries | 56 | 24 (43%) | 26 (46%) | 6 (11%) |
 
 Nearly half of sample library companies **don't allow resale at all**. That includes some of the biggest names in orchestral and cinematic libraries: **Spitfire Audio**, **EastWest** and **8Dio** don't allow transfers, and **Orchestral Tools** requires its prior clearance.
@@ -48,9 +48,9 @@ A few of the most popular products in music production can't be resold:
 
 ## Fees: from free to 25%
 
-Among the 110 developers that allow transfers:
+Among the 111 developers that allow transfers:
 
-- **20 charge nothing at all**. Ableton, XLN Audio, Kilohearts, D16 Group, Voxengo and Output are among them.
+- **21 charge nothing at all**. Ableton, XLN Audio, Kilohearts, D16 Group, Voxengo and Output are among them.
 - **17 only pass on the iLok fee** that PACE charges ($25 for one license, $50 for several in one transaction). See our [iLok guide](/blog/ilok-license-transfer-explained).
 - **7 charge a percentage of the product's price**, from **5%** at Waves (with a $10 minimum and a $150 maximum) up to **25%** at Wavesfactory. MeldaProduction, United Plugins and Sonimus charge 20%, and Vienna Symphonic Library 10% with a €50 minimum.
 - Others charge a flat fee, like FabFilter's License Transfer (about €10) or Toontrack's $15 per serial number, and a few policies don't mention a fee at all.
@@ -59,14 +59,14 @@ Some fees depend on the license's history: **Arturia** is free for a first-hand 
 
 ## The seller usually pays
 
-When a policy says who pays the fee (54 of the 110), it's the **seller in 49 cases**. Only a handful of developers bill the buyer. That's worth knowing when you set your price: our [pricing guide](/blog/how-much-is-my-used-plugin-worth) explains how to take it into account.
+When a policy says who pays the fee (54 of the 111), it's the **seller in 49 cases**. Only a handful of developers bill the buyer. That's worth knowing when you set your price: our [pricing guide](/blog/how-much-is-my-used-plugin-worth) explains how to take it into account.
 
 ## The most common restrictions
 
-Even when transfers are allowed, most policies come with conditions. Among the 110 developers that allow transfers:
+Even when transfers are allowed, most policies come with conditions. Among the 111 developers that allow transfers:
 
-- **35** explicitly exclude **NFR** (Not For Resale) licenses,
-- **19** require you to have owned the license for a minimum time before selling it, from **30 days** (Toontrack, oeksound) to **6 months** (Arturia, Acustica Audio),
+- **36** explicitly exclude **NFR** (Not For Resale) licenses,
+- **20** require you to have owned the license for a minimum time before selling it, from **30 days** (Toontrack, oeksound) to **6 months** (Arturia, Acustica Audio),
 - **16** exclude **educational** licenses,
 - **16** mention **bundles or OEM** licenses (bundled with hardware), usually to forbid splitting them or selling them on their own,
 - **7** exclude **subscriptions** or rent-to-own licenses, like Waves Creative Access or Slate Digital All Access.
