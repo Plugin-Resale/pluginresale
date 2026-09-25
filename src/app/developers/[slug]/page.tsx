@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { cache } from "react";
 import { notFound } from "next/navigation";
 import { TransferRules } from "@/components/TransferRules";
 import { CATEGORIES, DEVELOPER_COLUMNS, type Developer, type Plugin } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/server";
 
-async function getDeveloper(slug: string) {
+// generateMetadata and the page both need it: one database query per request, not two.
+const getDeveloper = cache(async (slug: string) => {
   const supabase = await createClient();
   const { data } = await supabase
     .from("developers")
@@ -13,7 +15,7 @@ async function getDeveloper(slug: string) {
     .eq("slug", slug)
     .maybeSingle<Developer>();
   return data;
-}
+});
 
 export async function generateMetadata({
   params,

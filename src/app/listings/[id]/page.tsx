@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { signInUrl } from "@/lib/next-path";
 import Link from "next/link";
+import { cache } from "react";
 import { notFound } from "next/navigation";
 import { ListingGrid } from "@/components/ListingCard";
 import { Rating } from "@/components/Rating";
@@ -24,7 +25,8 @@ const BUY_ERRORS: Record<string, string> = {
   unknown: "Something went wrong. Please try again.",
 };
 
-async function getListing(rawId: string) {
+// generateMetadata and the page both need it: one database query per request, not two.
+const getListing = cache(async (rawId: string) => {
   const id = Number(rawId);
   if (!Number.isInteger(id) || id <= 0) return null;
   const supabase = await createClient();
@@ -34,7 +36,7 @@ async function getListing(rawId: string) {
     .eq("id", id)
     .maybeSingle<ListingCard>();
   return data;
-}
+});
 
 export async function generateMetadata({ params }: PageProps<"/listings/[id]">): Promise<Metadata> {
   const listing = await getListing((await params).id);
