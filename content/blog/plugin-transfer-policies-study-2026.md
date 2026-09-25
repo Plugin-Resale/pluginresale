@@ -13,12 +13,12 @@ With **191 developers** covered (plugin makers, sample library companies and DAW
 | Policy | Developers | Share |
 |---|---|---|
 | Transfers allowed | 111 | 58% |
-| Transfers not allowed | 55 | 29% |
-| No official policy found | 25 | 13% |
+| Transfers not allowed | 56 | 29% |
+| No official policy found | 24 | 13% |
 
 So if you pick a developer at random, there's a slightly better than even chance you can resell its licenses.
 
-The "no official policy" group matters too: for **25 developers**, we couldn't find a clear, official answer. Some have simply never published one, others only answered the question on forums. We don't count forum posts as a policy, so these developers are marked "not verified" on the site, and we advise buyers and sellers to ask the developer before making a deal.
+The "no official policy" group matters too: for **24 developers**, we couldn't find a clear, official answer. Some have simply never published one, others only answered the question on forums. We don't count forum posts as a policy, so these developers are marked "not verified" on the site, and we advise buyers and sellers to ask the developer before making a deal.
 
 ## Sample libraries are the hardest to resell
 
@@ -26,7 +26,7 @@ The picture changes a lot depending on what the developer makes. We grouped deve
 
 | Main product | Developers | Allowed | Not allowed | Not verified |
 |---|---|---|---|---|
-| Plugins (effects, instruments) | 120 | 80 (67%) | 25 (21%) | 15 (12%) |
+| Plugins (effects, instruments) | 120 | 80 (67%) | 26 (22%) | 14 (12%) |
 | Sample libraries | 56 | 24 (43%) | 26 (46%) | 6 (11%) |
 
 Nearly half of sample library companies **don't allow resale at all**. That includes some of the biggest names in orchestral and cinematic libraries: **Spitfire Audio**, **EastWest** and **8Dio** don't allow transfers, and **Orchestral Tools** requires its prior clearance.
@@ -45,6 +45,7 @@ A few of the most popular products in music production can't be resold:
 - **Cherry Audio**: stopped allowing transfers in 2023.
 - **Plugin Alliance**: self-service transfers are currently unavailable.
 - **Positive Grid** (BIAS FX, BIAS Amp): licenses stay tied to the original buyer's account under Positive Grid's terms.
+- **Synchro Arts** (VocALign, Revoice Pro): a license stays with the person who bought it.
 
 ## Fees: from free to 25%
 
