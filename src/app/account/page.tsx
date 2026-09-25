@@ -6,6 +6,7 @@ import { DEAL_STATUS_LABELS, type Deal } from "@/lib/deals";
 import type { Message } from "@/lib/messages";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
+import { deleteAlert } from "./actions";
 import { DeleteAccountForm } from "./DeleteAccountForm";
 import { UsernameForm } from "./UsernameForm";
 
@@ -69,6 +70,13 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
   const { data: convoProfiles } = convoOtherIds.length
     ? await supabase.from("profiles").select("id, username").in("id", convoOtherIds)
     : { data: [] };
+
+  // RLS returns only the user's own alerts.
+  const { data: alerts, error: alertsError } = await supabase
+    .from("listing_alerts")
+    .select("id, plugin_id, plugins(name, developers(name))")
+    .order("created_at", { ascending: false })
+    .returns<{ id: number; plugin_id: number; plugins: { name: string; developers: { name: string } } }[]>();
 
   return (
     <main className="narrow narrow-wide">
@@ -175,6 +183,34 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
           <p className="muted">No messages yet.</p>
         )}
       </section>
+
+      {!alertsError && (
+        <section className="card account-section" id="alerts">
+          <h2 className="account-title">My alerts</h2>
+          {alerts && alerts.length > 0 ? (
+            <ul className="my-listings">
+              {alerts.map((a) => (
+                <li key={a.id}>
+                  <span>
+                    {a.plugins.developers.name} {a.plugins.name}
+                  </span>
+                  <form action={deleteAlert}>
+                    <input type="hidden" name="id" value={a.id} />
+                    <button className="btn" type="submit">
+                      Remove
+                    </button>
+                  </form>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="muted">
+              No alerts. Search for a plugin in <Link href="/browse">Browse</Link>: when no one is
+              selling it, you can ask to be emailed as soon as someone lists it.
+            </p>
+          )}
+        </section>
+      )}
 
       <form action="/auth/signout" method="post" style={{ marginTop: 16, textAlign: "center" }}>
         <button className="btn" type="submit">

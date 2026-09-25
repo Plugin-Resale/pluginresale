@@ -24,10 +24,12 @@ export function SellForm({
   plugins,
   developers,
   defaultPaypalEmail,
+  defaultPluginId,
 }: {
   plugins: PluginOption[];
   developers: Developer[];
   defaultPaypalEmail?: string;
+  defaultPluginId?: number;
 }) {
   const [state, action, pending] = useActionState<SellState, FormData>(createListing, {});
   const values = state.values;
@@ -48,7 +50,8 @@ export function SellForm({
     [plugins, developerById],
   );
 
-  const initial = entries.find((e) => String(e.plugin.id) === values?.pluginId) ?? null;
+  const initialId = values ? values.pluginId : String(defaultPluginId ?? "");
+  const initial = entries.find((e) => String(e.plugin.id) === initialId) ?? null;
   const [query, setQuery] = useState(initial?.label ?? values?.newPluginName ?? "");
   const [selected, setSelected] = useState<SearchEntry | null>(initial);
   const [open, setOpen] = useState(false);

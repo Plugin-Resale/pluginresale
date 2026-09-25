@@ -12,7 +12,7 @@ export default function PrivacyPage() {
       <h1 className="page-title" id="en">
         Privacy Policy
       </h1>
-      <p className="lead">Last updated 24 September 2026.</p>
+      <p className="lead">Last updated 25 September 2026.</p>
       <p className="lang-switch">
         <a href="#fr" lang="fr">
           Version française ↓
@@ -42,6 +42,10 @@ export default function PrivacyPage() {
           price), the messages you exchange with other users, and reviews you write or receive.
         </li>
         <li>
+          <strong>Alerts:</strong> the plugins you ask us to email you about when someone lists
+          them.
+        </li>
+        <li>
           <strong>Reports:</strong> if you report content, your email and what you tell us.
         </li>
         <li>
@@ -59,7 +63,8 @@ export default function PrivacyPage() {
       <ul>
         <li>
           <strong>Running the marketplace</strong> — your account, listings, purchases,
-          messages and the emails a deal or message needs: to perform our contract with you
+          messages, alerts and the emails a deal, message or alert needs: to perform our
+          contract with you
           (GDPR art. 6(1)(b)).
         </li>
         <li>
@@ -135,6 +140,9 @@ export default function PrivacyPage() {
           conversation ends (the time limit for legal claims), then deleted.
         </li>
         <li>
+          <strong>Alerts:</strong> until you remove them in My account, or delete your account.
+        </li>
+        <li>
           <strong>Reports:</strong> up to 1 year after we&apos;ve handled them.
         </li>
         <li>
@@ -195,7 +203,7 @@ export default function PrivacyPage() {
 
       <section id="fr" lang="fr" className="legal-fr">
         <h1 className="page-title">Politique de confidentialité</h1>
-        <p className="lead">Dernière mise à jour : 24 septembre 2026.</p>
+        <p className="lead">Dernière mise à jour : 25 septembre 2026.</p>
         <p className="lang-switch">
           <a href="#en" lang="en">
             English version ↑
@@ -227,6 +235,10 @@ export default function PrivacyPage() {
             vous rédigez ou recevez.
           </li>
           <li>
+            <strong>Alertes :</strong> les plugins pour lesquels vous nous demandez de vous
+            prévenir par email dès qu&apos;ils sont mis en vente.
+          </li>
+          <li>
             <strong>Signalements :</strong> si vous signalez un contenu, votre email et ce que
             vous nous indiquez.
           </li>
@@ -245,8 +257,8 @@ export default function PrivacyPage() {
         <ul>
           <li>
             <strong>Fonctionnement de la plateforme</strong> — compte, annonces, achats,
-            messages et emails nécessaires à une vente ou à un message : exécution du contrat qui
-            nous lie (art. 6.1.b du RGPD).
+            messages, alertes et emails nécessaires à une vente, un message ou une alerte :
+            exécution du contrat qui nous lie (art. 6.1.b du RGPD).
           </li>
           <li>
             <strong>Confiance et sécurité</strong> — notes et avis publics, traitement des
@@ -324,6 +336,10 @@ export default function PrivacyPage() {
           <li>
             <strong>Ventes, messages et avis :</strong> 5 ans après la fin de la vente ou de la
             conversation (délai de prescription des actions en justice), puis supprimés.
+          </li>
+          <li>
+            <strong>Alertes :</strong> jusqu&apos;à ce que vous les supprimiez dans votre compte,
+            ou que vous supprimiez votre compte.
           </li>
           <li>
             <strong>Signalements :</strong> jusqu&apos;à 1 an après leur traitement.

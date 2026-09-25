@@ -6,6 +6,7 @@ import { CATEGORIES, type Category, type ListingCard } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/server";
 import { DeveloperFilter } from "./DeveloperFilter";
 import { FiltersDisclosure } from "./FiltersDisclosure";
+import { NoResults, type PluginMatch } from "./NoResults";
 import { SortSelect } from "./SortSelect";
 
 export const metadata: Metadata = {
@@ -62,7 +63,9 @@ function pageHref(filters: Filters, page: number) {
 }
 
 export default async function BrowsePage({ searchParams }: PageProps<"/browse">) {
-  const filters = parseFilters(await searchParams);
+  const params = await searchParams;
+  const filters = parseFilters(params);
+  const alertNotice = first(params.alert);
   const supabase = await createClient();
 
   let query = supabase.from("listing_cards").select("*", { count: "exact" }).eq("status", "active");
@@ -90,6 +93,29 @@ export default async function BrowsePage({ searchParams }: PageProps<"/browse">)
   // Page past the last result (e.g. an old link): go back to the first page.
   if (error?.code === "PGRST103") redirect(pageHref(filters, 1));
   if (error) throw error;
+
+  // Nothing listed for this search: suggest the matching catalogue plugins instead, with the
+  // alerts this visitor already has on them.
+  // null (the search failed): fall back to the plain empty state.
+  let matches: PluginMatch[] | null = null;
+  const alerted = new Set<number>();
+  let signedIn = false;
+  if (filters.q && (listings ?? []).length === 0) {
+    const [{ data: found, error: searchError }, { data: auth }] = await Promise.all([
+      supabase.rpc("search_plugins", { p_query: filters.q, p_limit: 5 }),
+      supabase.auth.getUser(),
+    ]);
+    if (searchError) console.error("search_plugins failed:", searchError.message);
+    else matches = (found as PluginMatch[] | null) ?? [];
+    signedIn = Boolean(auth.user);
+    if (auth.user && matches && matches.length > 0) {
+      const { data: mine } = await supabase
+        .from("listing_alerts")
+        .select("plugin_id")
+        .in("plugin_id", matches.map((m) => m.id));
+      for (const row of mine ?? []) alerted.add(row.plugin_id);
+    }
+  }
 
   const total = count ?? 0;
   const pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
@@ -228,8 +254,26 @@ export default async function BrowsePage({ searchParams }: PageProps<"/browse">)
           </form>
         </div>
 
+        {alertNotice === "set" && (
+          <p className="notice notice-success">
+            Alert set. We&apos;ll email you as soon as someone lists it. Manage your alerts in{" "}
+            <Link href="/account#alerts">My account</Link>.
+          </p>
+        )}
+        {alertNotice === "error" && (
+          <p className="notice notice-error">Something went wrong. Please try again.</p>
+        )}
+
         {listings.length > 0 ? (
           <ListingGrid listings={listings} />
+        ) : filters.q && matches ? (
+          <NoResults
+            q={filters.q}
+            back={pageHref(filters, 1)}
+            matches={matches}
+            alerted={alerted}
+            signedIn={signedIn}
+          />
         ) : (
           <div className="empty card">
             <p>No listings match these filters yet.</p>

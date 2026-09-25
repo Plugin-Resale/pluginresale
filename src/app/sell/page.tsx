@@ -11,9 +11,14 @@ export const metadata: Metadata = { title: "Sell a plugin" };
 
 type PluginRow = { id: number; name: string; category: Category; developer_id: number };
 
-export default async function SellPage() {
+export default async function SellPage({ searchParams }: PageProps<"/sell">) {
+  // ?plugin=<id>: arrived from "I own it, sell it" (Browse, empty result), plugin preselected.
+  const pluginParam = Number((await searchParams).plugin);
+  const defaultPluginId = Number.isInteger(pluginParam) && pluginParam > 0 ? pluginParam : undefined;
+  const here = defaultPluginId ? `/sell?plugin=${defaultPluginId}` : "/sell";
+
   const { user, profile } = await getCurrentUser();
-  if (!user) redirect(signInUrl("/sell"));
+  if (!user) redirect(signInUrl(here));
 
   if (!profile?.username || !profile.terms_accepted_at) {
     return (
@@ -24,7 +29,7 @@ export default async function SellPage() {
             Choose a username and accept the Terms of Service before you publish your first
             listing.
           </p>
-          <Link href="/account?next=/sell" className="btn btn-primary btn-block">
+          <Link href={`/account?next=${encodeURIComponent(here)}`} className="btn btn-primary btn-block">
             Finish setting up my account
           </Link>
         </div>
@@ -71,6 +76,7 @@ export default async function SellPage() {
         plugins={plugins}
         developers={developers ?? []}
         defaultPaypalEmail={privateProfile?.paypal_email ?? undefined}
+        defaultPluginId={defaultPluginId}
       />
     </main>
   );

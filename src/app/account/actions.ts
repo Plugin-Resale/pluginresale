@@ -72,6 +72,18 @@ export async function setListingStatus(formData: FormData) {
   revalidatePath("/", "layout");
 }
 
+// Removes one of the user's listing alerts (RLS: only their own).
+export async function deleteAlert(formData: FormData) {
+  const id = Number(formData.get("id"));
+  if (!Number.isInteger(id)) return;
+
+  const supabase = await createClient();
+  const { error } = await supabase.from("listing_alerts").delete().eq("id", id);
+  if (error) console.error("listing alert delete failed:", error.message);
+
+  revalidatePath("/account");
+}
+
 export type DeleteAccountState = { error?: string };
 
 // GDPR erasure, self-service. The profile stays (anonymised) so the other side's deals and
@@ -101,6 +113,10 @@ export async function deleteAccount(
     console.error("delete_my_account failed:", error.message);
     return { error: "Something went wrong. Please try again." };
   }
+
+  // Alerts are not needed by anyone else: drop them rather than keep them on the anonymised profile.
+  const { error: alertsError } = await supabase.from("listing_alerts").delete().eq("user_id", user.id);
+  if (alertsError) console.error("listing alerts cleanup failed:", alertsError.message);
 
   await supabase.auth.signOut();
   await removeAuthUser(user.id);

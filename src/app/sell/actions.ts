@@ -1,7 +1,11 @@
 "use server";
 
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { CATEGORIES, FORMATS } from "@/lib/catalog";
+import { after } from "next/server";
+import { CATEGORIES, FORMATS, formatPrice } from "@/lib/catalog";
+import { emailButton, escapeHtml, sendEmail } from "@/lib/email";
+import { getAlertSubscribers, getUserEmail } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
 export type SellValues = {
@@ -97,5 +101,54 @@ export async function createListing(_prev: SellState, formData: FormData): Promi
     return fail(known ?? "Something went wrong. Please try again.");
   }
 
+  // Tell whoever set an alert for this plugin, once the seller already has their page.
+  const [{ data: listing }, origin] = await Promise.all([
+    supabase
+      .from("listing_cards")
+      .select("id, plugin_id, developer_name, plugin_name, price_eur, seller_id")
+      .eq("id", id)
+      .single(),
+    headers().then((h) => h.get("origin") ?? "https://www.pluginresale.com"),
+  ]);
+  if (listing) after(() => notifyAlerts(listing, origin));
+
   redirect(`/listings/${id}?published=1`);
+}
+
+// Emails everyone with an alert on this plugin (Browse, empty search result). Best-effort:
+// runs after the response and never affects the listing itself.
+async function notifyAlerts(
+  listing: {
+    id: number;
+    plugin_id: number;
+    developer_name: string;
+    plugin_name: string;
+    price_eur: number;
+    seller_id: string;
+  },
+  origin: string,
+) {
+  const userIds = (await getAlertSubscribers(listing.plugin_id)).filter(
+    (userId) => userId !== listing.seller_id,
+  );
+  const title = `${listing.developer_name} ${listing.plugin_name}`;
+  const price = formatPrice(listing.price_eur);
+
+  await Promise.all(
+    userIds.map(async (userId) => {
+      const email = await getUserEmail(userId);
+      if (!email) return;
+      await sendEmail({
+        to: email,
+        subject: `Just listed: ${title} for ${price}`,
+        html:
+          `<h2>${escapeHtml(title)} is for sale</h2>` +
+          `<p>Someone just listed ${escapeHtml(title)} for ${price} on Plugin Resale. ` +
+          `You asked us to let you know.</p>` +
+          emailButton(`${origin}/listings/${listing.id}`, "See the listing") +
+          `<p style="color:#55545C;font-size:13px">You get this email because you set an alert ` +
+          `for this plugin. You can remove it in <a href="${origin}/account#alerts">My account</a>.</p>`,
+      });
+    }),
+  );
 }

@@ -1936,3 +1936,64 @@ main {
   margin-top: 32px;
   font-weight: 500;
 }
+
+/* ---------- Browse: empty search result with alerts ---------- */
+
+.no-results {
+  align-items: stretch;
+}
+
+.alert-list {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0;
+}
+
+.alert-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+
+.alert-name {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.alert-dev {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.alert-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+
+.alert-actions form {
+  margin: 0;
+}
+
+.alert-rules {
+  font-size: 14px;
+}
+
+.no-results .alert-blocked {
+  font-size: 14px;
+}
+
+@media (min-width: 700px) {
+  .alert-list li {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

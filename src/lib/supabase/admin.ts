@@ -15,6 +15,20 @@ export async function getUserEmail(userId: string) {
 
 const DELETED_EMAIL_DOMAIN = "@deleted.pluginresale.com";
 
+// Users who asked to be emailed when this plugin gets listed (listing_alerts, migration 0038).
+// Their rows are private to them under RLS, hence the service role.
+export async function getAlertSubscribers(pluginId: number) {
+  const { data, error } = await admin
+    .from("listing_alerts")
+    .select("user_id")
+    .eq("plugin_id", pluginId);
+  if (error) {
+    console.error("listing_alerts read failed:", error.message);
+    return [];
+  }
+  return data.map((row) => row.user_id as string);
+}
+
 // Called after delete_my_account() has anonymised the profile. Deleting the auth user erases
 // the email for good; when past deals, messages or reviews still point to the profile, the
 // database refuses it, so the email is replaced instead and the account banned from signing in.
