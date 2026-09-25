@@ -139,7 +139,7 @@ export default async function ListingPage({
             </div>
           </div>
 
-          <section>
+          <section className="listing-note">
             <h2 className="section-title">Seller&apos;s note</h2>
             <p className="seller-note">
               {listing.description || "The seller didn't add a description."}
@@ -149,7 +149,7 @@ export default async function ListingPage({
           {developer && <TransferRules developer={developer} />}
 
           {more && more.length > 0 && (
-            <section>
+            <section className="listing-more">
               <h2 className="section-title">More from {listing.developer_name}</h2>
               <ListingGrid listings={more} />
             </section>

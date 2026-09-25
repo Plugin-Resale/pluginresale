@@ -335,9 +335,14 @@ export function SellForm({
             name="description"
             className="input textarea"
             maxLength={2000}
-            placeholder="Why you're selling, purchase date, anything the buyer should know."
+            placeholder="Example: Bought in March 2024 from the developer's store, registered to my account (not iLok). Selling because I switched to another EQ. I'll start the transfer as soon as payment arrives."
             defaultValue={values?.description}
           />
+          <p className="hint">
+            Buyers trust a listing more when they know where the license was bought, where it is
+            registered (developer account, iLok…), why you&apos;re selling, and how fast you&apos;ll
+            start the transfer.
+          </p>
         </div>
 
         <div className="field">

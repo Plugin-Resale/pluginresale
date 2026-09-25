@@ -6,6 +6,7 @@ import { CATEGORIES, type Category, type ListingCard } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/server";
 import { DeveloperFilter } from "./DeveloperFilter";
 import { FiltersDisclosure } from "./FiltersDisclosure";
+import { SortSelect } from "./SortSelect";
 
 export const metadata: Metadata = {
   title: "Browse second-hand plugin licenses",
@@ -215,16 +216,15 @@ export default async function BrowsePage({ searchParams }: PageProps<"/browse">)
             <label htmlFor="sort" className="muted">
               Sort by
             </label>
-            <select id="sort" name="sort" className="input" defaultValue={filters.sort}>
-              {Object.entries(SORTS).map(([value, s]) => (
-                <option key={value} value={value}>
-                  {s.label}
-                </option>
-              ))}
-            </select>
-            <button className="btn" type="submit">
-              Sort
-            </button>
+            <SortSelect
+              options={Object.entries(SORTS).map(([value, s]) => ({ value, label: s.label }))}
+              value={filters.sort}
+            />
+            <noscript>
+              <button className="btn" type="submit">
+                Sort
+              </button>
+            </noscript>
           </form>
         </div>
 

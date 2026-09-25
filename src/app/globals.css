@@ -1300,6 +1300,7 @@ main {
   min-width: 0;
 }
 
+
 .listing-hero {
   background: var(--ink);
   color: var(--ground);
@@ -1400,6 +1401,47 @@ main {
   border-top: 1px solid var(--line);
   font-size: 14px;
   color: var(--muted);
+}
+
+/* Phones and tablets: one column, with the price and Buy button right under the plugin name
+   instead of after the whole transfer-rules box. The two wrappers step aside so their blocks
+   can be reordered together. */
+@media (max-width: 999px) {
+  .listing-main,
+  .listing-side {
+    display: contents;
+  }
+
+  .listing-hero {
+    order: 1;
+    min-height: 0;
+    gap: 20px;
+    padding: 24px;
+  }
+
+  .price-card {
+    order: 2;
+  }
+
+  .seller-card {
+    order: 3;
+  }
+
+  .listing-note {
+    order: 4;
+  }
+
+  .listing-layout > .listing-main > .rules {
+    order: 5;
+  }
+
+  .report-link {
+    order: 6;
+  }
+
+  .listing-more {
+    order: 7;
+  }
 }
 
 .private-seller strong {
@@ -1879,4 +1921,18 @@ main {
   flex-direction: column;
   gap: 12px;
   align-items: flex-start;
+}
+
+/* ---------- 404 ---------- */
+
+.not-found {
+  min-height: 50vh;
+}
+
+.not-found-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: 32px;
+  font-weight: 500;
 }
