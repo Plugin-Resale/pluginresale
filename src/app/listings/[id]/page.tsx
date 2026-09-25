@@ -5,6 +5,7 @@ import { cache } from "react";
 import { notFound } from "next/navigation";
 import { ListingGrid } from "@/components/ListingCard";
 import { Rating } from "@/components/Rating";
+import { ShareButton } from "@/components/ShareButton";
 import { TransferRules } from "@/components/TransferRules";
 import {
   CATEGORIES,
@@ -85,6 +86,42 @@ export default async function ListingPage({
   ]);
 
   const isSeller = user?.id === listing.seller_id;
+  const url = `https://www.pluginresale.com/listings/${listing.id}`;
+  const title = `${listing.developer_name} ${listing.plugin_name}`;
+  const price = formatPrice(listing.price_eur);
+  const share = {
+    url,
+    title: `${title} for ${price}`,
+    text: isSeller
+      ? `I'm selling my ${title} license for ${price} on Plugin Resale`
+      : `${title}, used license for ${price} on Plugin Resale`,
+  };
+
+  // Lets Google show the price and availability under the link in search results.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: title,
+    description:
+      listing.description || `Second-hand ${title} license, sold by a private seller.`,
+    image: `${url}/opengraph-image`,
+    brand: { "@type": "Brand", name: listing.developer_name },
+    category: CATEGORIES[listing.category],
+    offers: {
+      "@type": "Offer",
+      url,
+      price: Number(listing.price_eur).toFixed(2),
+      priceCurrency: "EUR",
+      itemCondition: "https://schema.org/UsedCondition",
+      availability:
+        listing.status === "active"
+          ? "https://schema.org/InStock"
+          : listing.status === "sold"
+            ? "https://schema.org/SoldOut"
+            : "https://schema.org/OutOfStock",
+      seller: { "@type": "Person", name: listing.seller_username },
+    },
+  };
   const { data: myDeal } = user
     ? await supabase
         .from("deals")
@@ -107,10 +144,14 @@ export default async function ListingPage({
         </span>
       </nav>
 
-      {published && isSeller && (
-        <p className="notice notice-success">
-          Your listing is live. Buyers can now find it in Browse.
-        </p>
+      {published && isSeller && listing.status === "active" && (
+        <div className="notice notice-success share-notice">
+          <p>
+            <strong>Your listing is live.</strong> Share it where producers hang out (Instagram,
+            WhatsApp, Facebook groups, Discord…) to sell faster.
+          </p>
+          <ShareButton {...share} label="Share my listing" className="btn btn-primary" />
+        </div>
       )}
       {listing.status !== "active" && (
         <p className="notice notice-error">
@@ -171,6 +212,9 @@ export default async function ListingPage({
             )}
             {typeof buyError === "string" && BUY_ERRORS[buyError] && (
               <p className="notice notice-error">{BUY_ERRORS[buyError]}</p>
+            )}
+            {isSeller && listing.status === "active" && (
+              <ShareButton {...share} label="Share my listing" className="btn btn-primary btn-lg" />
             )}
             {isSeller ? (
               <form action={setListingStatus}>
@@ -240,11 +284,21 @@ export default async function ListingPage({
             </div>
           </Link>
 
+          {!isSeller && listing.status === "active" && (
+            <ShareButton {...share} label="Share this listing" className="share-link" />
+          )}
           <Link className="report-link" href={`/report?listing=${listing.id}`}>
             Report this listing
           </Link>
         </aside>
       </div>
+
+      {listing.status !== "removed" && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+        />
+      )}
     </main>
   );
 }

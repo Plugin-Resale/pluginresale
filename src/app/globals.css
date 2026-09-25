@@ -1997,3 +1997,33 @@ main {
     justify-content: space-between;
   }
 }
+
+/* ---------- Share ---------- */
+
+.share-notice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.share-notice p {
+  margin: 0;
+}
+
+.share-link {
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  padding: 8px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 999px) {
+  .share-link {
+    order: 6;
+  }
+}
