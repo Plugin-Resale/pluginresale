@@ -2,6 +2,7 @@
 title: "Can you sell your DAW license? Ableton, Cubase, Pro Tools, FL Studio, Logic and more"
 description: A DAW is often the most expensive piece of software a producer owns. Which DAW licenses can be resold, how each publisher handles the transfer, and the ones you can't sell at all.
 date: 2026-09-24
+updated: 2026-09-25
 ---
 
 Switching DAWs is common: you start on one, a collaborator or a course pulls you towards another, and the old license just sits there. Since a full DAW license often costs several hundred euros, it's worth knowing whether you can sell it.
@@ -49,9 +50,16 @@ The **Reason** license itself can be transferred to another user's account. The 
 
 Cockos' license agreement doesn't formally allow resale, but the company has said informally it's fine with a license being resold if you ask first. Email Cockos **before** buying or selling a used REAPER license.
 
-## Studio Pro (Fender, formerly PreSonus Studio One): unclear for now
+## Studio Pro (Fender, formerly PreSonus Studio One): self-service, $25
 
-Studio One was renamed **Fender Studio Pro** in January 2026. PreSonus used to allow transfers, but Fender hasn't published a clear resale policy for the new product yet. Check with Fender/PreSonus support before you buy or sell.
+Studio One was renamed **Fender Studio Pro** in January 2026, and the transfer program carried over. The buyer creates a Fender account first. The seller logs in to **my.fender.com**, opens the product under **My Gear**, clicks **Transfer License**, enters the buyer's account email and pays the **$25 transfer fee** ($5 per add-on). The transfer goes through as soon as the fee is paid, and both sides get a confirmation email: keep it.
+
+Restrictions:
+
+- **NFR** licenses and software that came **free with hardware** can't be transferred, and neither can Prime, demo or beta versions.
+- A **perpetual license left over from a yearly subscription** can't be transferred.
+- Licenses linked by an **upgrade** move together, as one license.
+- Bundled third-party software such as **Melodyne** isn't part of the transfer: it has to be moved separately with its own developer.
 
 ## The ones you can't sell
 
