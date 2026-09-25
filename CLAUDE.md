@@ -12,7 +12,7 @@ Design reference (mockup v1, 4 pages): https://claude.ai/artifact/KiyRncyZgYt9eo
 - Each developer has its own license-transfer policy → a public "transfer rules" database is a core feature.
 
 ## Stack
-- Next.js (App Router, TypeScript), deployed on Vercel.
+- Next.js (App Router, TypeScript), deployed on Vercel. Server functions pinned to `dub1` (Dublin) in `vercel.json`, next to the Supabase database (`eu-west-1`, Ireland): they used to run in `iad1` (Washington), which put every query across the Atlantic (pages ~2.5x slower, occasional timeouts). Keep them in the same region as the database.
 - Supabase: Postgres, Auth (email magic link), Row Level Security on every table.
 - No payment SDK.
 
