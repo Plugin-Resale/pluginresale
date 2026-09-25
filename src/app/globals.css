@@ -525,6 +525,30 @@ main {
   margin-bottom: 0;
 }
 
+.post-body img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.post-body figure {
+  margin: 32px 0;
+}
+
+.post-body figure img {
+  max-height: 80vh;
+  object-fit: cover;
+}
+
+.post-body figcaption {
+  margin-top: 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
 .post-body hr {
   border: 0;
   border-top: 1px solid var(--line);

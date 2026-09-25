@@ -20,9 +20,24 @@ async function loadFonts() {
     readFile(path.join(FONT_DIR, "IBMPlexSans-Regular.ttf")),
   ]);
   return [
-    { name: "Display", data: display, weight: 700 as const, style: "normal" as const },
-    { name: "Mono", data: mono, weight: 500 as const, style: "normal" as const },
-    { name: "Body", data: body, weight: 400 as const, style: "normal" as const },
+    {
+      name: "Display",
+      data: display,
+      weight: 700 as const,
+      style: "normal" as const,
+    },
+    {
+      name: "Mono",
+      data: mono,
+      weight: 500 as const,
+      style: "normal" as const,
+    },
+    {
+      name: "Body",
+      data: body,
+      weight: 400 as const,
+      style: "normal" as const,
+    },
   ];
 }
 
@@ -52,7 +67,9 @@ function Badge({ transferable }: { transferable: boolean | null }) {
 }
 
 // Long names get a smaller title so they still fit on two lines.
-function titleSize(title: string) {
+// Next to a photo the text column is half as wide, so titles run smaller.
+function titleSize(title: string, withPhoto: boolean) {
+  if (withPhoto) return title.length <= 40 ? 60 : title.length <= 70 ? 48 : 40;
   if (title.length <= 16) return 104;
   if (title.length <= 28) return 84;
   if (title.length <= 48) return 68;
@@ -65,24 +82,33 @@ export async function ogImage({
   price,
   transferable,
   footer = "Free to list, free to buy, no commission",
+  photo,
 }: {
   eyebrow?: string;
   title: string;
   price?: string;
   transferable?: boolean | null;
   footer?: string;
+  // A data: URL. The photo fills the right part of the image, the text moves to the left.
+  photo?: string;
 }) {
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        background: "#f2efe8",
+      }}
+    >
       <div
         style={{
-          width: "100%",
+          flex: 1,
           height: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: "64px 72px",
-          background: "#f2efe8",
+          padding: photo ? "56px 48px 56px 64px" : "64px 72px",
           color: INK,
         }}
       >
@@ -110,22 +136,38 @@ export async function ogImage({
             style={{
               display: "flex",
               fontFamily: "Display",
-              fontSize: titleSize(title),
+              fontSize: titleSize(title, Boolean(photo)),
               lineHeight: 1.05,
-              letterSpacing: -2,
+              letterSpacing: photo ? -1 : -2,
               maxWidth: 1056,
             }}
           >
             {title}
           </div>
           {(price || transferable !== undefined) && (
-            <div style={{ display: "flex", alignItems: "center", gap: 28, marginTop: 30 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 28,
+                marginTop: 30,
+              }}
+            >
               {price && (
-                <div style={{ display: "flex", fontFamily: "Mono", fontSize: 64, color: INK }}>
+                <div
+                  style={{
+                    display: "flex",
+                    fontFamily: "Mono",
+                    fontSize: 64,
+                    color: INK,
+                  }}
+                >
                   {price}
                 </div>
               )}
-              {transferable !== undefined && <Badge transferable={transferable} />}
+              {transferable !== undefined && (
+                <Badge transferable={transferable} />
+              )}
             </div>
           )}
         </div>
@@ -141,11 +183,23 @@ export async function ogImage({
             paddingTop: 26,
           }}
         >
-          <span>{footer}</span>
-          <span style={{ fontFamily: "Mono", color: INK }}>pluginresale.com</span>
+          {!photo && <span>{footer}</span>}
+          <span style={{ fontFamily: "Mono", color: INK }}>
+            pluginresale.com
+          </span>
         </div>
       </div>
-    ),
+      {photo && (
+        // eslint-disable-next-line @next/next/no-img-element -- ImageResponse only renders plain <img>
+        <img
+          src={photo}
+          alt=""
+          width={520}
+          height={630}
+          style={{ objectFit: "cover" }}
+        />
+      )}
+    </div>,
     { ...OG_SIZE, fonts: await loadFonts() },
   );
 }

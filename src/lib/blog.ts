@@ -10,7 +10,11 @@ import { marked } from "marked";
 // description: One or two sentences, used for search engines and the blog index.
 // date: 2026-09-24
 // updated: 2026-10-02   (optional)
+// image: /blog/<slug>/photo.jpg   (optional, a photo in public/: used for the link preview)
 // ---
+//
+// Photos inside a post are plain Markdown images, or a <figure> with a <figcaption>,
+// pointing at files in public/blog/<slug>/.
 //
 // Files whose name starts with "_" are drafts and are not published.
 // A post with a date in the future is scheduled: it stays hidden (404, not in the index)
@@ -24,6 +28,7 @@ export type PostMeta = {
   description: string;
   date: string;
   updated: string | null;
+  image: string | null;
   readingMinutes: number;
 };
 
@@ -49,6 +54,9 @@ function parseFrontMatter(file: string, source: string) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(fields.date)) {
     throw new Error(`${file}: date must be YYYY-MM-DD`);
   }
+  if (fields.image && !/^\/blog\/[a-z0-9-]+\/[a-z0-9-]+\.(jpg|jpeg|png)$/.test(fields.image)) {
+    throw new Error(`${file}: image must be a path like /blog/<slug>/photo.jpg`);
+  }
 
   return { fields, body: source.slice(match[0].length) };
 }
@@ -71,6 +79,7 @@ async function readPost(slug: string): Promise<{ meta: PostMeta; body: string } 
       description: fields.description,
       date: fields.date,
       updated: fields.updated || null,
+      image: fields.image || null,
       readingMinutes: Math.max(1, Math.round(words / 230)),
     },
     body,

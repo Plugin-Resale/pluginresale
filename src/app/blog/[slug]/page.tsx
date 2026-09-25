@@ -34,6 +34,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
     datePublished: post.date,
     dateModified: post.updated ?? post.date,
     mainEntityOfPage: `https://www.pluginresale.com/blog/${post.slug}`,
+    ...(post.image && { image: `https://www.pluginresale.com${post.image}` }),
     author: { "@type": "Organization", name: "Plugin Resale", url: "https://www.pluginresale.com" },
     publisher: { "@type": "Organization", name: "Plugin Resale", url: "https://www.pluginresale.com" },
   };
