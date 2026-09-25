@@ -75,6 +75,8 @@ Design reference (mockup v1, 4 pages): https://claude.ai/artifact/KiyRncyZgYt9eo
 
 **Positive Grid not transferable + header label 2026-09-25** (migration `0041_positive_grid_not_transferable.sql` + code): Positive Grid support confirmed by email (request 599279) that software licenses can never be transferred, backed by its Terms and Conditions section 10, now `transferable = false`. With Neural DSP (0039) the 191-developer study (`plugin-transfer-policies-study-2026.md`, publishes 1 Oct) was refreshed: 107 allowed / 55 not / 29 not verified, recounted from the migrations replayed locally. The header nav item for `/developers` now reads "Transfer rules" (same as the footer and the page title), URL unchanged.
 
+**HOFA transferable 2026-09-25** (migration `0042_hofa_transferable.sql`): confirmed by HOFA support (ticket 27577) and its official resale page, €20 per product (max €50), EDU and partial bundles excluded; study figures refreshed (108 / 55 / 28).
+
 **Share button + price in Google 2026-09-25** (code, no migration): `ShareButton` (`src/components/ShareButton.tsx`) opens the phone share sheet (Web Share API), or copies the link on desktop. On a listing: prominent "Share my listing" for the seller (in the price card, and in the green notice right after publishing), a discreet "Share this listing" link for visitors. The listing page also carries Product JSON-LD (price in EUR, used condition, InStock / OutOfStock when reserved / SoldOut, image = the listing link-preview image) so Google can show the price under the link. Idea parked by Victor for later: make each plugin on a developer page clickable (to its listings, or the alert / sell options).
 
 ## Backlog (not scheduled yet)
