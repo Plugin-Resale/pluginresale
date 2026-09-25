@@ -12,13 +12,13 @@ With **191 developers** covered (plugin makers, sample library companies and DAW
 
 | Policy | Developers | Share |
 |---|---|---|
-| Transfers allowed | 108 | 56% |
+| Transfers allowed | 109 | 57% |
 | Transfers not allowed | 55 | 29% |
-| No official policy found | 28 | 15% |
+| No official policy found | 27 | 14% |
 
 So if you pick a developer at random, there's a slightly better than even chance you can resell its licenses.
 
-The "no official policy" group matters too: for **28 developers**, we couldn't find a clear, official answer. Some have simply never published one, others only answered the question on forums. We don't count forum posts as a policy, so these developers are marked "not verified" on the site, and we advise buyers and sellers to ask the developer before making a deal.
+The "no official policy" group matters too: for **27 developers**, we couldn't find a clear, official answer. Some have simply never published one, others only answered the question on forums. We don't count forum posts as a policy, so these developers are marked "not verified" on the site, and we advise buyers and sellers to ask the developer before making a deal.
 
 ## Sample libraries are the hardest to resell
 
@@ -48,7 +48,7 @@ A few of the most popular products in music production can't be resold:
 
 ## Fees: from free to 25%
 
-Among the 108 developers that allow transfers:
+Among the 109 developers that allow transfers:
 
 - **20 charge nothing at all**. Ableton, XLN Audio, Kilohearts, D16 Group, Voxengo and Output are among them.
 - **16 only pass on the iLok fee** that PACE charges ($25 for one license, $50 for several in one transaction). See our [iLok guide](/blog/ilok-license-transfer-explained).
@@ -59,17 +59,17 @@ Some fees depend on the license's history: **Arturia** is free for a first-hand 
 
 ## The seller usually pays
 
-When a policy says who pays the fee (53 of the 108), it's the **seller in 48 cases**. Only a handful of developers bill the buyer. That's worth knowing when you set your price: our [pricing guide](/blog/how-much-is-my-used-plugin-worth) explains how to take it into account.
+When a policy says who pays the fee (54 of the 109), it's the **seller in 49 cases**. Only a handful of developers bill the buyer. That's worth knowing when you set your price: our [pricing guide](/blog/how-much-is-my-used-plugin-worth) explains how to take it into account.
 
 ## The most common restrictions
 
-Even when transfers are allowed, most policies come with conditions. Among the 108 developers that allow transfers:
+Even when transfers are allowed, most policies come with conditions. Among the 109 developers that allow transfers:
 
-- **33** explicitly exclude **NFR** (Not For Resale) licenses,
+- **34** explicitly exclude **NFR** (Not For Resale) licenses,
 - **18** require you to have owned the license for a minimum time before selling it, from **30 days** (Toontrack, oeksound) to **6 months** (Arturia, Acustica Audio),
 - **16** exclude **educational** licenses,
-- **15** mention **bundles or OEM** licenses (bundled with hardware), usually to forbid splitting them or selling them on their own,
-- **6** exclude **subscriptions** or rent-to-own licenses, like Waves Creative Access or Slate Digital All Access.
+- **16** mention **bundles or OEM** licenses (bundled with hardware), usually to forbid splitting them or selling them on their own,
+- **7** exclude **subscriptions** or rent-to-own licenses, like Waves Creative Access or Slate Digital All Access.
 
 These are only the restrictions developers write down explicitly. In practice, NFR and educational licenses are almost never resellable. More on this in [which plugin licenses can you resell?](/blog/nfr-educational-bundled-licenses-resale)
 
