@@ -15,7 +15,7 @@ export async function Header() {
             Browse
           </Link>
           <Link href="/developers" className="nav-link">
-            Developers
+            Transfer rules
           </Link>
           <Link href="/blog" className="nav-link">
             Blog
