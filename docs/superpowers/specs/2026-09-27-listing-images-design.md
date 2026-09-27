@@ -22,7 +22,8 @@ Date: 2026-09-27. Approved by Victor in chat.
 - Storage bucket `plugin-images`: public read, no write policy for `anon`/`authenticated`.
 - Storage bucket `listing-proofs`: public read, 5 MB limit, `image/jpeg`, `image/png`, `image/webp`. RLS on `storage.objects`: an authenticated user may insert and delete only objects whose first folder is their own `auth.uid()`.
 - `create_listing()` gets `p_proof_image_path text default null`. If set, it must start with `auth.uid() || '/'`, otherwise `BAD_PROOF`.
-- New RPC `set_listing_proof(p_listing_id bigint, p_path text)`: seller of that listing only, path rule as above, `null` removes it. Used to add / replace / remove the proof after publishing (there is no listing edit page).
+- Column grants `insert, update (proof_image_path)` to `authenticated` + a check constraint forcing the path into the seller's own folder (`^<seller_id>/<uuid>.jpg$`). The existing "sellers edit their own listings" RLS policy then covers add / replace / remove after publishing (there is no listing edit page), through a server action, no dedicated RPC.
+- `clear_my_proofs()` RPC (security definer): nulls the proof on all the caller's listings, sold ones included, used by account deletion.
 - `listing_cards` view: append `p.image_path as plugin_image_path` and `l.proof_image_path` at the end (view columns cannot be reordered).
 - `service_role` grants as needed (see the 0040 lesson).
 - Migration comments free of apostrophes and semicolons (SQL Editor quirk).
@@ -33,7 +34,7 @@ Date: 2026-09-27. Approved by Victor in chat.
 - The browser resizes the image (max 2000 px on the long side) and re-encodes it as JPEG through a canvas. This shrinks a 3–5 MB phone photo to a few hundred KB and drops EXIF metadata (including GPS).
 - The file goes straight from the browser to Supabase Storage with the user's session, to `listing-proofs/<user id>/<random uuid>.jpg`. This avoids Vercel's 4.5 MB request body limit on server actions. The resulting path goes into a hidden form field, and the server action passes it to `create_listing()`.
 - Preview thumbnail + "Remove" before submitting. Upload errors are shown inline and never block publishing without a proof.
-- Seller-only block on their own listing page: add / replace / remove the proof (same upload component + `set_listing_proof`). Replacing or removing also deletes the old file.
+- Seller-only block on their own listing page: add / replace / remove the proof (same upload component + a `setListingProof` server action). Replacing or removing also deletes the old file.
 - Accepted limit: a file uploaded on an abandoned Sell form stays in storage (orphan). Small, clean up later if it ever matters.
 
 ## Display
