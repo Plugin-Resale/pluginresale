@@ -8,6 +8,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
 import { deleteAlert } from "./actions";
 import { DeleteAccountForm } from "./DeleteAccountForm";
+import { AvatarForm } from "./AvatarForm";
 import { UsernameForm } from "./UsernameForm";
 
 export const metadata: Metadata = { title: "My account" };
@@ -102,6 +103,13 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
           termsAccepted={Boolean(profile?.terms_accepted_at)}
           next={typeof next === "string" ? next : undefined}
         />
+        {profile?.username && (
+          <AvatarForm
+            userId={user.id}
+            username={profile.username}
+            currentPath={profile.avatar_path}
+          />
+        )}
       </div>
 
       <section className="card account-section">

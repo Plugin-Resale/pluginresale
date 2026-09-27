@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { PROOF_BUCKET, PROOF_PATH_RE } from "@/lib/images";
+import { PROOF_BUCKET, USER_IMAGE_PATH_RE } from "@/lib/images";
 import { createClient } from "@/lib/supabase/server";
 
 // The seller adds, replaces or removes the license screenshot of their own listing.
@@ -10,7 +10,7 @@ import { createClient } from "@/lib/supabase/server";
 export async function setListingProof(formData: FormData) {
   const id = Number(formData.get("listing_id"));
   const path = String(formData.get("proof_image_path") ?? "");
-  if (!Number.isInteger(id) || id <= 0 || (path && !PROOF_PATH_RE.test(path))) return;
+  if (!Number.isInteger(id) || id <= 0 || (path && !USER_IMAGE_PATH_RE.test(path))) return;
 
   const supabase = await createClient();
   const { data: before } = await supabase

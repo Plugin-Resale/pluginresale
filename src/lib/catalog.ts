@@ -82,6 +82,7 @@ export type ListingCard = {
   no_fee: boolean;
   plugin_image_path: string | null; // official visual, null = generic visual
   proof_image_path: string | null; // seller's optional license screenshot
+  seller_avatar_path: string | null; // seller's optional profile photo
 };
 
 const priceFormat = new Intl.NumberFormat("en-IE", {

@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { PROOF_BUCKET } from "@/lib/images";
+import { AVATAR_BUCKET, PROOF_BUCKET, USER_IMAGE_PATH_RE } from "@/lib/images";
 import { safeNext } from "@/lib/next-path";
 import { removeAuthUser } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
@@ -11,6 +11,41 @@ export type UsernameState = { status: "idle" | "saved" | "error"; message?: stri
 
 const USERNAME_RE = /^[a-z0-9_]{3,20}$/;
 
+
+// Sets or removes (empty path) the signed-in user's profile photo, already uploaded by the
+// browser into their own folder of the avatars bucket. The photo it replaces is deleted.
+export async function setAvatar(path: string): Promise<{ error?: string }> {
+  if (path && !USER_IMAGE_PATH_RE.test(path)) return { error: "Unexpected photo." };
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { error: "Your session has expired. Please sign in again." };
+
+  const { data: before } = await supabase
+    .from("profiles")
+    .select("avatar_path")
+    .eq("id", user.id)
+    .single<{ avatar_path: string | null }>();
+
+  const { error } = await supabase
+    .from("profiles")
+    .update({ avatar_path: path || null })
+    .eq("id", user.id);
+  if (error) {
+    console.error("set avatar failed:", error.message);
+    return { error: "Something went wrong. Please try again." };
+  }
+
+  const old = before?.avatar_path;
+  if (old && old !== path) {
+    const { error: removeError } = await supabase.storage.from(AVATAR_BUCKET).remove([old]);
+    if (removeError) console.error("old avatar removal failed:", removeError.message);
+  }
+  revalidatePath("/", "layout");
+  return {};
+}
 
 export async function saveUsername(
   _prev: UsernameState,
@@ -119,15 +154,22 @@ export async function deleteAccount(
   const { error: alertsError } = await supabase.from("listing_alerts").delete().eq("user_id", user.id);
   if (alertsError) console.error("listing alerts cleanup failed:", alertsError.message);
 
-  // License screenshots are public files: they go with the account (migration 0048).
+  // License screenshots and the profile photo are public files: they go with the account
+  // (migrations 0048 and 0049).
   const { error: proofsDbError } = await supabase.rpc("clear_my_proofs");
   if (proofsDbError) console.error("proof paths cleanup failed:", proofsDbError.message);
-  const { data: proofFiles } = await supabase.storage.from(PROOF_BUCKET).list(user.id, { limit: 1000 });
-  if (proofFiles?.length) {
-    const { error: proofsError } = await supabase.storage
-      .from(PROOF_BUCKET)
-      .remove(proofFiles.map((f) => `${user.id}/${f.name}`));
-    if (proofsError) console.error("proof files cleanup failed:", proofsError.message);
+  const { error: avatarDbError } = await supabase
+    .from("profiles")
+    .update({ avatar_path: null })
+    .eq("id", user.id);
+  if (avatarDbError) console.error("avatar path cleanup failed:", avatarDbError.message);
+  for (const bucket of [PROOF_BUCKET, AVATAR_BUCKET]) {
+    const { data: files } = await supabase.storage.from(bucket).list(user.id, { limit: 1000 });
+    if (!files?.length) continue;
+    const { error: removeError } = await supabase.storage
+      .from(bucket)
+      .remove(files.map((f) => `${user.id}/${f.name}`));
+    if (removeError) console.error(`${bucket} cleanup failed:`, removeError.message);
   }
 
   await supabase.auth.signOut();

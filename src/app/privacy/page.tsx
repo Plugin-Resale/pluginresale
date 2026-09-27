@@ -31,7 +31,8 @@ export default function PrivacyPage() {
       <ul>
         <li>
           <strong>Account:</strong> your email address (to sign you in with a magic link), the
-          username you choose, and the date you accepted our Terms.
+          username you choose, your profile photo if you add one, and the date you accepted our
+          Terms.
         </li>
         <li>
           <strong>Listings:</strong> the plugin, version, price, description, the optional
@@ -83,7 +84,7 @@ export default function PrivacyPage() {
       <h2>3. Who can see it</h2>
       <ul>
         <li>
-          <strong>Everyone:</strong> your username, your listings (without your PayPal email,
+          <strong>Everyone:</strong> your username, your profile photo, your listings (without your PayPal email,
           but with the license screenshot if you add one), the reviews you write and receive, your rating, and the date you joined.
         </li>
         <li>
@@ -143,7 +144,7 @@ export default function PrivacyPage() {
           <strong>Alerts:</strong> until you remove them in My account, or delete your account.
         </li>
         <li>
-          <strong>License screenshots:</strong> until you remove them from your listing, or
+          <strong>License screenshots and profile photo:</strong> until you remove them, or
           delete your account.
         </li>
         <li>
@@ -227,7 +228,8 @@ export default function PrivacyPage() {
         <ul>
           <li>
             <strong>Compte :</strong> votre adresse email (pour vous connecter par lien), le
-            pseudo que vous choisissez et la date à laquelle vous avez accepté nos conditions.
+            pseudo que vous choisissez, votre photo de profil si vous en ajoutez une et la date à
+            laquelle vous avez accepté nos conditions.
           </li>
           <li>
             <strong>Annonces :</strong> le plugin, la version, le prix, la description, la
@@ -281,7 +283,7 @@ export default function PrivacyPage() {
         <h2>3. Qui peut y accéder</h2>
         <ul>
           <li>
-            <strong>Tout le monde :</strong> votre pseudo, vos annonces (sans votre email
+            <strong>Tout le monde :</strong> votre pseudo, votre photo de profil, vos annonces (sans votre email
             PayPal, mais avec la capture de licence si vous en ajoutez une), les avis que vous rédigez et recevez, votre note et votre date
             d&apos;inscription.
           </li>
@@ -347,8 +349,8 @@ export default function PrivacyPage() {
             ou que vous supprimiez votre compte.
           </li>
           <li>
-            <strong>Captures de licence :</strong> jusqu&apos;à ce que vous les retiriez de votre
-            annonce, ou que vous supprimiez votre compte.
+            <strong>Captures de licence et photo de profil :</strong> jusqu&apos;à ce que vous
+            les retiriez, ou que vous supprimiez votre compte.
           </li>
           <li>
             <strong>Signalements :</strong> jusqu&apos;à 1 an après leur traitement.

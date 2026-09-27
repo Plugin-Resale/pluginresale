@@ -1543,10 +1543,65 @@ main {
   font-weight: 700;
 }
 
+img.avatar {
+  object-fit: cover;
+}
+
 .report-link {
   font-size: 14px;
   color: var(--muted);
   text-align: center;
+}
+
+/* ---------- Profile photo (My account) ---------- */
+
+.avatar-form {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.avatar-form .avatar {
+  width: 72px;
+  height: 72px;
+  font-size: 28px;
+}
+
+.avatar-form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.avatar-form-body .hint,
+.avatar-form-body .notice {
+  margin: 0;
+}
+
+.avatar-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.link-button {
+  font: inherit;
+  font-size: 14px;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  padding: 8px;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .private-seller {

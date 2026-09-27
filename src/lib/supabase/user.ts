@@ -5,6 +5,7 @@ export type Profile = {
   username: string | null;
   created_at: string;
   terms_accepted_at: string | null;
+  avatar_path: string | null;
 };
 
 // Returns the signed-in user (verified with the Auth server) and their profile, or nulls.
@@ -18,7 +19,7 @@ export async function getCurrentUser() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("id, username, created_at, terms_accepted_at")
+    .select("id, username, created_at, terms_accepted_at, avatar_path")
     .eq("id", user.id)
     .maybeSingle<Profile>();
 

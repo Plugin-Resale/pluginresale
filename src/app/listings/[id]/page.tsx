@@ -3,6 +3,7 @@ import { signInUrl } from "@/lib/next-path";
 import Link from "next/link";
 import { cache } from "react";
 import { notFound } from "next/navigation";
+import { Avatar } from "@/components/Avatar";
 import { ListingGrid } from "@/components/ListingCard";
 import { ProofUpload } from "@/components/ProofUpload";
 import { ProofViewer } from "@/components/ProofViewer";
@@ -286,9 +287,7 @@ export default async function ListingPage({
           </div>
 
           <Link href={`/u/${listing.seller_username}`} className="card seller-card">
-            <span className="avatar" aria-hidden="true">
-              {listing.seller_username?.[0]?.toUpperCase()}
-            </span>
+            <Avatar username={listing.seller_username} path={listing.seller_avatar_path} />
             <div>
               <strong>@{listing.seller_username}</strong>
               <p className="muted">Member since {formatDate(listing.seller_since.slice(0, 10))}</p>

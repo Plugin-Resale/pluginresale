@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Avatar } from "@/components/Avatar";
 import { Rating } from "@/components/Rating";
 import { formatDate } from "@/lib/catalog";
 import type { Review, SellerStats } from "@/lib/reviews";
@@ -18,7 +19,7 @@ export default async function SellerProfilePage({ params }: PageProps<"/u/[usern
   const supabase = await createClient();
   const { data: profile } = await supabase
     .from("profiles")
-    .select("id, username, created_at")
+    .select("id, username, created_at, avatar_path")
     .eq("username", username)
     .maybeSingle();
   if (!profile) notFound();
@@ -43,9 +44,7 @@ export default async function SellerProfilePage({ params }: PageProps<"/u/[usern
     <main className="narrow narrow-wide">
       <div className="card">
         <div className="profile-head">
-          <span className="avatar" aria-hidden="true">
-            {profile.username?.[0]?.toUpperCase()}
-          </span>
+          <Avatar username={profile.username} path={profile.avatar_path} />
           <div>
             <h1>@{profile.username}</h1>
             <p className="muted">Member since {formatDate(profile.created_at.slice(0, 10))}</p>

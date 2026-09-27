@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { after } from "next/server";
 import { CATEGORIES, FORMATS, formatPrice } from "@/lib/catalog";
 import { emailButton, escapeHtml, sendEmail } from "@/lib/email";
-import { PROOF_PATH_RE } from "@/lib/images";
+import { USER_IMAGE_PATH_RE } from "@/lib/images";
 import { getAlertSubscribers, getUserEmail } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
@@ -78,7 +78,7 @@ export async function createListing(_prev: SellState, formData: FormData): Promi
     return fail("Unknown plugin format.");
   }
   if (!EMAIL_RE.test(values.paypalEmail)) return fail("Enter the email of your PayPal account.");
-  if (values.proofImagePath && !PROOF_PATH_RE.test(values.proofImagePath)) {
+  if (values.proofImagePath && !USER_IMAGE_PATH_RE.test(values.proofImagePath)) {
     return fail(DB_ERRORS.BAD_PROOF);
   }
   if (
