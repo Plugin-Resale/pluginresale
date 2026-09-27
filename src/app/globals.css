@@ -1381,8 +1381,9 @@ main {
   gap: 32px;
 }
 
+/* Kept short on phones: the price card and Buy button come right after the hero. */
 .listing-hero-visual {
-  height: 220px;
+  height: 150px;
   overflow: hidden;
   border-radius: var(--radius);
   display: flex;
