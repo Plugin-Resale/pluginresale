@@ -1,8 +1,10 @@
 "use client";
 
 import { useActionState, useId, useMemo, useState, type KeyboardEvent } from "react";
+import { ProofUpload } from "@/components/ProofUpload";
 import { TransferBadge } from "@/components/TransferBadge";
 import { CATEGORIES, FORMATS, type Category, type Developer } from "@/lib/catalog";
+import { pluginImageUrl } from "@/lib/images";
 import { createListing, type SellState } from "./actions";
 
 export type PluginOption = { id: number; name: string; category: Category; developer_id: number };
@@ -22,11 +24,15 @@ const normalize = (text: string) =>
 
 export function SellForm({
   plugins,
+  pluginImages,
+  userId,
   developers,
   defaultPaypalEmail,
   defaultPluginId,
 }: {
   plugins: PluginOption[];
+  pluginImages: Record<number, string>;
+  userId: string;
   developers: Developer[];
   defaultPaypalEmail?: string;
   defaultPluginId?: number;
@@ -348,6 +354,8 @@ export function SellForm({
           </p>
         </div>
 
+        <ProofUpload userId={userId} defaultPath={values?.proofImagePath || undefined} />
+
         <div className="field">
           <label className="field-label" htmlFor="paypal_email">
             PayPal email
@@ -391,6 +399,14 @@ export function SellForm({
       </form>
 
       <aside className="rules-panel" aria-live="polite">
+        {selected && pluginImages[selected.plugin.id] && (
+          // eslint-disable-next-line @next/next/no-img-element -- plain img, no Vercel image optimisation quota
+          <img
+            className="rules-panel-visual"
+            src={pluginImageUrl(pluginImages[selected.plugin.id])}
+            alt={selected.label}
+          />
+        )}
         <span className="rules-panel-eyebrow">Auto-filled from our database</span>
         {activeDeveloper ? (
           <>

@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { after } from "next/server";
 import { CATEGORIES, FORMATS, formatPrice } from "@/lib/catalog";
 import { emailButton, escapeHtml, sendEmail } from "@/lib/email";
+import { PROOF_PATH_RE } from "@/lib/images";
 import { getAlertSubscribers, getUserEmail } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
@@ -18,6 +19,7 @@ export type SellValues = {
   developerId: string;
   newPluginName: string;
   newPluginCategory: string;
+  proofImagePath: string;
 };
 
 export type SellState = { error?: string; values?: SellValues };
@@ -30,6 +32,7 @@ const DB_ERRORS: Record<string, string> = {
   USERNAME_REQUIRED: "Choose a username in My account before selling.",
   UNKNOWN_PLUGIN: "Pick your plugin from the suggestions list, or fill in the developer, name and category to add it.",
   NOT_TRANSFERABLE: "This developer doesn't allow license transfers, so it can't be sold here.",
+  BAD_PROOF: "The screenshot upload didn't work. Remove it and add it again, or publish without it.",
 };
 
 export async function createListing(_prev: SellState, formData: FormData): Promise<SellState> {
@@ -43,6 +46,7 @@ export async function createListing(_prev: SellState, formData: FormData): Promi
     developerId: String(formData.get("developer_id") ?? ""),
     newPluginName: String(formData.get("new_plugin_name") ?? "").trim(),
     newPluginCategory: String(formData.get("new_plugin_category") ?? ""),
+    proofImagePath: String(formData.get("proof_image_path") ?? ""),
   };
   const fail = (error: string): SellState => ({ error, values });
 
@@ -74,6 +78,9 @@ export async function createListing(_prev: SellState, formData: FormData): Promi
     return fail("Unknown plugin format.");
   }
   if (!EMAIL_RE.test(values.paypalEmail)) return fail("Enter the email of your PayPal account.");
+  if (values.proofImagePath && !PROOF_PATH_RE.test(values.proofImagePath)) {
+    return fail(DB_ERRORS.BAD_PROOF);
+  }
   if (
     formData.get("owns_license") !== "on" ||
     formData.get("will_transfer") !== "on" ||
@@ -93,6 +100,7 @@ export async function createListing(_prev: SellState, formData: FormData): Promi
     p_new_plugin_name: hasPlugin ? null : values.newPluginName,
     p_new_plugin_category: hasPlugin ? null : values.newPluginCategory,
     p_developer_id: hasPlugin ? null : developerId,
+    p_proof_image_path: values.proofImagePath || null,
   });
 
   if (error) {

@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { signInUrl } from "@/lib/next-path";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { DEVELOPER_COLUMNS, type Category, type Developer } from "@/lib/catalog";
+import { DEVELOPER_COLUMNS, type Developer } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
-import { SellForm } from "./SellForm";
+import { SellForm, type PluginOption } from "./SellForm";
 
 export const metadata: Metadata = { title: "Sell a plugin" };
 
-type PluginRow = { id: number; name: string; category: Category; developer_id: number };
+type PluginRow = PluginOption & { image_path: string | null };
 
 export default async function SellPage({ searchParams }: PageProps<"/sell">) {
   // ?plugin=<id>: arrived from "I own it, sell it" (Browse, empty result), plugin preselected.
@@ -44,17 +44,23 @@ export default async function SellPage({ searchParams }: PageProps<"/sell">) {
   // missing from this list.
   // Only the columns the search needs are sent to the browser: each developer's transfer
   // rules travel once, in `developers`, not once per plugin (most visitors are on a phone).
+  // Official visuals go in a separate map: most plugins have none, and a null on every row
+  // would add tens of KB for phones.
   const PAGE_SIZE = 1000;
-  const plugins: PluginRow[] = [];
+  const plugins: PluginOption[] = [];
+  const pluginImages: Record<number, string> = {};
   for (let from = 0; ; from += PAGE_SIZE) {
     const { data: page, error } = await supabase
       .from("plugins")
-      .select("id, name, category, developer_id")
+      .select("id, name, category, developer_id, image_path")
       .order("id")
       .range(from, from + PAGE_SIZE - 1)
       .returns<PluginRow[]>();
     if (error) throw error;
-    plugins.push(...page);
+    for (const { image_path, ...plugin } of page) {
+      plugins.push(plugin);
+      if (image_path) pluginImages[plugin.id] = image_path;
+    }
     if (page.length < PAGE_SIZE) break;
   }
 
@@ -74,6 +80,8 @@ export default async function SellPage({ searchParams }: PageProps<"/sell">) {
       <p className="lead">Free to list, no commission. Buyers pay you directly via PayPal.</p>
       <SellForm
         plugins={plugins}
+        pluginImages={pluginImages}
+        userId={user.id}
         developers={developers ?? []}
         defaultPaypalEmail={privateProfile?.paypal_email ?? undefined}
         defaultPluginId={defaultPluginId}
