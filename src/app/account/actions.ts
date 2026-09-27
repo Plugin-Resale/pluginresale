@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { PROOF_BUCKET } from "@/lib/images";
 import { safeNext } from "@/lib/next-path";
 import { removeAuthUser } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
@@ -117,6 +118,17 @@ export async function deleteAccount(
   // Alerts are not needed by anyone else: drop them rather than keep them on the anonymised profile.
   const { error: alertsError } = await supabase.from("listing_alerts").delete().eq("user_id", user.id);
   if (alertsError) console.error("listing alerts cleanup failed:", alertsError.message);
+
+  // License screenshots are public files: they go with the account (migration 0048).
+  const { error: proofsDbError } = await supabase.rpc("clear_my_proofs");
+  if (proofsDbError) console.error("proof paths cleanup failed:", proofsDbError.message);
+  const { data: proofFiles } = await supabase.storage.from(PROOF_BUCKET).list(user.id, { limit: 1000 });
+  if (proofFiles?.length) {
+    const { error: proofsError } = await supabase.storage
+      .from(PROOF_BUCKET)
+      .remove(proofFiles.map((f) => `${user.id}/${f.name}`));
+    if (proofsError) console.error("proof files cleanup failed:", proofsError.message);
+  }
 
   await supabase.auth.signOut();
   await removeAuthUser(user.id);

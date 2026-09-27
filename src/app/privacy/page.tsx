@@ -12,7 +12,7 @@ export default function PrivacyPage() {
       <h1 className="page-title" id="en">
         Privacy Policy
       </h1>
-      <p className="lead">Last updated 25 September 2026.</p>
+      <p className="lead">Last updated 27 September 2026.</p>
       <p className="lang-switch">
         <a href="#fr" lang="fr">
           Version française ↓
@@ -34,8 +34,8 @@ export default function PrivacyPage() {
           username you choose, and the date you accepted our Terms.
         </li>
         <li>
-          <strong>Listings:</strong> the plugin, version, price, description and the PayPal email
-          you enter when selling.
+          <strong>Listings:</strong> the plugin, version, price, description, the optional
+          screenshot of your license, and the PayPal email you enter when selling.
         </li>
         <li>
           <strong>Deals, messages and reviews:</strong> records of purchases (status, dates,
@@ -83,8 +83,8 @@ export default function PrivacyPage() {
       <h2>3. Who can see it</h2>
       <ul>
         <li>
-          <strong>Everyone:</strong> your username, your listings (without your PayPal email),
-          the reviews you write and receive, your rating, and the date you joined.
+          <strong>Everyone:</strong> your username, your listings (without your PayPal email,
+          but with the license screenshot if you add one), the reviews you write and receive, your rating, and the date you joined.
         </li>
         <li>
           <strong>The other side of a deal:</strong> the buyer of an active purchase sees the
@@ -141,6 +141,10 @@ export default function PrivacyPage() {
         </li>
         <li>
           <strong>Alerts:</strong> until you remove them in My account, or delete your account.
+        </li>
+        <li>
+          <strong>License screenshots:</strong> until you remove them from your listing, or
+          delete your account.
         </li>
         <li>
           <strong>Reports:</strong> up to 1 year after we&apos;ve handled them.
@@ -203,7 +207,7 @@ export default function PrivacyPage() {
 
       <section id="fr" lang="fr" className="legal-fr">
         <h1 className="page-title">Politique de confidentialité</h1>
-        <p className="lead">Dernière mise à jour : 25 septembre 2026.</p>
+        <p className="lead">Dernière mise à jour : 27 septembre 2026.</p>
         <p className="lang-switch">
           <a href="#en" lang="en">
             English version ↑
@@ -226,8 +230,9 @@ export default function PrivacyPage() {
             pseudo que vous choisissez et la date à laquelle vous avez accepté nos conditions.
           </li>
           <li>
-            <strong>Annonces :</strong> le plugin, la version, le prix, la description et
-            l&apos;email PayPal que vous indiquez pour vendre.
+            <strong>Annonces :</strong> le plugin, la version, le prix, la description, la
+            capture facultative de votre licence et l&apos;email PayPal que vous indiquez pour
+            vendre.
           </li>
           <li>
             <strong>Ventes, messages et avis :</strong> l&apos;historique des achats (statut,
@@ -277,7 +282,7 @@ export default function PrivacyPage() {
         <ul>
           <li>
             <strong>Tout le monde :</strong> votre pseudo, vos annonces (sans votre email
-            PayPal), les avis que vous rédigez et recevez, votre note et votre date
+            PayPal, mais avec la capture de licence si vous en ajoutez une), les avis que vous rédigez et recevez, votre note et votre date
             d&apos;inscription.
           </li>
           <li>
@@ -340,6 +345,10 @@ export default function PrivacyPage() {
           <li>
             <strong>Alertes :</strong> jusqu&apos;à ce que vous les supprimiez dans votre compte,
             ou que vous supprimiez votre compte.
+          </li>
+          <li>
+            <strong>Captures de licence :</strong> jusqu&apos;à ce que vous les retiriez de votre
+            annonce, ou que vous supprimiez votre compte.
           </li>
           <li>
             <strong>Signalements :</strong> jusqu&apos;à 1 an après leur traitement.
