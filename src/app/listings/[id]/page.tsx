@@ -4,6 +4,7 @@ import Link from "next/link";
 import { cache } from "react";
 import { notFound } from "next/navigation";
 import { ListingGrid } from "@/components/ListingCard";
+import { ProofUpload } from "@/components/ProofUpload";
 import { ProofViewer } from "@/components/ProofViewer";
 import { Rating } from "@/components/Rating";
 import { ShareButton } from "@/components/ShareButton";
@@ -21,6 +22,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
 import { setListingStatus } from "../../account/actions";
 import { startDeal } from "../../deals/actions";
+import { setListingProof } from "./actions";
 
 const BUY_ERRORS: Record<string, string> = {
   unavailable: "Someone just reserved this license. It may come back if their purchase is cancelled.",
@@ -297,6 +299,15 @@ export default async function ListingPage({
           </Link>
 
           {listing.proof_image_path && !isSeller && <ProofViewer path={listing.proof_image_path} />}
+          {isSeller && user && (listing.status === "active" || listing.status === "removed") && (
+            <form action={setListingProof} className="card proof-card">
+              <input type="hidden" name="listing_id" value={listing.id} />
+              <ProofUpload userId={user.id} defaultPath={listing.proof_image_path ?? undefined} />
+              <button className="btn btn-block" type="submit">
+                Save screenshot
+              </button>
+            </form>
+          )}
 
           {!isSeller && listing.status === "active" && (
             <ShareButton {...share} label="Share this listing" className="share-link" />
