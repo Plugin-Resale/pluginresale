@@ -23,7 +23,7 @@ const HEADERS = {
 };
 
 async function findImageUrl(url) {
-  const res = await fetch(url, { headers: HEADERS, redirect: "follow" });
+  const res = await fetch(url, { headers: HEADERS, redirect: "follow", signal: AbortSignal.timeout(20000) });
   if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
   if ((res.headers.get("content-type") ?? "").startsWith("image/")) return url;
   const html = await res.text();
@@ -47,7 +47,7 @@ const { data: plugin, error: pluginError } = await admin
 if (pluginError) throw pluginError;
 
 const imageUrl = await findImageUrl(pageUrl);
-const res = await fetch(imageUrl, { headers: HEADERS });
+const res = await fetch(imageUrl, { headers: HEADERS, signal: AbortSignal.timeout(20000) });
 const type = (res.headers.get("content-type") ?? "").split(";")[0].trim();
 const ext = TYPES[type];
 if (!res.ok || !ext) throw new Error(`${imageUrl}: HTTP ${res.status}, type ${type}`);

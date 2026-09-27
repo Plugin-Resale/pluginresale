@@ -1011,16 +1011,14 @@ main {
 
 .listing-thumb-image {
   height: 150px;
-  padding: 12px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--line);
-  justify-content: center;
+  padding: 0;
 }
 
+/* Interface screenshots and packshots come in every shape: fill the frame, crop the edges. */
 .listing-thumb-image img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .listing-title {
@@ -1385,8 +1383,7 @@ main {
 
 .listing-hero-visual {
   height: 220px;
-  padding: 16px;
-  background: var(--surface);
+  overflow: hidden;
   border-radius: var(--radius);
   display: flex;
 }
@@ -1394,7 +1391,7 @@ main {
 .listing-hero-visual img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 @media (min-width: 700px) {
@@ -1403,7 +1400,7 @@ main {
   }
 
   .listing-hero-visual {
-    width: 280px;
+    width: 320px;
     flex-shrink: 0;
     height: auto;
     min-height: 196px;
