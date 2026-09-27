@@ -4,6 +4,7 @@ import Link from "next/link";
 import { cache } from "react";
 import { notFound } from "next/navigation";
 import { ListingGrid } from "@/components/ListingCard";
+import { ProofViewer } from "@/components/ProofViewer";
 import { Rating } from "@/components/Rating";
 import { ShareButton } from "@/components/ShareButton";
 import { TransferRules } from "@/components/TransferRules";
@@ -15,6 +16,7 @@ import {
   type Developer,
   type ListingCard,
 } from "@/lib/catalog";
+import { pluginImageUrl } from "@/lib/images";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
 import { setListingStatus } from "../../account/actions";
@@ -104,7 +106,9 @@ export default async function ListingPage({
     name: title,
     description:
       listing.description || `Second-hand ${title} license, sold by a private seller.`,
-    image: `${url}/opengraph-image`,
+    image: listing.plugin_image_path
+      ? pluginImageUrl(listing.plugin_image_path)
+      : `${url}/opengraph-image`,
     brand: { "@type": "Brand", name: listing.developer_name },
     category: CATEGORIES[listing.category],
     offers: {
@@ -166,20 +170,28 @@ export default async function ListingPage({
       <div className="listing-layout">
         <div className="listing-main">
           <div className="listing-hero">
-            <span className="listing-dev">
-              {listing.developer_name} · {CATEGORIES[listing.category]}
-            </span>
-            <div>
-              <h1>{listing.plugin_name}</h1>
-              <div className="tags">
-                {listing.version && <span className="tag">v{listing.version}</span>}
-                {listing.formats.map((f) => (
-                  <span key={f} className="tag">
-                    {f}
-                  </span>
-                ))}
+            <div className="listing-hero-text">
+              <span className="listing-dev">
+                {listing.developer_name} · {CATEGORIES[listing.category]}
+              </span>
+              <div>
+                <h1>{listing.plugin_name}</h1>
+                <div className="tags">
+                  {listing.version && <span className="tag">v{listing.version}</span>}
+                  {listing.formats.map((f) => (
+                    <span key={f} className="tag">
+                      {f}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
+            {listing.plugin_image_path && (
+              <div className="listing-hero-visual">
+                {/* eslint-disable-next-line @next/next/no-img-element -- plain img, no Vercel image optimisation quota */}
+                <img src={pluginImageUrl(listing.plugin_image_path)} alt={title} />
+              </div>
+            )}
           </div>
 
           <section className="listing-note">
@@ -283,6 +295,8 @@ export default async function ListingPage({
               </p>
             </div>
           </Link>
+
+          {listing.proof_image_path && !isSeller && <ProofViewer path={listing.proof_image_path} />}
 
           {!isSeller && listing.status === "active" && (
             <ShareButton {...share} label="Share this listing" className="share-link" />

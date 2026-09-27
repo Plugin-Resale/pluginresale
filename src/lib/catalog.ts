@@ -80,6 +80,8 @@ export type ListingCard = {
   developer_slug: string;
   transferable: boolean | null;
   no_fee: boolean;
+  plugin_image_path: string | null; // official visual, null = generic visual
+  proof_image_path: string | null; // seller's optional license screenshot
 };
 
 const priceFormat = new Intl.NumberFormat("en-IE", {
