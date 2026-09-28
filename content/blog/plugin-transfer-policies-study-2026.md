@@ -1,24 +1,24 @@
 ---
-title: "We checked the license transfer policies of 191 audio software developers. Here's what we found"
-description: Can you resell your plugins? We went through the official transfer policies of 191 plugin, sample library and DAW makers. Just over half allow transfers, sample libraries are the hardest to resell, and fees range from nothing to 25% of the price.
+title: "We checked the license transfer policies of 196 audio software developers. Here's what we found"
+description: Can you resell your plugins? We went through the official transfer policies of 196 plugin, sample library and DAW makers. More than half allow transfers, sample libraries are the hardest to resell, and fees range from nothing to 25% of the price.
 date: 2026-10-01
 ---
 
 At Plugin Resale, every listing shows the developer's license transfer rules next to the price. To do that, we built a database of transfer policies, going through each developer's official support pages and license agreements one by one.
 
-With **191 developers** covered (plugin makers, sample library companies and DAW publishers), the database gives a pretty clear picture of how the industry treats second-hand licenses. Here are the numbers, as of September 2026.
+With **196 developers** covered (plugin makers, sample library companies and DAW publishers), the database gives a pretty clear picture of how the industry treats second-hand licenses. Here are the numbers, as of September 2026.
 
-## Just over half of developers allow transfers
+## More than half of developers allow transfers
 
 | Policy | Developers | Share |
 |---|---|---|
-| Transfers allowed | 111 | 58% |
-| Transfers not allowed | 56 | 29% |
-| No official policy found | 24 | 13% |
+| Transfers allowed | 115 | 59% |
+| Transfers not allowed | 59 | 30% |
+| No official policy found | 22 | 11% |
 
-So if you pick a developer at random, there's a slightly better than even chance you can resell its licenses.
+So if you pick a developer at random, there's roughly a 6 in 10 chance you can resell its licenses.
 
-The "no official policy" group matters too: for **24 developers**, we couldn't find a clear, official answer. Some have simply never published one, others only answered the question on forums. We don't count forum posts as a policy, so these developers are marked "not verified" on the site, and we advise buyers and sellers to ask the developer before making a deal.
+The "no official policy" group matters too: for **22 developers**, we couldn't find a clear, official answer. Some have simply never published one, others only answered the question on forums. We don't count forum posts as a policy, so these developers are marked "not verified" on the site, and we advise buyers and sellers to ask the developer before making a deal.
 
 ## Sample libraries are the hardest to resell
 
@@ -26,12 +26,12 @@ The picture changes a lot depending on what the developer makes. We grouped deve
 
 | Main product | Developers | Allowed | Not allowed | Not verified |
 |---|---|---|---|---|
-| Plugins (effects, instruments) | 120 | 80 (67%) | 26 (22%) | 14 (12%) |
-| Sample libraries | 56 | 24 (43%) | 26 (46%) | 6 (11%) |
+| Plugins (effects, instruments) | 123 | 85 (69%) | 27 (22%) | 11 (9%) |
+| Sample libraries | 54 | 23 (43%) | 25 (46%) | 6 (11%) |
 
 Nearly half of sample library companies **don't allow resale at all**. That includes some of the biggest names in orchestral and cinematic libraries: **Spitfire Audio**, **EastWest** and **8Dio** don't allow transfers, and **Orchestral Tools** requires its prior clearance.
 
-Plugin makers are much more open: almost two-thirds allow transfers, and only one in five refuses outright.
+Plugin makers are much more open: more than two-thirds allow transfers, and only one in five refuses outright.
 
 ## Some big names don't allow resale
 
@@ -49,10 +49,10 @@ A few of the most popular products in music production can't be resold:
 
 ## Fees: from free to 25%
 
-Among the 111 developers that allow transfers:
+Among the 115 developers that allow transfers:
 
 - **21 charge nothing at all**. Ableton, XLN Audio, Kilohearts, D16 Group, Voxengo and Output are among them.
-- **17 only pass on the iLok fee** that PACE charges ($25 for one license, $50 for several in one transaction). See our [iLok guide](/blog/ilok-license-transfer-explained).
+- **19 only pass on the iLok fee** that PACE charges ($25 for one license, $50 for several in one transaction). See our [iLok guide](/blog/ilok-license-transfer-explained).
 - **7 charge a percentage of the product's price**, from **5%** at Waves (with a $10 minimum and a $150 maximum) up to **25%** at Wavesfactory. MeldaProduction, United Plugins and Sonimus charge 20%, and Vienna Symphonic Library 10% with a €50 minimum.
 - Others charge a flat fee, like FabFilter's License Transfer (about €10) or Toontrack's $15 per serial number, and a few policies don't mention a fee at all.
 
@@ -60,17 +60,17 @@ Some fees depend on the license's history: **Arturia** is free for a first-hand 
 
 ## The seller usually pays
 
-When a policy says who pays the fee (54 of the 111), it's the **seller in 49 cases**. Only a handful of developers bill the buyer. That's worth knowing when you set your price: our [pricing guide](/blog/how-much-is-my-used-plugin-worth) explains how to take it into account.
+When a policy says who pays the fee (54 of the 115), it's the **seller in 49 cases**. Only a handful of developers bill the buyer. That's worth knowing when you set your price: our [pricing guide](/blog/how-much-is-my-used-plugin-worth) explains how to take it into account.
 
 ## The most common restrictions
 
-Even when transfers are allowed, most policies come with conditions. Among the 111 developers that allow transfers:
+Even when transfers are allowed, most policies come with conditions. Among the 115 developers that allow transfers:
 
-- **36** explicitly exclude **NFR** (Not For Resale) licenses,
-- **20** require you to have owned the license for a minimum time before selling it, from **30 days** (Toontrack, oeksound) to **6 months** (Arturia, Acustica Audio),
-- **16** exclude **educational** licenses,
-- **16** mention **bundles or OEM** licenses (bundled with hardware), usually to forbid splitting them or selling them on their own,
-- **7** exclude **subscriptions** or rent-to-own licenses, like Waves Creative Access or Slate Digital All Access.
+- **38** explicitly exclude **NFR** (Not For Resale) licenses,
+- **21** require you to have owned the license for a minimum time before selling it, from **30 days** (Toontrack, oeksound) to **6 months** (Arturia, Acustica Audio),
+- **17** exclude **educational** licenses,
+- **18** mention **bundles or OEM** licenses (bundled with hardware), usually to forbid splitting them or selling them on their own,
+- **8** exclude **subscriptions** or rent-to-own licenses, like Waves Creative Access or Slate Digital All Access.
 
 These are only the restrictions developers write down explicitly. In practice, NFR and educational licenses are almost never resellable. More on this in [which plugin licenses can you resell?](/blog/nfr-educational-bundled-licenses-resale)
 
@@ -81,11 +81,11 @@ In the European Union, a 2012 ruling of the EU's Court of Justice allows the res
 ## How we built this database
 
 - We only use **official sources**: the developer's own support pages, FAQ or license agreement (or iLok's documentation for developers that rely entirely on iLok).
-- Each entry has a **link to its source** and the **date we last checked it**. All entries were checked between 23 and 26 September 2026.
+- Each entry has a **link to its source** and the **date we last checked it**. All entries were checked between 23 and 28 September 2026.
 - When we couldn't find an official answer, the developer is marked **"not verified"** instead of guessing.
 - Developers are grouped by the main product type in their catalogue on Plugin Resale.
 
-The full database is public and free: [browse the transfer rules of all 191 developers](/developers). If you spot something out of date, [tell us](/report) and we'll fix it.
+The full database is public and free: [browse the transfer rules of all 196 developers](/developers). If you spot something out of date, [tell us](/report) and we'll fix it.
 
 ---
 
