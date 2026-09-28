@@ -2238,6 +2238,38 @@ img.avatar {
   }
 }
 
+/* ---------- Plugin page + Buy new (affiliate) ---------- */
+
+.plugin-page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.plugin-page .section-title {
+  margin-top: 0;
+}
+
+.buy-new {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.buy-new p {
+  margin: 0;
+}
+
+.buy-new-inline {
+  margin: 0;
+  font-size: 14px;
+}
+
+.plugin-list a {
+  color: inherit;
+}
+
 /* ---------- Share ---------- */
 
 .share-notice {

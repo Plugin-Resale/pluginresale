@@ -1,7 +1,12 @@
 import Link from "next/link";
+import { BuyNew } from "@/components/BuyNew";
+import type { ShopLinks } from "@/lib/catalog";
 import { createAlert } from "./actions";
 
-export type PluginMatch = {
+// Looked up on `plugins` after the search: search_plugins doesn't return them.
+export type PluginLinks = ShopLinks & { slug: string | null };
+
+export type PluginMatch = PluginLinks & {
   id: number;
   name: string;
   developer_name: string;
@@ -37,7 +42,14 @@ export function NoResults({
               <li key={p.id}>
                 <div className="alert-name">
                   <span className="alert-dev">{p.developer_name}</span>
-                  <strong>{p.name}</strong>
+                  <strong>
+                    {p.slug ? (
+                      <Link href={`/developers/${p.developer_slug}/${p.slug}`}>{p.name}</Link>
+                    ) : (
+                      p.name
+                    )}
+                  </strong>
+                  <BuyNew links={p} placement="browse" compact />
                 </div>
                 {p.transferable === false ? (
                   <p className="muted alert-blocked">

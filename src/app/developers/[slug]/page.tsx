@@ -91,7 +91,7 @@ export default async function DeveloperPage({ params }: PageProps<"/developers/[
             <ul className="plugin-list">
               {plugins.map((plugin) => (
                 <li key={plugin.id}>
-                  <span>{plugin.name}</span>
+                  <Link href={`/developers/${developer.slug}/${plugin.slug}`}>{plugin.name}</Link>
                   <span className="muted">{CATEGORIES[plugin.category]}</span>
                 </li>
               ))}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { cache } from "react";
 import { notFound } from "next/navigation";
 import { Avatar } from "@/components/Avatar";
+import { BuyNew } from "@/components/BuyNew";
 import { ListingGrid } from "@/components/ListingCard";
 import { ProofUpload } from "@/components/ProofUpload";
 import { ProofViewer } from "@/components/ProofViewer";
@@ -17,6 +18,7 @@ import {
   formatPrice,
   type Developer,
   type ListingCard,
+  type ShopLinks,
 } from "@/lib/catalog";
 import { pluginImageUrl } from "@/lib/images";
 import { createClient } from "@/lib/supabase/server";
@@ -72,8 +74,13 @@ export default async function ListingPage({
   const { published, error: buyError } = await searchParams;
 
   const supabase = await createClient();
-  const [{ user }, { data: developer }, { data: more }] = await Promise.all([
+  const [{ user }, { data: plugin }, { data: developer }, { data: more }] = await Promise.all([
     getCurrentUser(),
+    supabase
+      .from("plugins")
+      .select("slug, thomann_url, pluginboutique_url")
+      .eq("id", listing.plugin_id)
+      .single<ShopLinks & { slug: string }>(),
     supabase
       .from("developers")
       .select(DEVELOPER_COLUMNS)
@@ -146,9 +153,15 @@ export default async function ListingPage({
         <span aria-hidden="true">/</span>
         <Link href={`/browse?cat=${listing.category}`}>{CATEGORIES[listing.category]}</Link>
         <span aria-hidden="true">/</span>
-        <span>
-          {listing.developer_name} {listing.plugin_name}
-        </span>
+        {plugin ? (
+          <Link href={`/developers/${listing.developer_slug}/${plugin.slug}`}>
+            {listing.developer_name} {listing.plugin_name}
+          </Link>
+        ) : (
+          <span>
+            {listing.developer_name} {listing.plugin_name}
+          </span>
+        )}
       </nav>
 
       {published && isSeller && listing.status === "active" && (
@@ -167,6 +180,14 @@ export default async function ListingPage({
             : listing.status === "reserved"
               ? "This license is reserved: a buyer is completing the purchase."
               : "This license has been sold."}
+          {listing.status !== "removed" && plugin && (
+            <>
+              {" "}
+              <Link href={`/developers/${listing.developer_slug}/${plugin.slug}`}>
+                See other used {listing.plugin_name} licenses
+              </Link>
+            </>
+          )}
         </p>
       )}
 
@@ -275,6 +296,10 @@ export default async function ListingPage({
                 </p>
               </>
             ) : null}
+            {/* Only once this copy can't be bought any more, never next to an active listing. */}
+            {!isSeller && !myDeal && plugin && (listing.status === "reserved" || listing.status === "sold") && (
+              <BuyNew links={plugin} placement="listing" compact />
+            )}
             <p className="hint">
               You pay the seller directly with PayPal Goods &amp; Services, which may be covered by
               PayPal Buyer Protection under PayPal&apos;s own terms. Plugin Resale never holds your

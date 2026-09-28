@@ -19,7 +19,7 @@ export default function TermsPage() {
       <h1 className="page-title" id="en">
         Terms of Service
       </h1>
-      <p className="lead">Last updated 24 September 2026.</p>
+      <p className="lead">Last updated 28 September 2026.</p>
       <p className="lang-switch">
         <a href="#fr" lang="fr">
           Version française ↓
@@ -43,6 +43,12 @@ export default function TermsPage() {
         touch; each sale is a contract between the buyer and the seller only. It is free to list
         and free to buy, and we take no commission. We may show advertising in the future, but
         we&apos;ll never take a cut of your sales.
+      </p>
+      <p>
+        Some pages link to shops that sell new licenses (Thomann, Plugin Boutique). These are
+        affiliate links: if you buy there, the shop may pay us a commission, at no extra cost to
+        you. They are marked as such, and we only show them where no second-hand copy can be
+        bought (no listing, a sold or reserved listing, or a developer that forbids transfers).
       </p>
 
       <h2>2. Who can use it</h2>
@@ -257,7 +263,7 @@ export default function TermsPage() {
 
       <section id="fr" lang="fr" className="legal-fr">
         <h1 className="page-title">Conditions générales d&apos;utilisation</h1>
-        <p className="lead">Dernière mise à jour : 24 septembre 2026.</p>
+        <p className="lead">Dernière mise à jour : 28 septembre 2026.</p>
         <p className="lang-switch">
           <a href="#en" lang="en">
             English version ↑
@@ -283,6 +289,14 @@ export default function TermsPage() {
           et l&apos;achat sont gratuits, et nous ne prenons aucune commission. Nous pourrons
           afficher de la publicité à l&apos;avenir, mais nous ne prélèverons jamais de part sur
           vos ventes.
+        </p>
+        <p>
+          Certaines pages renvoient vers des boutiques qui vendent des licences neuves (Thomann,
+          Plugin Boutique). Ce sont des liens affiliés : si vous achetez sur ces boutiques,
+          elles peuvent nous verser une commission, sans surcoût pour vous. Ces liens sont
+          signalés comme tels, et nous ne les affichons que lorsqu&apos;aucun exemplaire
+          d&apos;occasion ne peut être acheté (aucune annonce, annonce vendue ou réservée, ou
+          éditeur qui interdit les transferts).
         </p>
 
         <h2>2. Qui peut l&apos;utiliser</h2>

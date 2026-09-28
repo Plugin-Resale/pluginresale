@@ -6,7 +6,7 @@ import { CATEGORIES, type Category, type ListingCard } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/server";
 import { DeveloperFilter } from "./DeveloperFilter";
 import { FiltersDisclosure } from "./FiltersDisclosure";
-import { NoResults, type PluginMatch } from "./NoResults";
+import { NoResults, type PluginLinks, type PluginMatch } from "./NoResults";
 import { SortSelect } from "./SortSelect";
 
 export const metadata: Metadata = {
@@ -106,7 +106,24 @@ export default async function BrowsePage({ searchParams }: PageProps<"/browse">)
       supabase.auth.getUser(),
     ]);
     if (searchError) console.error("search_plugins failed:", searchError.message);
-    else matches = (found as PluginMatch[] | null) ?? [];
+    else {
+      const rows = (found as Omit<PluginMatch, keyof PluginLinks>[] | null) ?? [];
+      // Plugin page slug and shop pages, which search_plugins doesn't return.
+      const { data: links } = rows.length
+        ? await supabase
+            .from("plugins")
+            .select("id, slug, thomann_url, pluginboutique_url")
+            .in("id", rows.map((m) => m.id))
+            .returns<(PluginLinks & { id: number })[]>()
+        : { data: [] };
+      const byId = new Map((links ?? []).map((l) => [l.id, l]));
+      matches = rows.map((m) => ({
+        ...m,
+        slug: byId.get(m.id)?.slug ?? null,
+        thomann_url: byId.get(m.id)?.thomann_url ?? null,
+        pluginboutique_url: byId.get(m.id)?.pluginboutique_url ?? null,
+      }));
+    }
     signedIn = Boolean(auth.user);
     if (auth.user && matches && matches.length > 0) {
       const { data: mine } = await supabase

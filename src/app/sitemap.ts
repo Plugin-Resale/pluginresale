@@ -8,15 +8,33 @@ const SITE = "https://www.pluginresale.com";
 // today's date), so new listings and scheduled blog posts show up without a redeploy.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = await createClient();
-  const [posts, { data: developers }, { data: listings }] = await Promise.all([
-    getAllPosts(),
-    supabase.from("developers").select("slug").order("name"),
-    supabase
-      .from("listing_cards")
-      .select("id, created_at")
-      .eq("status", "active")
-      .order("created_at", { ascending: false }),
-  ]);
+  const [posts, { data: developers }, { data: listings }, { data: shopPlugins }] =
+    await Promise.all([
+      getAllPosts(),
+      supabase.from("developers").select("id, slug").order("name"),
+      supabase
+        .from("listing_cards")
+        .select("id, created_at, plugin_id")
+        .eq("status", "active")
+        .order("created_at", { ascending: false }),
+      supabase
+        .from("plugins")
+        .select("id")
+        .or("thomann_url.not.is.null,pluginboutique_url.not.is.null"),
+    ]);
+
+  // Plugin pages: only those with an active listing or a shop page, not thousands of
+  // near-empty pages for the whole catalogue.
+  const pluginIds = [
+    ...new Set([
+      ...(listings ?? []).map((listing) => listing.plugin_id as number),
+      ...(shopPlugins ?? []).map((plugin) => plugin.id as number),
+    ]),
+  ];
+  const { data: plugins } = pluginIds.length
+    ? await supabase.from("plugins").select("slug, developer_id").in("id", pluginIds)
+    : { data: [] };
+  const developerSlug = new Map((developers ?? []).map((d) => [d.id, d.slug]));
 
   const pages: MetadataRoute.Sitemap = [
     { url: SITE, changeFrequency: "daily", priority: 1 },
@@ -41,6 +59,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${SITE}/developers/${developer.slug}`,
       changeFrequency: "monthly" as const,
       priority: 0.6,
+    })),
+    ...(plugins ?? []).map((plugin) => ({
+      url: `${SITE}/developers/${developerSlug.get(plugin.developer_id)}/${plugin.slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
     })),
     ...(listings ?? []).map((listing) => ({
       url: `${SITE}/listings/${listing.id}`,

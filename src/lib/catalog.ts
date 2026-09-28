@@ -24,6 +24,12 @@ export type Plugin = {
   category: Category;
 };
 
+// A plugin's official shop pages (migration 0051), for the "Buy new" affiliate link.
+export type ShopLinks = {
+  thomann_url: string | null;
+  pluginboutique_url: string | null;
+};
+
 export const CATEGORIES = {
   eq: "EQ",
   compression: "Compression",

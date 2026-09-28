@@ -12,7 +12,7 @@ export default function PrivacyPage() {
       <h1 className="page-title" id="en">
         Privacy Policy
       </h1>
-      <p className="lead">Last updated 27 September 2026.</p>
+      <p className="lead">Last updated 28 September 2026.</p>
       <p className="lang-switch">
         <a href="#fr" lang="fr">
           Version française ↓
@@ -129,6 +129,12 @@ export default function PrivacyPage() {
         our own site, not from a third party. If we ever add advertising or analytics that use
         non-essential cookies, we&apos;ll ask for your consent first and update this page.
       </p>
+      <p>
+        Some pages carry affiliate links to shops that sell new licenses (Thomann, Plugin
+        Boutique). The link only tells the shop that you came from Plugin Resale and from which
+        kind of page: we send it no personal data. Once you are on the shop&apos;s site, its own
+        privacy and cookie policy applies.
+      </p>
 
       <h2>6. How long we keep it</h2>
       <ul>
@@ -208,7 +214,7 @@ export default function PrivacyPage() {
 
       <section id="fr" lang="fr" className="legal-fr">
         <h1 className="page-title">Politique de confidentialité</h1>
-        <p className="lead">Dernière mise à jour : 27 septembre 2026.</p>
+        <p className="lead">Dernière mise à jour : 28 septembre 2026.</p>
         <p className="lang-switch">
           <a href="#en" lang="en">
             English version ↑
@@ -332,6 +338,13 @@ export default function PrivacyPage() {
           par un tiers. Si nous ajoutons un jour de la publicité ou des statistiques utilisant des
           cookies non essentiels, nous vous demanderons d&apos;abord votre consentement et
           mettrons cette page à jour.
+        </p>
+        <p>
+          Certaines pages contiennent des liens affiliés vers des boutiques qui vendent des
+          licences neuves (Thomann, Plugin Boutique). Le lien indique seulement à la boutique que
+          vous venez de Plugin Resale et depuis quel type de page : nous ne lui transmettons
+          aucune donnée personnelle. Une fois sur le site de la boutique, sa propre politique de
+          confidentialité et de cookies s&apos;applique.
         </p>
 
         <h2>6. Durées de conservation</h2>
