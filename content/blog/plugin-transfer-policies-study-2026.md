@@ -13,12 +13,12 @@ With **196 developers** covered (plugin makers, sample library companies and DAW
 | Policy | Developers | Share |
 |---|---|---|
 | Transfers allowed | 115 | 59% |
-| Transfers not allowed | 59 | 30% |
-| No official policy found | 22 | 11% |
+| Transfers not allowed | 60 | 30% |
+| No official policy found | 21 | 11% |
 
 So if you pick a developer at random, there's roughly a 6 in 10 chance you can resell its licenses.
 
-The "no official policy" group matters too: for **22 developers**, we couldn't find a clear, official answer. Some have simply never published one, others only answered the question on forums. We don't count forum posts as a policy, so these developers are marked "not verified" on the site, and we advise buyers and sellers to ask the developer before making a deal.
+The "no official policy" group matters too: for **21 developers**, we couldn't find a clear, official answer. Some have simply never published one, others only answered the question on forums. We don't count forum posts as a policy, so these developers are marked "not verified" on the site, and we advise buyers and sellers to ask the developer before making a deal.
 
 ## Sample libraries are the hardest to resell
 
