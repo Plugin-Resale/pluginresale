@@ -140,9 +140,9 @@ I've invested around €30,000 in my studio, but that happened gradually, over y
 
 All four of FREI's must-haves can be resold, and each developer has its own transfer process:
 
-- **[Waves C1 Compressor](/browse?q=C1%20Compressor)**: Waves charges a transfer fee of 5% of the product's list price (min $10, max $150), paid by the seller, and the license needs an active Waves Update Plan. Details in our [Waves transfer guide](/blog/how-to-transfer-a-waves-license).
-- **[Little AlterBoy](/browse?q=Little%20AlterBoy)** and **[MicroShift](/browse?q=MicroShift)**: Soundtoys licenses move through iLok ($25 fee, paid by the seller), then Soundtoys support updates the registration. [Soundtoys transfer rules](/developers/soundtoys).
-- **[FabFilter Pro-Q 3](/browse?q=Pro-Q%203)**: FabFilter charges about €10 for a transfer, bought by the seller in their FabFilter account. Pro-Q 3 is a separate product from Pro-Q 4 (FabFilter charges for major upgrades), so a second-hand Pro-Q 3 can be a cheaper way to get the EQ FREI calls precise. [FabFilter transfer rules](/developers/fabfilter).
+- **[Waves C1 Compressor](/developers/waves/c1-compressor)**: Waves charges a transfer fee of 5% of the product's list price (min $10, max $150), paid by the seller, and the license needs an active Waves Update Plan. Details in our [Waves transfer guide](/blog/how-to-transfer-a-waves-license).
+- **[Little AlterBoy](/developers/soundtoys/little-alterboy)** and **[MicroShift](/developers/soundtoys/microshift)**: Soundtoys licenses move through iLok ($25 fee, paid by the seller), then Soundtoys support updates the registration. [Soundtoys transfer rules](/developers/soundtoys).
+- **[FabFilter Pro-Q 3](/developers/fabfilter/pro-q-3)**: FabFilter charges about €10 for a transfer, bought by the seller in their FabFilter account. Pro-Q 3 is a separate product from Pro-Q 4 (FabFilter charges for major upgrades), so a second-hand Pro-Q 3 can be a cheaper way to get the EQ FREI calls precise. [FabFilter transfer rules](/developers/fabfilter).
 
 No listing yet for the one you want? Search for it on [Browse](/browse) and set an alert: we'll email you as soon as someone lists it.
 

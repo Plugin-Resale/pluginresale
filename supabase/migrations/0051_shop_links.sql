@@ -8,3 +8,6 @@ alter table public.plugins
     check (pluginboutique_url ~ '^https://www\.pluginboutique\.com/product/[^?#]+$');
 
 grant update (thomann_url, pluginboutique_url) on public.plugins to service_role;
+
+-- The script shows the developer name next to the plugin, as the service role.
+grant select on public.developers to service_role;

@@ -102,9 +102,9 @@ Stock plugins: very underrated and not sexy, but they work. There are also lots 
 
 Each developer has its own rules for reselling a license. Here is how it works for the plugins Samy mentions:
 
-- **[FabFilter Pro-Q 4](/browse?q=Pro-Q%204)** and **[Pro-MB](/browse?q=Pro-MB)**: FabFilter charges about €10 for a transfer, bought by the seller in their FabFilter account. Bundles can only be transferred as a whole. [FabFilter transfer rules](/developers/fabfilter).
-- **[Waves SSL G-Master Buss Compressor](/browse?q=SSL%20G-Master)**: Waves charges 5% of the product's list price (min $10, max $150), paid by the seller, and the license needs an active Waves Update Plan. Details in our [Waves transfer guide](/blog/how-to-transfer-a-waves-license).
-- **[soothe2](/browse?q=soothe2)**: the seller buys a license transfer on oeksound.com, and the license has to be at least 30 days old. [oeksound transfer rules](/developers/oeksound).
+- **[FabFilter Pro-Q 4](/developers/fabfilter/pro-q-4)** and **[Pro-MB](/developers/fabfilter/pro-mb)**: FabFilter charges about €10 for a transfer, bought by the seller in their FabFilter account. Bundles can only be transferred as a whole. [FabFilter transfer rules](/developers/fabfilter).
+- **[Waves SSL G-Master Buss Compressor](/developers/waves/ssl-g-master-buss-compressor)**: Waves charges 5% of the product's list price (min $10, max $150), paid by the seller, and the license needs an active Waves Update Plan. Details in our [Waves transfer guide](/blog/how-to-transfer-a-waves-license).
+- **[soothe2](/developers/oeksound/soothe2)**: the seller buys a license transfer on oeksound.com, and the license has to be at least 30 days old. [oeksound transfer rules](/developers/oeksound).
 - **UAD Pultec and Tube-Tech CL 1B**: UAD plug-ins can't be sold on their own. They only change hands together with the Apollo or UAD-2 hardware they're registered to. [Universal Audio transfer rules](/developers/universal-audio). Softube's native [Tube-Tech CL 1B](/browse?q=Tube-Tech%20CL%201B), on the other hand, transfers through iLok ($25 fee).
 - **Native Instruments bundles, and [Traktor Pro](/browse?q=Traktor%20Pro)**: NI licenses move with a Transfer ID created in the seller's NI account, which the buyer then imports. See our [Native Instruments transfer guide](/blog/how-to-transfer-a-native-instruments-license).
 

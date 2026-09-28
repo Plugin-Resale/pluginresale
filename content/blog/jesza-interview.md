@@ -141,9 +141,9 @@ My original productions are on every streaming platform. I also have SoundCloud 
 Jesza wonders whether he could resell his older Pro-Q licenses. Here is what the developers say about the plugins he mentions:
 
 - **FabFilter Pro-Q 2, 3 and 4**: FabFilter treats each major version as a separate product (major upgrades are paid), so an older Pro-Q is a license of its own. A transfer costs about €10, bought by the seller in their FabFilter account. If you got Pro-Q 4 as an upgrade from an older version, ask FabFilter whether that older license can still be transferred on its own before listing it. [FabFilter transfer rules](/developers/fabfilter).
-- **[Mastering The Mix FUSER](/browse?q=FUSER)**: free to transfer, through Mastering The Mix support. [Mastering The Mix transfer rules](/developers/mastering-the-mix).
-- **[Soundtoys Effect Rack](/browse?q=Effect%20Rack)**, **[Decapitator](/browse?q=Decapitator)**, **[EchoBoy](/browse?q=EchoBoy)**: transferred through iLok ($25 fee, paid by the seller), with Soundtoys' consent. [Soundtoys transfer rules](/developers/soundtoys).
-- **[Spectrasonics Omnisphere](/browse?q=Omnisphere)**: $50 per instrument, usually paid by the seller. Only the original purchaser can transfer it, once. [Spectrasonics transfer rules](/developers/spectrasonics).
+- **[Mastering The Mix FUSER](/developers/mastering-the-mix/fuser)**: free to transfer, through Mastering The Mix support. [Mastering The Mix transfer rules](/developers/mastering-the-mix).
+- **[Soundtoys Effect Rack](/developers/soundtoys/effect-rack)**, **[Decapitator](/developers/soundtoys/decapitator)**, **[EchoBoy](/developers/soundtoys/echoboy)**: transferred through iLok ($25 fee, paid by the seller), with Soundtoys' consent. [Soundtoys transfer rules](/developers/soundtoys).
+- **[Spectrasonics Omnisphere](/developers/spectrasonics/omnisphere)**: $50 per instrument, usually paid by the seller. Only the original purchaser can transfer it, once. [Spectrasonics transfer rules](/developers/spectrasonics).
 - **[Ableton Live](/browse?q=Live%2012)**: free, self-service transfer from your Ableton account. [Ableton transfer rules](/developers/ableton).
 - **UAD plug-ins**: can't be sold on their own, only together with the Apollo or UAD-2 hardware they're registered to. [Universal Audio transfer rules](/developers/universal-audio).
 - **Plugin Alliance (Lindell EQ825, SPL Machine Head...)**: self-service transfers are currently unavailable. [Plugin Alliance transfer rules](/developers/plugin-alliance).
