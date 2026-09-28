@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { formatDate, type Developer } from "@/lib/catalog";
 import { TransferBadge } from "./TransferBadge";
 
@@ -53,6 +54,19 @@ export function TransferRules({ developer }: { developer: Developer }) {
               <dd>{value}</dd>
             </div>
           ))}
+        {developer.transferable === false && (
+          // Neutral on purpose: the EU rule (UsedSoft) may make the ban unenforceable, but in
+          // practice the buyer still depends on the developer to move the license.
+          <div className="rules-row">
+            <dt>In the EU</dt>
+            <dd>
+              The law may allow the resale of software bought outright even when the license
+              forbids it, but {developer.name} won&apos;t transfer the license to the buyer: the
+              buyer would have to go to court.{" "}
+              <Link href="/blog/can-i-legally-resell-my-plugins">More on the legal side</Link>
+            </dd>
+          </div>
+        )}
         <div className="rules-row">
           <dt>Last verified</dt>
           <dd>
