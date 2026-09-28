@@ -983,8 +983,9 @@ main {
   border-color: var(--ink);
 }
 
+/* Same height as a card with a plugin visual (.listing-thumb-image), so a grid row lines up. */
 .listing-thumb {
-  min-height: 118px;
+  min-height: 150px;
   padding: 16px;
   background: var(--ink);
   color: var(--ground);
