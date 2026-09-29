@@ -7,7 +7,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
 import { SellForm, type PluginOption } from "./SellForm";
 
-export const metadata: Metadata = { title: "Sell a plugin" };
+export const metadata: Metadata = { title: "Sell a plugin", robots: { index: false } };
 
 type PluginRow = PluginOption & { image_path: string | null };
 

@@ -5,7 +5,7 @@ import { safeNext } from "@/lib/next-path";
 import { getCurrentUser } from "@/lib/supabase/user";
 import { SignInForm } from "./SignInForm";
 
-export const metadata: Metadata = { title: "Sign in" };
+export const metadata: Metadata = { title: "Sign in", robots: { index: false } };
 
 export default async function SignInPage({ searchParams }: PageProps<"/signin">) {
   const { error, deleted, next: rawNext } = await searchParams;

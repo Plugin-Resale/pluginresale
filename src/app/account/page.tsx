@@ -11,7 +11,7 @@ import { DeleteAccountForm } from "./DeleteAccountForm";
 import { AvatarForm } from "./AvatarForm";
 import { UsernameForm } from "./UsernameForm";
 
-export const metadata: Metadata = { title: "My account" };
+export const metadata: Metadata = { title: "My account", robots: { index: false } };
 
 const STATUS_LABELS = { active: "Online", reserved: "Reserved", sold: "Sold", removed: "Removed" };
 
