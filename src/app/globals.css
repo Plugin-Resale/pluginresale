@@ -1089,6 +1089,13 @@ main {
   margin: 0 0 24px;
 }
 
+/* The eyebrow line sits inside the h1 so the heading says what the site is. */
+.hero h1 .eyebrow {
+  display: block;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
 .hero-search {
   display: flex;
   gap: 12px;

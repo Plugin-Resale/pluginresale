@@ -4,16 +4,49 @@ import { ListingGrid } from "@/components/ListingCard";
 import { CATEGORIES, type ListingCard } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/server";
 
+const TITLE = "Plugin Resale – Buy & Sell Used Audio Plugin Licenses";
+const DESCRIPTION =
+  "Sell the audio plugins you don't use and buy second-hand licenses for less. Free marketplace for producers and engineers. Waves, FabFilter, UAD & more.";
+
 export const metadata: Metadata = {
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
   alternates: { canonical: "/" },
+  // og:image and twitter:image come from opengraph-image.tsx next to this page.
   openGraph: {
     type: "website",
     siteName: "Plugin Resale",
-    title: "Plugin Resale — Buy and sell used audio plugin licenses",
-    description:
-      "Free to list, free to buy, no commission. Every developer's license transfer rules in one place.",
+    title: TITLE,
+    description: DESCRIPTION,
     url: "/",
   },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+};
+
+// Tells Google the site name (shown above the result) and who runs it (logo, social profiles).
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.pluginresale.com/#website",
+      name: "Plugin Resale",
+      url: "https://www.pluginresale.com/",
+      publisher: { "@id": "https://www.pluginresale.com/#organization" },
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.pluginresale.com/#organization",
+      name: "Plugin Resale",
+      url: "https://www.pluginresale.com/",
+      logo: "https://www.pluginresale.com/icon.png",
+      email: "contact@pluginresale.com",
+      sameAs: [
+        "https://www.instagram.com/pluginresale.official/",
+        "https://www.facebook.com/p/Plugin-Resale-61594743778692/",
+      ],
+    },
+  ],
 };
 
 const STEPS = [
@@ -50,10 +83,14 @@ export default async function Home() {
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD).replace(/</g, "\\u003c") }}
+      />
       <section className="container hero">
         <div className="hero-text">
-          <p className="eyebrow">Second-hand audio plugin licenses</p>
           <h1>
+            <span className="eyebrow">Buy &amp; sell used audio plugins</span>{" "}
             Your unused plugins
             <br />
             are money sleeping.

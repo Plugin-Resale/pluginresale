@@ -4,6 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "The terms that apply when you use Plugin Resale.",
+  alternates: { canonical: "/terms" },
 };
 
 const EMAIL = <a href="mailto:contact@pluginresale.com">contact@pluginresale.com</a>;

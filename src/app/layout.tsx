@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.pluginresale.com"),
   title: {
     default: "Plugin Resale — Buy and sell used audio plugin licenses",
-    template: "%s · Plugin Resale",
+    template: "%s – Plugin Resale",
   },
   description:
     "The free marketplace for second-hand audio plugin licenses. No fees, no commission, with every developer's transfer rules in one place.",
