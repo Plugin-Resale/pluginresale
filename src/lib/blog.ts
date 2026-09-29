@@ -11,6 +11,7 @@ import { marked } from "marked";
 // date: 2026-09-24
 // updated: 2026-10-02   (optional)
 // image: /blog/<slug>/photo.jpg   (optional, a photo in public/: used for the link preview)
+// developer: fabfilter   (optional, a developer slug: the post is linked from that developer page)
 // ---
 //
 // Photos inside a post are plain Markdown images, or a <figure> with a <figcaption>,
@@ -29,6 +30,7 @@ export type PostMeta = {
   date: string;
   updated: string | null;
   image: string | null;
+  developer: string | null;
   readingMinutes: number;
 };
 
@@ -80,6 +82,7 @@ async function readPost(slug: string): Promise<{ meta: PostMeta; body: string } 
       date: fields.date,
       updated: fields.updated || null,
       image: fields.image || null,
+      developer: fields.developer || null,
       readingMinutes: Math.max(1, Math.round(words / 230)),
     },
     body,
@@ -107,6 +110,11 @@ export async function getAllPosts(): Promise<PostMeta[]> {
   return (await readAllPosts())
     .filter((post) => post.date <= now)
     .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
+}
+
+// Published posts about one developer (front matter `developer:`), newest first.
+export async function getPostsForDeveloper(developerSlug: string): Promise<PostMeta[]> {
+  return (await getAllPosts()).filter((post) => post.developer === developerSlug);
 }
 
 export async function getPost(slug: string): Promise<Post | null> {

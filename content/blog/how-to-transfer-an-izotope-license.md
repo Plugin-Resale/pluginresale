@@ -2,6 +2,7 @@
 title: How to transfer an iZotope license (Ozone, Neutron, RX…)
 description: iZotope transfers licenses for free through its Account Support team, with a few important limits. Which licenses qualify, how to request a transfer, and what happens to older versions.
 date: 2026-10-11
+developer: izotope
 ---
 
 iZotope's tools are everywhere in mixing and mastering: Ozone, Neutron, RX, Nectar and more. They also come up often on the second-hand market, because many people own a bundle or an older version they've replaced.
