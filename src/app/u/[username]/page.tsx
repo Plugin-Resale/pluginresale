@@ -10,7 +10,11 @@ export async function generateMetadata({
   params,
 }: PageProps<"/u/[username]">): Promise<Metadata> {
   const { username } = await params;
-  return { title: `@${username}` };
+  return {
+    title: `@${username}`,
+    description: `@${username} on Plugin Resale: used plugin licenses for sale, completed sales and reviews from other producers.`,
+    alternates: { canonical: `/u/${username}` },
+  };
 }
 
 export default async function SellerProfilePage({ params }: PageProps<"/u/[username]">) {

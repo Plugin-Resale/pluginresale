@@ -16,6 +16,7 @@ import {
   DEVELOPER_COLUMNS,
   formatDate,
   formatPrice,
+  productName,
   type Developer,
   type ListingCard,
   type ShopLinks,
@@ -49,8 +50,9 @@ const getListing = cache(async (rawId: string) => {
 export async function generateMetadata({ params }: PageProps<"/listings/[id]">): Promise<Metadata> {
   const listing = await getListing((await params).id);
   if (!listing) return {};
-  const title = `${listing.developer_name} ${listing.plugin_name} for ${formatPrice(listing.price_eur)}`;
-  const description = `Second-hand ${listing.developer_name} ${listing.plugin_name} license, sold by @${listing.seller_username}.`;
+  const name = productName(listing.developer_name, listing.plugin_name);
+  const title = `${name} for ${formatPrice(listing.price_eur)}`;
+  const description = `Second-hand ${name} license, sold by @${listing.seller_username}.`;
   return {
     title,
     description,
@@ -99,7 +101,7 @@ export default async function ListingPage({
 
   const isSeller = user?.id === listing.seller_id;
   const url = `https://www.pluginresale.com/listings/${listing.id}`;
-  const title = `${listing.developer_name} ${listing.plugin_name}`;
+  const title = productName(listing.developer_name, listing.plugin_name);
   const price = formatPrice(listing.price_eur);
   const share = {
     url,
@@ -155,12 +157,10 @@ export default async function ListingPage({
         <span aria-hidden="true">/</span>
         {plugin ? (
           <Link href={`/developers/${listing.developer_slug}/${plugin.slug}`}>
-            {listing.developer_name} {listing.plugin_name}
+            {title}
           </Link>
         ) : (
-          <span>
-            {listing.developer_name} {listing.plugin_name}
-          </span>
+          <span>{title}</span>
         )}
       </nav>
 

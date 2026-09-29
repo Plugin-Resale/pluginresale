@@ -9,11 +9,6 @@ import { FiltersDisclosure } from "./FiltersDisclosure";
 import { NoResults, type PluginLinks, type PluginMatch } from "./NoResults";
 import { SortSelect } from "./SortSelect";
 
-export const metadata: Metadata = {
-  title: "Browse second-hand plugin licenses",
-  description: "Used audio plugin licenses for sale: EQ, compression, reverb, synths and more.",
-};
-
 const PAGE_SIZE = 24;
 
 const SORTS = {
@@ -60,6 +55,62 @@ function pageHref(filters: Filters, page: number) {
   if (page > 1) qs.set("page", String(page));
   const s = qs.toString();
   return s ? `/browse?${s}` : "/browse";
+}
+
+// A single category is a real landing page ("used reverb plugins"), so it gets its own title
+// and canonical. Searches and other filter mixes are endless near-duplicates: kept out of Google.
+const CATEGORY_TITLES: Record<Category, string> = {
+  eq: "Used EQ plugins",
+  compression: "Used compressor plugins",
+  "channel-strips": "Used channel strip & preamp plugins",
+  "reverb-delay": "Used reverb & delay plugins",
+  saturation: "Used saturation plugins",
+  mastering: "Used mastering plugins",
+  "guitar-amps": "Used guitar amp plugins",
+  microphones: "Used microphone modeling plugins",
+  synths: "Used synth plugins",
+  "sample-libraries": "Used sample libraries",
+  daw: "Used DAW licenses",
+  bundles: "Used plugin bundles",
+  utilities: "Used utility plugins",
+};
+
+export async function generateMetadata({ searchParams }: PageProps<"/browse">): Promise<Metadata> {
+  const filters = parseFilters(await searchParams);
+  const { q, categories, developers, min, max, transferableOnly, noFee, page } = filters;
+  const pageSuffix = page > 1 ? `, page ${page}` : "";
+  // Sort order doesn't change what the page is about.
+  const canonical = pageHref({ ...filters, sort: "newest" }, page);
+
+  if (q) {
+    return {
+      title: `Used “${q}” licenses`,
+      description: `Second-hand licenses matching “${q}” for sale by other producers and engineers.`,
+      robots: { index: false, follow: true },
+    };
+  }
+  const otherFilters =
+    developers.length || min !== null || max !== null || transferableOnly || noFee;
+  if (categories.length === 1 && !otherFilters) {
+    const title = CATEGORY_TITLES[categories[0]];
+    return {
+      title: `${title}${pageSuffix}`,
+      description: `${title} for sale by other producers and engineers. Free marketplace, no commission, you pay the seller directly with PayPal.`,
+      alternates: { canonical },
+    };
+  }
+  if (categories.length || otherFilters) {
+    return {
+      title: "Browse second-hand plugin licenses (filtered)",
+      description: "Used audio plugin licenses for sale, filtered by category, developer or price.",
+      robots: { index: false, follow: true },
+    };
+  }
+  return {
+    title: `Browse second-hand plugin licenses${pageSuffix}`,
+    description: "Used audio plugin licenses for sale: EQ, compression, reverb, synths and more.",
+    alternates: { canonical },
+  };
 }
 
 export default async function BrowsePage({ searchParams }: PageProps<"/browse">) {

@@ -48,6 +48,14 @@ export const CATEGORIES = {
 
 export type Category = keyof typeof CATEGORIES;
 
+// "Soundtoys" + "Soundtoys 5" gives "Soundtoys 5", not "Soundtoys Soundtoys 5": some products
+// carry their developer's name already (Waves Tune, Bitwig Studio, seller-added rows...).
+export function productName(developerName: string, pluginName: string) {
+  return pluginName.toLowerCase().startsWith(developerName.toLowerCase())
+    ? pluginName
+    : `${developerName} ${pluginName}`;
+}
+
 export const DEVELOPER_COLUMNS =
   "id, name, slug, website, transferable, fee, who_pays, process, typical_delay, restrictions, source_url, last_verified, no_fee";
 

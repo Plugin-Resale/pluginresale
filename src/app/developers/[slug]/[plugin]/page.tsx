@@ -8,6 +8,7 @@ import { TransferRules } from "@/components/TransferRules";
 import {
   CATEGORIES,
   DEVELOPER_COLUMNS,
+  productName,
   type Developer,
   type ListingCard,
   type Plugin,
@@ -45,7 +46,7 @@ export async function generateMetadata({
   const found = await getPlugin(slug, pluginSlug);
   if (!found) return {};
   const { developer, plugin } = found;
-  const name = `${developer.name} ${plugin.name}`;
+  const name = productName(developer.name, plugin.name);
   const title =
     developer.transferable === false ? `${name} license transfer` : `Used ${name} licenses`;
   const description =
@@ -72,7 +73,7 @@ export default async function PluginPage({
   const { alert: alertNotice } = await searchParams;
 
   const path = `/developers/${developer.slug}/${plugin.slug}`;
-  const name = `${developer.name} ${plugin.name}`;
+  const name = productName(developer.name, plugin.name);
   const blocked = developer.transferable === false;
 
   const supabase = await createClient();
