@@ -1,7 +1,7 @@
 ---
 title: How to Sell Your FabFilter Plugins (Used License Guide)
 description: FabFilter lets you transfer a license to another user for a small fee, straight from your account. What you can sell, what you can't, the exact steps, and how to price a used Pro-Q, Pro-L or bundle.
-date: 2026-09-30
+date: 2026-09-29
 developer: fabfilter
 ---
 
