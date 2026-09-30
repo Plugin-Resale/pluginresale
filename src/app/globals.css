@@ -1429,7 +1429,6 @@ main {
 
 .proof-thumb {
   width: 100%;
-  height: 160px;
   padding: 0;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -1438,12 +1437,14 @@ main {
   cursor: zoom-in;
 }
 
+/* Whole screenshot, never cropped: a wide, short one (a single license row) cropped
+   to a fixed height showed only its empty middle. Tall ones are capped. */
 .proof-thumb img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
+  height: auto;
+  max-height: 240px;
+  object-fit: contain;
 }
 
 .proof-dialog {
