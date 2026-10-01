@@ -1,7 +1,7 @@
 ---
 title: "Conor Dalton (Glowcast Mastering) on restraint, loudness, his hybrid chain and why headphones come first"
 description: Berlin mastering engineer Conor Dalton of Glowcast Audio Mastering talks about why mastering always fascinated him, his signal flow, loudness for the club, the plugins he relies on, and the one piece of gear he couldn't do without.
-date: 2026-10-05
+date: 2026-10-04
 image: /blog/conor-dalton-interview/conor.jpg
 ---
 
