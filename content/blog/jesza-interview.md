@@ -50,7 +50,7 @@ I've always worked in Ableton Live (I must have started on version 7 or 8). I've
 
 Right now I rent a shared studio in Montreuil with other composers and engineers. It belongs to engineer Antoine Gaillet, who has worked on Julien Doré's entire career, among others. He owns the gear in the room: a first-generation Trinnov, a Forssell MADA-2 converter and ATC SCM25A monitors. The studio has plenty of outboard (a RETRO STA-Level, a Chandler Curve Bender, Neve 1081 channels, an API 2500 compressor...), but honestly I almost never use it. I sometimes run a few vocals or basses through the STA-Level, because that gentle colour and ultra-smooth compression is always a pleasure to hear, but otherwise I'm fully in the box. It's more than enough for me!
 
-I use the UAD suite a lot since I have an Apollo Twin (mostly the native versions since they started releasing them), FabFilter's Pro-Q (from v2 all the way to v4 today), the Soundtoys suite, and a few things from Plugin Alliance. My favourites there are the Lindell EQ825, the SPL Machine Head and Hum Audio's LAAAL (for the nerds).
+I use the [UAD](/developers/universal-audio) suite a lot since I have an Apollo Twin (mostly the native versions since they started releasing them), FabFilter's Pro-Q (from v2 all the way to [v4](/developers/fabfilter/pro-q-4) today), the [Soundtoys](/developers/soundtoys) suite, and a few things from Plugin Alliance. My favourites there are the [Lindell EQ825](/developers/plugin-alliance/lindell-audio-eq825), the [SPL Machine Head](/developers/plugin-alliance/machine-head) and Hum Audio's LAAAL (for the nerds).
 
 <figure>
   <img src="/blog/jesza-interview/desk.jpg" alt="Jesza at his laptop running Ableton Live, with a Knock plugin window open, outboard racks behind" width="1200" height="1600" loading="lazy">
@@ -94,11 +94,11 @@ Mastering myself comes down to several things: I love the exercise, sometimes it
 
 Super hard question as always, haha, but here are the ones that come to mind right away:
 
-- **Ableton's stock plugins**: I'm cheating, but they're by far the ones I use the most! EQ Eight, the Racks that allow incredible combinations, the new limiters and saturators, Drum Buss... But the absolute number one: Utility :)
-- **FabFilter Pro-Q 4**: one of the best EQs. Extremely versatile, with innovative features that really lighten the workflow and keep up with how music genres evolve.
-- **Soundtoys Effect Rack**: the ultimate cheat code, because it brings all the Soundtoys together. I use it a lot when I know I'm going to combine effects (like Decapitator and EchoBoy). It's fast and always gives impressive results.
-- **Spectrasonics Omnisphere, the FX part**: my little gatekeep, haha, I never see anyone use it! I use it exactly like the Effect Rack, but it has EVEN more premium built-in effects. It lets me move really fast on vocals without pulling out six UAD plugins. And it's not that heavy on CPU!
-- **Knock Clipper**: an underrated clipper for me. It does a great job on drum groups. Its control lets you move easily between soft and hard clipping without looking at the waveform, which forces me to work with my ears rather than my eyes. Very stable, cheap, and I use it very often.
+- **[Ableton](/developers/ableton)'s stock plugins**: I'm cheating, but they're by far the ones I use the most! EQ Eight, the Racks that allow incredible combinations, the new limiters and saturators, Drum Buss... But the absolute number one: Utility :)
+- **[FabFilter Pro-Q 4](/developers/fabfilter/pro-q-4)**: one of the best EQs. Extremely versatile, with innovative features that really lighten the workflow and keep up with how music genres evolve.
+- **[Soundtoys Effect Rack](/developers/soundtoys/effect-rack)**: the ultimate cheat code, because it brings all the Soundtoys together. I use it a lot when I know I'm going to combine effects (like [Decapitator](/developers/soundtoys/decapitator) and [EchoBoy](/developers/soundtoys/echoboy)). It's fast and always gives impressive results.
+- **[Spectrasonics Omnisphere](/developers/spectrasonics/omnisphere), the FX part**: my little gatekeep, haha, I never see anyone use it! I use it exactly like the Effect Rack, but it has EVEN more premium built-in effects. It lets me move really fast on vocals without pulling out six UAD plugins. And it's not that heavy on CPU!
+- **[Knock Clipper](/developers/knock-audio)**: an underrated clipper for me. It does a great job on drum groups. Its control lets you move easily between soft and hard clipping without looking at the waveform, which forces me to work with my ears rather than my eyes. Very stable, cheap, and I use it very often.
 
 ### Is there a plugin you find overrated, or one you bought and never used?
 
@@ -106,7 +106,7 @@ Tough one. I find it hard to trash products, and I usually only buy when I'm sur
 
 ### How do you buy plugins: full price, sales, bundles, second-hand? Have you ever resold a license?
 
-I've never resold a license yet, but I've often thought about it, to get some money back on tools I no longer use. For example older versions of some EQs, like Pro-Q 2 or 3, although I'm not sure you can resell them when you're using version 4. The same goes for plugins like Mastering The Mix's FUSER, which I used a lot and then dropped for workflow reasons.
+I've never resold a license yet, but I've often thought about it, to get some money back on tools I no longer use. For example older versions of some EQs, like Pro-Q 2 or [3](/developers/fabfilter/pro-q-3), although I'm not sure you can resell them when you're using version 4. The same goes for plugins like Mastering The Mix's [FUSER](/developers/mastering-the-mix/fuser), which I used a lot and then dropped for workflow reasons.
 
 When it comes to buying, I almost always wait for the right moment. UAD and Soundtoys often run sales that let you pick up plugins for far less than the horrible prices announced at launch. Otherwise I rely a lot on demos: I test, and if it becomes essential I buy it, otherwise I uninstall it.
 
@@ -140,11 +140,11 @@ My original productions are on every streaming platform. I also have SoundCloud 
 
 Jesza wonders whether he could resell his older Pro-Q licenses. Here is what the developers say about the plugins he mentions:
 
-- **FabFilter Pro-Q 2, 3 and 4**: FabFilter treats each major version as a separate product (major upgrades are paid), so an older Pro-Q is a license of its own. A transfer costs about €10, bought by the seller in their FabFilter account. If you got Pro-Q 4 as an upgrade from an older version, ask FabFilter whether that older license can still be transferred on its own before listing it. [FabFilter transfer rules](/developers/fabfilter).
+- **FabFilter Pro-Q 2, [3](/developers/fabfilter/pro-q-3) and [4](/developers/fabfilter/pro-q-4)**: FabFilter treats each major version as a separate product (major upgrades are paid), so an older Pro-Q is a license of its own. A transfer costs about €10, bought by the seller in their FabFilter account. If you got Pro-Q 4 as an upgrade from an older version, ask FabFilter whether that older license can still be transferred on its own before listing it. [FabFilter transfer rules](/developers/fabfilter).
 - **[Mastering The Mix FUSER](/developers/mastering-the-mix/fuser)**: free to transfer, through Mastering The Mix support. [Mastering The Mix transfer rules](/developers/mastering-the-mix).
 - **[Soundtoys Effect Rack](/developers/soundtoys/effect-rack)**, **[Decapitator](/developers/soundtoys/decapitator)**, **[EchoBoy](/developers/soundtoys/echoboy)**: transferred through iLok ($25 fee, paid by the seller), with Soundtoys' consent. [Soundtoys transfer rules](/developers/soundtoys).
 - **[Spectrasonics Omnisphere](/developers/spectrasonics/omnisphere)**: $50 per instrument, usually paid by the seller. Only the original purchaser can transfer it, once. [Spectrasonics transfer rules](/developers/spectrasonics).
-- **[Ableton Live](/browse?q=Live%2012)**: free, self-service transfer from your Ableton account. [Ableton transfer rules](/developers/ableton).
+- **[Ableton Live](/developers/ableton/live-12-suite)**: free, self-service transfer from your Ableton account. [Ableton transfer rules](/developers/ableton).
 - **UAD plug-ins**: can't be sold on their own, only together with the Apollo or UAD-2 hardware they're registered to. [Universal Audio transfer rules](/developers/universal-audio).
 - **Plugin Alliance (Lindell EQ825, SPL Machine Head...)**: self-service transfers are currently unavailable. [Plugin Alliance transfer rules](/developers/plugin-alliance).
 
