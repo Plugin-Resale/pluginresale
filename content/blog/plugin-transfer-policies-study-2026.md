@@ -13,12 +13,12 @@ With **197 developers** covered (plugin makers, sample library companies and DAW
 | Policy | Developers | Share |
 |---|---|---|
 | Transfers allowed | 116 | 59% |
-| Transfers not allowed | 61 | 31% |
-| No official policy found | 20 | 10% |
+| Transfers not allowed | 62 | 31% |
+| No official policy found | 19 | 10% |
 
 So if you pick a developer at random, there's roughly a 6 in 10 chance you can resell its licenses.
 
-The "no official policy" group matters too: for **20 developers**, we couldn't find a clear, official answer. Some have simply never published one, others only answered the question on forums. We don't count forum posts as a policy, so these developers are marked "not verified" on the site, and we advise buyers and sellers to ask the developer before making a deal.
+The "no official policy" group matters too: for **19 developers**, we couldn't find a clear, official answer. Some have simply never published one, others only answered the question on forums. We don't count forum posts as a policy, so these developers are marked "not verified" on the site, and we advise buyers and sellers to ask the developer before making a deal.
 
 ## Sample libraries are the hardest to resell
 
@@ -26,7 +26,7 @@ The picture changes a lot depending on what the developer makes. We grouped deve
 
 | Main product | Developers | Allowed | Not allowed | Not verified |
 |---|---|---|---|---|
-| Plugins (effects, instruments) | 124 | 86 (69%) | 28 (23%) | 10 (8%) |
+| Plugins (effects, instruments) | 124 | 86 (69%) | 29 (23%) | 9 (7%) |
 | Sample libraries | 54 | 23 (43%) | 25 (46%) | 6 (11%) |
 
 Nearly half of sample library companies **don't allow resale at all**. That includes some of the biggest names in orchestral and cinematic libraries: **Spitfire Audio**, **EastWest** and **8Dio** don't allow transfers, and **Orchestral Tools** requires its prior clearance.
