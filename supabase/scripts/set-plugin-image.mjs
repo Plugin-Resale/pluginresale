@@ -8,6 +8,7 @@
 import { writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import sharp from "sharp";
 import { createClient } from "@supabase/supabase-js";
 
 const [pluginId, pageUrl, flag] = process.argv.slice(2);
@@ -59,11 +60,15 @@ await writeFile(preview, bytes);
 console.log(`${plugin.name}: ${imageUrl}\npreview: ${preview}`);
 if (flag !== "--save") process.exit(0);
 
+// Shown at most ~320 px wide: an 800 px WebP is sharp on retina screens and ~50 kB instead of
+// the multi-MB originals that used up the Supabase egress quota (2026-10-04).
+const small = await sharp(bytes).resize({ width: 800, withoutEnlargement: true }).webp({ quality: 80 }).toBuffer();
+
 // A new name each time, so browsers and the CDN never show a cached older image.
-const path = `${plugin.id}-${Date.now()}.${ext}`;
+const path = `${plugin.id}-${Date.now()}.webp`;
 const { error: uploadError } = await admin.storage
   .from("plugin-images")
-  .upload(path, bytes, { contentType: type });
+  .upload(path, small, { contentType: "image/webp", cacheControl: "31536000" });
 if (uploadError) throw uploadError;
 
 const { error: updateError } = await admin.from("plugins").update({ image_path: path }).eq("id", plugin.id);
