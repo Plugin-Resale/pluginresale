@@ -207,6 +207,26 @@ a {
   margin-top: 20px;
 }
 
+.btn-google {
+  gap: 10px;
+}
+
+.auth-or {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.auth-or::before,
+.auth-or::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--line);
+}
+
 .notice {
   margin-top: 16px;
   padding: 12px 14px;

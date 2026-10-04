@@ -12,7 +12,7 @@ export default function PrivacyPage() {
       <h1 className="page-title" id="en">
         Privacy Policy
       </h1>
-      <p className="lead">Last updated 28 September 2026.</p>
+      <p className="lead">Last updated 4 October 2026.</p>
       <p className="lang-switch">
         <a href="#fr" lang="fr">
           Version française ↓
@@ -30,7 +30,9 @@ export default function PrivacyPage() {
       <h2>1. Data we collect</h2>
       <ul>
         <li>
-          <strong>Account:</strong> your email address (to sign you in with a magic link), the
+          <strong>Account:</strong> your email address (to sign you in with a magic link, or with Google if you choose
+          &ldquo;Continue with Google&rdquo;: Google then shares your email, name and profile
+          picture with us, and we only use the email), the
           username you choose, your profile photo if you add one, and the date you accepted our
           Terms.
         </li>
@@ -101,7 +103,8 @@ export default function PrivacyPage() {
           (database, sign-in and data hosting), Vercel (website hosting), Resend (sign-in and
           notification emails), GitHub (storage of our encrypted database backups, which it
           can&apos;t read) and Google (Gmail, which receives the emails sent to
-          contact@pluginresale.com).
+          contact@pluginresale.com, and &ldquo;Continue with Google&rdquo; sign-in if you use
+          it).
         </li>
         <li>
           <strong>Authorities</strong>, when the law requires it.
@@ -214,7 +217,7 @@ export default function PrivacyPage() {
 
       <section id="fr" lang="fr" className="legal-fr">
         <h1 className="page-title">Politique de confidentialité</h1>
-        <p className="lead">Dernière mise à jour : 28 septembre 2026.</p>
+        <p className="lead">Dernière mise à jour : 4 octobre 2026.</p>
         <p className="lang-switch">
           <a href="#en" lang="en">
             English version ↑
@@ -233,7 +236,9 @@ export default function PrivacyPage() {
         <h2>1. Données collectées</h2>
         <ul>
           <li>
-            <strong>Compte :</strong> votre adresse email (pour vous connecter par lien), le
+            <strong>Compte :</strong> votre adresse email (pour vous connecter par lien, ou avec Google si vous
+            choisissez « Continue with Google » : Google nous transmet alors votre email, votre nom
+            et votre photo de profil, et nous n&apos;utilisons que l&apos;email), le
             pseudo que vous choisissez, votre photo de profil si vous en ajoutez une et la date à
             laquelle vous avez accepté nos conditions.
           </li>
@@ -308,7 +313,8 @@ export default function PrivacyPage() {
             Supabase (base de données, connexion et hébergement des données), Vercel (hébergement
             du site), Resend (emails de connexion et de notification), GitHub (stockage de nos
             sauvegardes chiffrées, qu&apos;il ne peut pas lire) et Google (Gmail, qui reçoit les
-            emails envoyés à contact@pluginresale.com).
+            emails envoyés à contact@pluginresale.com, et la connexion « Continue with Google »
+            si vous l&apos;utilisez).
           </li>
           <li>
             <strong>Les autorités</strong>, lorsque la loi l&apos;exige.

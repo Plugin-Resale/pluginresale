@@ -8,3 +8,6 @@ export function safeNext(next: unknown): string | null {
 
 // Sign-in page URL that brings the user back to `path` once they are signed in.
 export const signInUrl = (path: string) => `/signin?next=${encodeURIComponent(path)}`;
+
+// Page to return to after "Continue with Google" (the round trip stays in the same browser).
+export const OAUTH_NEXT_COOKIE = "oauth_next";
