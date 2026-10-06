@@ -20,7 +20,7 @@ export default function TermsPage() {
       <h1 className="page-title" id="en">
         Terms of Service
       </h1>
-      <p className="lead">Last updated 28 September 2026.</p>
+      <p className="lead">Last updated 6 October 2026.</p>
       <p className="lang-switch">
         <a href="#fr" lang="fr">
           Version française ↓
@@ -98,6 +98,11 @@ export default function TermsPage() {
         any point, and we don&apos;t charge a fee on it. Your payment may be covered by PayPal
         Buyer Protection, under PayPal&apos;s own terms, which we don&apos;t control. Either side
         can cancel a purchase until the seller confirms the payment arrived.
+      </p>
+      <p>
+        The listed price includes any license transfer fee the developer charges: the seller
+        pays it. The only exception is a developer that bills its fee to the buyer directly, in
+        which case the listing says so.
       </p>
       <p>
         Before paying, the buyer must check the transfer conditions with the developer (see
@@ -264,7 +269,7 @@ export default function TermsPage() {
 
       <section id="fr" lang="fr" className="legal-fr">
         <h1 className="page-title">Conditions générales d&apos;utilisation</h1>
-        <p className="lead">Dernière mise à jour : 28 septembre 2026.</p>
+        <p className="lead">Dernière mise à jour : 6 octobre 2026.</p>
         <p className="lang-switch">
           <a href="#en" lang="en">
             English version ↑
@@ -353,6 +358,11 @@ export default function TermsPage() {
           Protection des achats PayPal, selon les conditions propres à PayPal, que nous ne
           maîtrisons pas. Chaque partie peut annuler l&apos;achat tant que le vendeur n&apos;a pas
           confirmé la réception du paiement.
+        </p>
+        <p>
+          Le prix affiché inclut les éventuels frais de transfert de licence facturés par
+          l&apos;éditeur : c&apos;est le vendeur qui les paie. Seule exception : un éditeur qui
+          facture ces frais directement à l&apos;acheteur, ce que l&apos;annonce indique alors.
         </p>
         <p>
           Avant de payer, l&apos;acheteur doit vérifier les conditions de transfert auprès de

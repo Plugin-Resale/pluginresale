@@ -5,6 +5,7 @@ import { ProofUpload } from "@/components/ProofUpload";
 import { TransferBadge } from "@/components/TransferBadge";
 import { CATEGORIES, FORMATS, type Category, type Developer } from "@/lib/catalog";
 import { pluginImageUrl } from "@/lib/images";
+import { sellerFeeNote } from "@/lib/transfer-fee";
 import { createListing, type SellState } from "./actions";
 
 export type PluginOption = { id: number; name: string; category: Category; developer_id: number };
@@ -110,6 +111,7 @@ export function SellForm({
     : null;
   const blocked = activeDeveloper?.transferable === false;
   const unverified = activeDeveloper != null && activeDeveloper.transferable === null;
+  const feeNote = activeDeveloper ? sellerFeeNote(activeDeveloper) : null;
 
   // Options: the matching plugins, then "Not in the list? Add it" as the last one.
   const optionCount = showList ? results.length + 1 : 0;
@@ -313,6 +315,7 @@ export function SellForm({
               required
               defaultValue={values?.price}
             />
+            {feeNote && <p className="hint">{feeNote}</p>}
           </div>
         </div>
 

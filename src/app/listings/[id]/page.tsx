@@ -24,6 +24,7 @@ import {
 import { pluginImageUrl } from "@/lib/images";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/supabase/user";
+import { buyerFeeNote } from "@/lib/transfer-fee";
 import { setListingStatus } from "../../account/actions";
 import { startDeal } from "../../deals/actions";
 import { setListingProof } from "./actions";
@@ -147,6 +148,7 @@ export default async function ListingPage({
         .in("status", ["requested", "paid"])
         .maybeSingle()
     : { data: null };
+  const feeNote = developer ? buyerFeeNote(developer) : null;
 
   return (
     <main className="container page">
@@ -239,6 +241,7 @@ export default async function ListingPage({
           <div className="card price-card">
             <span className="price price-lg">{formatPrice(listing.price_eur)}</span>
             <span className="muted listing-id">Listing #{listing.id}</span>
+            {feeNote && <p className="hint">{feeNote}</p>}
             {buyError === "username" && (
               <p className="notice notice-error">
                 Choose a username in{" "}
