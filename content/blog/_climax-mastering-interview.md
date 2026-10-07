@@ -2,7 +2,7 @@
 title: "Jean-Charles Panizza (Climax Mastering) on analog color, Weiss plugins, vinyl and building a new room"
 description: French mastering engineer Jean-Charles Panizza of Climax Mastering talks about his mostly analog chain, the custom box he built to run it, the three plugins he would keep, mastering for vinyl, and the new room he is building.
 date: 2026-10-08
-image: /blog/climax-mastering-interview/at-work.jpg
+image: /blog/climax-mastering-interview/portrait.jpg
 ---
 
 Jean-Charles Panizza has been mastering for over fifteen years. He started Climax Mastering in 2010 with a friend from sound school and has run it on his own since 2020, in an all-wood room in Bazemont, west of Paris, built around a mostly analog chain and a few carefully chosen plugins.
@@ -10,7 +10,7 @@ Jean-Charles Panizza has been mastering for over fifteen years. He started Clima
 We talked about how he found his way into mastering, why hardware still runs his chain, the three plugins he would keep, mastering for vinyl, and the new room he is building.
 
 <figure>
-  <img src="/blog/climax-mastering-interview/jc.jpg" alt="Jean-Charles Panizza at his mastering desk, reaching towards the tape machine, a bass hanging on the wall behind him" width="1600" height="1201">
+  <img src="/blog/climax-mastering-interview/portrait.jpg" alt="Jean-Charles Panizza adjusting a knob on his mastering desk, in front of the studio's wooden walls" width="1024" height="683">
   <figcaption>Jean-Charles Panizza at Climax Mastering.</figcaption>
 </figure>
 
@@ -55,6 +55,11 @@ Maybe you could get similar results working in the box... Personally, I get bett
 Some digital tools are just too good to ignore, even for an analog geek like me! The ones I reach for most are limiters, de-essers, some very precise EQs, and of course restoration tools. What I find most interesting about them is that they offer solutions that simply don't exist in the analog world.
 
 I really can't choose between analog and digital. I think they complement each other really well!
+
+<figure>
+  <img src="/blog/climax-mastering-interview/jc.jpg" alt="Jean-Charles Panizza at his mastering desk, reaching towards the tape machine, a bass hanging on the wall behind him" width="1600" height="1201" loading="lazy">
+  <figcaption>Between the desk and the tape machine.</figcaption>
+</figure>
 
 ### How does your approach change when you master for vinyl compared to streaming?
 
