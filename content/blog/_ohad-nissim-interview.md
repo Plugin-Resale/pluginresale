@@ -97,7 +97,7 @@ I'm mostly active on Instagram under Ohad Nissim Mastering. That's where I share
 
 Here is what the developers say about reselling the third-party plugins in his chain:
 
-- **[Three-Body Technology Kirchhoff EQ](/developers/three-body-technology/kirchhoff-eq)**: Three-Body Technology doesn't publish a clear transfer policy. Ask their support before buying or selling. [Three-Body Technology transfer rules](/developers/three-body-technology).
+- **[Three-Body Technology Kirchhoff EQ](/developers/three-body-technology/kirchhoff-eq)**: Three-Body Technology's support told us in writing that license transfers are not supported. [Three-Body Technology transfer rules](/developers/three-body-technology).
 - **[TDR Limiter 6 GE](/developers/tokyo-dawn-records/limiter-6-ge)**: Tokyo Dawn Records' license agreement forbids selling licenses without its prior written consent. [Tokyo Dawn Records transfer rules](/developers/tokyo-dawn-records).
 
 If you're looking for a used plugin, search for it on [Browse](/browse) and set an alert: we'll email you as soon as someone lists it. And if you have licenses sleeping on your hard drive, you can list them for free on the [Sell form](/sell).
