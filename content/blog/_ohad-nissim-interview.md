@@ -2,11 +2,17 @@
 title: "Ohad Nissim on the L/R EQ trick, staying out of the way and building RTM Audio"
 description: Grammy-nominated mastering engineer Ohad Nissim (Chris Brown, Ciara, XG, Lucky Daye) talks about his road from club DJ to mastering, his analog chain, the left/right EQ trick he uses on every master, gain staging, and the plugins he builds with Teezio and Bainz at RTM Audio.
 date: 2026-10-12
+image: /blog/ohad-nissim-interview/portrait.jpg
 ---
 
 Ohad Nissim is a Grammy-nominated mastering engineer based in Luxembourg. He has mastered records for Chris Brown, Ciara, XG, Polo G, Ava Max, Lucky Daye and Big Sean, from a home studio built around an analog chain he has spent three years refining. With Teezio and Bainz, he also runs RTM Audio, a plugin company made by working engineers for working engineers.
 
 We talked about his road from club DJ to mastering, the person who changed everything, his chain, the left/right EQ trick he uses on every master, loudness, gain staging, and why staying out of the way is the best signature.
+
+<figure>
+  <img src="/blog/ohad-nissim-interview/portrait.jpg" alt="Ohad Nissim in a dark coat, standing by a lake with autumn trees behind him" width="1600" height="1066">
+  <figcaption>Ohad Nissim.</figcaption>
+</figure>
 
 ## Career
 
@@ -32,6 +38,11 @@ My studio is in my house, which makes things easier in terms of schedule. Workin
 
 In terms of monitors, I've got two pairs. The main ones in the studio are the LIBRIO towers, which aren't fully on the market yet. In the living room I've got Dutch & Dutch 8c's, where I test "casual listening" on the things I master.
 
+<figure>
+  <img src="/blog/ohad-nissim-interview/studio.jpg" alt="Ohad Nissim's mastering desk with its analog racks, between two tall LIBRIO tower speakers, in front of a window" width="1600" height="836" loading="lazy">
+  <figcaption>The studio, between the two LIBRIO towers.</figcaption>
+</figure>
+
 In terms of the mastering process itself, I'm still big on analog gear. I've spent the last three years perfecting my chain, and my system just sounds so good it's irreplaceable. I do love plugins though, and recently, together with Teezio and Bainz, we started building our own plugins under RTM Audio. These plugins are mostly what occupies my plugin chain after the analog gear. I won't go into what's better, because it's all tools and they are what you make of them. It's just great to have that flexibility.
 
 ## Workflow
@@ -41,6 +52,11 @@ In terms of the mastering process itself, I'm still big on analog gear. I've spe
 My main goal nowadays is to stay as close as possible to the mix, but make it sound better. I'll usually listen to where the vocals sit, the amount of sub and how it affects the muddiness of the mix, the punch of the kick if there is one, and lastly, whether there's anything harsh in the mix that I need to smooth out.
 
 In terms of my chain, the analog side runs: Lavry Quintessence → Knif Eksa → Unfairchild → Terry Audio CEQ → Knif Solmu → Hum Audio LAAL → Lavry Savitr. Then in the box, I use DMASK2, sometimes TXB2, sometimes CXB, sometimes CHILL, [Kirchhoff EQ](/developers/three-body-technology/kirchhoff-eq) if I need to bring back punch, and I finish with a limiter for the last gain push, either PEAK2 or [TDR Limiter 6 GE](/developers/tokyo-dawn-records/limiter-6-ge). (DMASK2, TXB2, CHILL, CXB and PEAK2 are all RTM Audio plugins.)
+
+<figure>
+  <img src="/blog/ohad-nissim-interview/chain.jpg" alt="Close-up of the analog chain: UTA Unfairchild, Terry Audio CEQ, Knif Solmu, Knif Eksa and Hum Audio LAAL, with Lavry converters on top and a note reading Respect the mix" width="1600" height="887" loading="lazy">
+  <figcaption>The analog chain, with the Lavry converters on top. And a reminder: respect the mix.</figcaption>
+</figure>
 
 ### You sometimes EQ the left and right channels differently to create a sense of width. Most engineers would reach for mid/side instead. Where did that idea come from, and how do you keep the image balanced and mono-compatible?
 
@@ -74,6 +90,11 @@ I've purchased so many plugins through the years, and I'm using almost none of t
 
 ## Today
 
+<figure>
+  <img src="/blog/ohad-nissim-interview/librio.jpg" alt="A LIBRIO tower speaker in the corner of the studio, next to the mastering desk and an Ohad Nissim Mastering cap" width="1600" height="1053" loading="lazy">
+  <figcaption>One of the LIBRIO towers, which aren't fully on the market yet.</figcaption>
+</figure>
+
 ### What are you working on right now?
 
 I just finished Lucky Daye's album, some Big Sean tracks, LNGSHOT in the K-pop world, and I also had to travel to master locally on a massive project I can't talk about :)
@@ -101,3 +122,5 @@ Here is what the developers say about reselling the third-party plugins in his c
 - **[TDR Limiter 6 GE](/developers/tokyo-dawn-records/limiter-6-ge)**: Tokyo Dawn Records' license agreement forbids selling licenses without its prior written consent. [Tokyo Dawn Records transfer rules](/developers/tokyo-dawn-records).
 
 If you're looking for a used plugin, search for it on [Browse](/browse) and set an alert: we'll email you as soon as someone lists it. And if you have licenses sleeping on your hard drive, you can list them for free on the [Sell form](/sell).
+
+*Photos courtesy of Ohad Nissim.*
