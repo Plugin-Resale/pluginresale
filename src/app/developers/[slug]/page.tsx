@@ -107,8 +107,7 @@ export default async function DeveloperPage({ params }: PageProps<"/developers/[
               (listingCount ? (
                 <li>
                   <Link href={`/browse?dev=${developer.slug}`}>
-                    {listingCount} used {developer.name}{" "}
-                    {listingCount === 1 ? "license" : "licenses"} for sale
+                    Used {developer.name} licenses for sale
                   </Link>
                 </li>
               ) : (

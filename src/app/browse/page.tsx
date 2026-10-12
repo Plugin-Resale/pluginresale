@@ -284,10 +284,7 @@ export default async function BrowsePage({ searchParams }: PageProps<"/browse">)
         <div className="browse-head">
           <div>
             <h1 className="section-title">{title}</h1>
-            <p className="muted">
-              {filters.q && <>Results for “{filters.q}” · </>}
-              {total} {total === 1 ? "listing" : "listings"}
-            </p>
+            {filters.q && <p className="muted">Results for “{filters.q}”</p>}
           </div>
           <form action="/browse" className="sort-form">
             {Object.entries({
