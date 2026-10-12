@@ -2,7 +2,7 @@
 title: "Nicolas Barreau (HARMONICO dsp) on borrowing from physics, adaptive tilt EQ and building plugins as a working engineer"
 description: Paris engineer Nicolas Barreau talks about going from building acoustics to the studio, why he started HARMONICO dsp, how Spectral Mass Rebalance tilts around a moving pivot, his four plugins (including the free widener Airy), and Rayleigh, the depth tool coming in November.
 date: 2026-10-16
-image: /blog/harmonico-dsp-interview/spectral-mass-rebalance.jpg
+image: /blog/harmonico-dsp-interview/portrait.jpg
 ---
 
 Nicolas Barreau is a sound engineer at Sodasound, a recording studio in Paris, and the founder of HARMONICO dsp, a plugin company that borrows ideas from physics and mathematics to rethink familiar audio effects. Its first four plugins are a band-by-band stereo widener (Airy, free), an adaptive tilt EQ (Spectral Mass Rebalance), a multiband saturator with memory (Earthquake Distortion Device) and a reverb modulated by a virtual flock of birds (Murmuration).
@@ -10,8 +10,8 @@ Nicolas Barreau is a sound engineer at Sodasound, a recording studio in Paris, a
 We talked about his road from building acoustics to the studio, why he went back to coding, how Spectral Mass Rebalance works and when to use it, testing with other engineers, and Rayleigh, the plugin he is releasing in November.
 
 <figure>
-  <img src="/blog/harmonico-dsp-interview/spectral-mass-rebalance.jpg" alt="The Spectral Mass Rebalance interface: a black spectrum on a white background, with two tilt bands set between 94 and 377 Hz and between 1.5 and 5.8 kHz" width="1600" height="980">
-  <figcaption>Spectral Mass Rebalance, with two tilt bands.</figcaption>
+  <img src="/blog/harmonico-dsp-interview/portrait.jpg" alt="Nicolas Barreau sitting in a studio control room, in front of a mixing control surface and large wall-mounted monitors" width="1377" height="768">
+  <figcaption>Nicolas Barreau, founder of HARMONICO dsp.</figcaption>
 </figure>
 
 ## Background
@@ -23,6 +23,11 @@ I'm originally from Nantes, France. I studied general engineering, first in a pr
 During the COVID pandemic, I decided to shift towards audio and completed a one-year sound engineering course at SAE. I did a two-month internship at Sodasound at the end of the course. Things went really well, they offered me a position, and I've been there ever since, coming up on four years now.
 
 My role has evolved quite a bit since I joined. I started out working on music and audiovisual recording sessions, then gradually took on more projects and responsibilities. These days, I work across a range of areas, including production management, recording, mixing, mastering, sound design, and multichannel audio.
+
+<figure>
+  <img src="/blog/harmonico-dsp-interview/studio.jpg" alt="Nicolas Barreau smiling and talking at a studio desk, with a computer screen, a monitor speaker and rack-mounted outboard gear behind him" width="1382" height="768" loading="lazy">
+  <figcaption>In the studio.</figcaption>
+</figure>
 
 ### What made you start your own plugin brand?
 
@@ -48,6 +53,11 @@ This allows me to approach familiar audio effects from a different angle, someti
 </figure>
 
 **Spectral Mass Rebalance** is an adaptive, dynamic tilt EQ. It pivots the spectral balance around an equilibrium point that follows the signal's content, rather than relying on a fixed pivot frequency.
+
+<figure>
+  <img src="/blog/harmonico-dsp-interview/spectral-mass-rebalance.jpg" alt="The Spectral Mass Rebalance interface: a black spectrum on a white background, with two tilt bands set between 94 and 377 Hz and between 1.5 and 5.8 kHz" width="1600" height="980" loading="lazy">
+  <figcaption>Spectral Mass Rebalance, with two tilt bands.</figcaption>
+</figure>
 
 **Earthquake Distortion Device** is a multiband saturator with memory. The distortion retains a trace of the signal that came before it, allowing the harmonic content to evolve over time rather than producing a purely static response.
 
@@ -117,4 +127,4 @@ I'm most active on Instagram, where you can find me at @harmonicodsp.
 
 If you're looking for a used plugin, search for it on [Browse](/browse) and set an alert: we'll email you as soon as someone lists it. And if you have licenses sleeping on your hard drive, you can list them for free on the [Sell form](/sell).
 
-*Screenshots courtesy of HARMONICO dsp.*
+*Photos and screenshots courtesy of Nicolas Barreau / HARMONICO dsp.*
