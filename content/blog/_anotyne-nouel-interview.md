@@ -71,15 +71,15 @@ Today I use my LCD-5s most of the time, but I also have NS10s, which I deeply lo
 For DAWs, I use Pro Tools for mixing and mastering, WaveLab for editing albums (and sometimes for digital mastering), and FL Studio for composing these days. I like switching DAWs depending on the task. I have an Avid S1 with motorized faders, which I love using in Pro Tools: I can dial my plugins by hand, it almost feels like analog gear, and I make crazier, more personal moves with it.
 
 <figure>
-  <img src="/blog/anotyne-nouel-interview/desk-side.jpg" alt="Anotyne at her desk on Audeze headphones, hands on an Avid S1, with a Yamaha NS10, a Manley Massive Passive and Hacienda Labs modules around her" width="1600" height="1200" loading="lazy">
-  <figcaption>The Avid S1, a Yamaha NS10, the Massive Passive and the Hacienda Labs modules.</figcaption>
+  <img src="/blog/anotyne-nouel-interview/pro-tools.jpg" alt="Anotyne working in Pro Tools on Audeze headphones, hands on an Avid S1, with a Yamaha NS10, a Manley Massive Passive and Hacienda Labs modules around her" width="1600" height="1200" loading="lazy">
+  <figcaption>Pro Tools side: the Avid S1, a Yamaha NS10, the Massive Passive and the Hacienda Labs modules.</figcaption>
 </figure>
 
 I used Ableton Live for composing for a long time, but at some point I noticed I enjoyed the music made in FL Studio more, so I tried it and now I'm fully into it. I have a template and I can make a beat in an hour. It's so fast, the pattern mode is far more musical, and the step sequencer is a must-have for me. When I change something in a pattern, it applies to every copy of that pattern in the song, which saves a lot of time and energy. I bought an MPC Live II at some point but sent it back. FL Studio sits somewhere between a machine and a DAW, and that feels more musical to me.
 
 <figure>
-  <img src="/blog/anotyne-nouel-interview/desk-mix.jpg" alt="Anotyne mixing on Audeze LCD-5 headphones, a session open on the screen, outboard racks and guitars around her" width="1600" height="1200" loading="lazy">
-  <figcaption>Mixing on the Audeze LCD-5s.</figcaption>
+  <img src="/blog/anotyne-nouel-interview/fl-studio.jpg" alt="Anotyne on Audeze LCD-5 headphones with FL Studio on the screen, outboard racks and guitars around her" width="1600" height="1200" loading="lazy">
+  <figcaption>FL Studio side, where the beats start.</figcaption>
 </figure>
 
 My outboard has shrunk since Lyon. I still have a Prism Titan as my main converter, and some Hacienda Labs Studer preamps and EQs for tracking. I also record through a Bettermaker 232P: my Fender Precision bass sounds amazing through it, and I can recall the analog preset instantly. For mastering, I have a small analog chain: a Sontec DR-MQ5 parametric EQ, a Manley Massive Passive tube EQ and an Alan Smart C1 compressor. I use it on almost everything, but I also have a lot of really useful plugins.
