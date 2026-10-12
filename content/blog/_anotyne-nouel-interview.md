@@ -1,12 +1,18 @@
 ---
 title: "Anotyne Nouel on Sigur Rós's studio, mastering on headphones and making room for queer engineers"
 description: Marseille-based producer, mixing and mastering engineer Anotyne Nouel talks about her six months at Sigur Rós's studio, learning on her own, swapping ATC monitors for Audeze headphones, committing on the way in, her mastering plugins, and what needs to change for women and queer people in the studio.
-date: 2026-10-10
+date: 2026-10-14
+image: /blog/anotyne-nouel-interview/portrait.jpg
 ---
 
 Anotyne Nouel is a producer, mixing and mastering engineer and an artist. She interned at Sundlaugin, Sigur Rós's studio in Iceland, built Sound Love Studio in Lyon with her own hands, and now works from Marseille, mostly on a pair of Audeze headphones. She works mainly with women and queer artists, and she has been touring with bands since 2011.
 
 We talked about Iceland, learning without a mentor, mastering on headphones, recording "almost mastered", the plugins she relies on, and what needs to change for women and queer people in studios.
+
+<figure>
+  <img src="/blog/anotyne-nouel-interview/portrait.jpg" alt="Anotyne Nouel sitting in front of her home studio desk in Marseille, between two Yamaha NS10s, with guitars and a mic stand beside her and tall windows behind" width="1600" height="1200">
+  <figcaption>Anotyne Nouel in her home studio in Marseille.</figcaption>
+</figure>
 
 ## Career
 
@@ -16,7 +22,7 @@ It was thirteen years ago actually. I needed to do an internship at the end of m
 
 Sigur Rós's studio is really the nicest production studio I've ever been to. They had all the mics (U47s, U67s, AEA R84s...), so many guitars, amps, synths, pianos, organs. It was really crazy. They had a lot of cool outboard too, like a Roland RE-201 tape delay, a Manley Massive Passive, a Smart C2 compressor, an AMS RMX16 reverb...
 
-I spent a lot of time at the studio when there were no sessions, mixing and mastering my own projects. I did a really cool experiment: I composed and recorded an album in my bedroom in Reykjavik with only an SM57, a Casio SK-1 toy synth and a broken electric guitar I couldn't plug in, and used Sigur Rós's studio to mix and master it. It's called *Let's Freeze Our Feelings and Split the Hate*. I still love it. I used the Neve console there to sum my mixes, with the Massive Passive and the Smart C2 on the master bus on every song. That AMS reverb was so nice, it was on all the mixes. We also had Dynaudio BM15As. I really liked them in that room, everything I did there sounded really nice.
+I spent a lot of time at the studio when there were no sessions, mixing and mastering my own projects. I did a really cool experiment: I composed and recorded an album in my bedroom in Reykjavik with only a Shure SM57 (the classic cheap dynamic mic), a Casio SK-1 toy synth and a broken electric guitar I couldn't plug in, and used Sigur Rós's studio to mix and master it. It's called *Let's Freeze Our Feelings and Split the Hate*. I still love it. I used the Neve console there to sum my mixes, with the Massive Passive and the Smart C2 on the master bus on every song. That AMS reverb was so nice, it was on all the mixes. We also had Dynaudio BM15As. I really liked them in that room, everything I did there sounded really nice.
 
 Spending that much time in a pro studio is what showed me I was made to live this life. I was there almost every day, either on my own or with Birgir Jón Birgisson, the studio's main engineer. He even offered me the job of studio assistant at the end, but my first band had just started touring and I really wanted to go back to my life in France. Being able to hear all those instruments, mics and effects really helped me make my choices later on.
 
@@ -64,7 +70,17 @@ Today I use my LCD-5s most of the time, but I also have NS10s, which I deeply lo
 
 For DAWs, I use Pro Tools for mixing and mastering, WaveLab for editing albums (and sometimes for digital mastering), and FL Studio for composing these days. I like switching DAWs depending on the task. I have an Avid S1 with motorized faders, which I love using in Pro Tools: I can dial my plugins by hand, it almost feels like analog gear, and I make crazier, more personal moves with it.
 
+<figure>
+  <img src="/blog/anotyne-nouel-interview/desk-side.jpg" alt="Anotyne at her desk on Audeze headphones, hands on an Avid S1, with a Yamaha NS10, a Manley Massive Passive and Hacienda Labs modules around her" width="1600" height="1200" loading="lazy">
+  <figcaption>The Avid S1, a Yamaha NS10, the Massive Passive and the Hacienda Labs modules.</figcaption>
+</figure>
+
 I used Ableton Live for composing for a long time, but at some point I noticed I enjoyed the music made in FL Studio more, so I tried it and now I'm fully into it. I have a template and I can make a beat in an hour. It's so fast, the pattern mode is far more musical, and the step sequencer is a must-have for me. When I change something in a pattern, it applies to every copy of that pattern in the song, which saves a lot of time and energy. I bought an MPC Live II at some point but sent it back. FL Studio sits somewhere between a machine and a DAW, and that feels more musical to me.
+
+<figure>
+  <img src="/blog/anotyne-nouel-interview/desk-mix.jpg" alt="Anotyne mixing on Audeze LCD-5 headphones, a session open on the screen, outboard racks and guitars around her" width="1600" height="1200" loading="lazy">
+  <figcaption>Mixing on the Audeze LCD-5s.</figcaption>
+</figure>
 
 My outboard has shrunk since Lyon. I still have a Prism Titan as my main converter, and some Hacienda Labs Studer preamps and EQs for tracking. I also record through a Bettermaker 232P: my Fender Precision bass sounds amazing through it, and I can recall the analog preset instantly. For mastering, I have a small analog chain: a Sontec DR-MQ5 parametric EQ, a Manley Massive Passive tube EQ and an Alan Smart C1 compressor. I use it on almost everything, but I also have a lot of really useful plugins.
 
@@ -141,6 +157,11 @@ Also, please know that every woman and queer artist I welcomed in my studio had 
 ### What are you working on right now?
 
 I'm finishing my new album, *TRAPPED IN THIS WRLD*, which comes out in 2027. I come from shoegaze, but I turned to rap for a year: I had a lot to say about what happened to me. I'm putting the last touches on the mastering right now.
+
+<figure>
+  <img src="/blog/anotyne-nouel-interview/press-moon-sword.jpg" alt="Anotyne with green hair, holding a sword under a full moon, lit in red" width="1100" height="1545" loading="lazy">
+  <figcaption>Anotyne, the artist.</figcaption>
+</figure>
 
 I'm also preparing a tour in early November with this new solo project. It will be my first solo tour. I've been touring since 2011, but always in rock bands. I'm happy I changed everything. I love the music I'm making right now, and I have so much freedom: I can switch between all my genres, ambient, trap, pop, and change my setlist depending on how I feel. I also feel freer not having to play guitar and sing at the same time. That used to take all my energy.
 
