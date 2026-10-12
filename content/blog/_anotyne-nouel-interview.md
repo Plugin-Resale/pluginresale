@@ -186,3 +186,5 @@ Here is what the developers say about reselling the plugins she mentions:
 - **Schwabe Digital HiFAL**: Schwabe Digital doesn't allow transfers. [Schwabe Digital transfer rules](/developers/schwabe-digital).
 
 TAPE-201 and Weiss Deess aren't in our list yet. Both developers are, so when you sell, you can add them yourself from the [Sell form](/sell). And if you're looking for one, search for it on [Browse](/browse) and set an alert: we'll email you as soon as someone lists it.
+
+*Photos courtesy of Anotyne Nouel.*

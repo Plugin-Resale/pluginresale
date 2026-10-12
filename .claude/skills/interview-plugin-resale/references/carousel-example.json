@@ -1,0 +1,66 @@
+{
+  "slug": "anotyne-nouel-interview",
+  "handle": "@anotyne.tv",
+  "slides": [
+    {
+      "type": "cover",
+      "photo": "portrait.jpg",
+      "name": "Anotyne<br>Nouel",
+      "subtitle": "Producer, mixing & mastering engineer, Marseille.<br>Sound Love Studio. Trained at Sigur Rós's studio."
+    },
+    {
+      "type": "quote",
+      "theme": "light",
+      "kicker": "Six months at Sigur Rós's studio",
+      "quote": "Being there, even in silence, really shaped me.",
+      "sub": "“Most of the time you have nothing to do, you're just listening. I didn't even notice, but I was learning so much.”"
+    },
+    {
+      "type": "quote",
+      "theme": "dark",
+      "kicker": "Mastering on headphones",
+      "quote": "Nowadays you could engineer sound with just a pair of headphones.",
+      "sub": "“It's like the closest possible nearfield, but with the sound of main monitors.” Audeze LCD-5 + Violectric V550 Pro, no correction."
+    },
+    {
+      "type": "photo",
+      "photo": "pro-tools.jpg",
+      "position": "30% center",
+      "kicker": "Her setup",
+      "quote": "Monitoring is the most important piece of gear in the studio.",
+      "sub": "Audeze LCD-5 · Yamaha NS10 · Avid S1 · Prism Titan<br>Mastering chain: Sontec → Manley Massive Passive → Smart C1"
+    },
+    {
+      "type": "list",
+      "theme": "light",
+      "kicker": "Her plugins",
+      "items": [
+        {"title": "Arturia TAPE-201", "tag": "Delay", "text": "“My favourite delay, and I love delays. I almost always spread it in stereo.”"},
+        {"title": "UAD Manley Massive Passive", "tag": "EQ", "text": "“Recalling the hardware is a pain. Being able to just drop the plugin on the master bus is easier.”"},
+        {"title": "Uni-L · AL-1 · HiFAL · Sima", "tag": "Mastering", "text": "Limiters, high-frequency limiter and clipper, next to Weiss Deess, ATR-102 and Pro-Q 4."}
+      ]
+    },
+    {
+      "type": "quote",
+      "theme": "dark",
+      "kicker": "EQ and compression on the way in",
+      "quote": "Please commit!",
+      "sub": "“The sound I put in the computer should already be as close as possible to what I want. Less work, cleaner sound.”"
+    },
+    {
+      "type": "quote",
+      "theme": "light",
+      "kicker": "For women and queer engineers",
+      "quote": "Just do it! Don't wait for anyone's validation.",
+      "sub": "“A lot of women and queer artists desperately need people like us when it's time to produce their record.”"
+    },
+    {
+      "type": "end",
+      "photo": "press-moon-sword.jpg",
+      "position": "center 20%",
+      "kicker": "Sous-mixées",
+      "quote": "We're stronger and harder to break when we have each other's backs.",
+      "sub": "Full interview on our blog, link in bio · Follow <b>@anotyne.tv</b>"
+    }
+  ]
+}
