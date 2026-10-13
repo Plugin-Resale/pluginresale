@@ -27,7 +27,7 @@ import { getCurrentUser } from "@/lib/supabase/user";
 import { buyerFeeNote } from "@/lib/transfer-fee";
 import { setListingStatus } from "../../account/actions";
 import { startDeal } from "../../deals/actions";
-import { setListingProof } from "./actions";
+import { setListingPrice, setListingProof } from "./actions";
 
 const BUY_ERRORS: Record<string, string> = {
   unavailable: "Someone just reserved this license. It may come back if their purchase is cancelled.",
@@ -254,6 +254,31 @@ export default async function ListingPage({
             )}
             {isSeller && listing.status === "active" && (
               <ShareButton {...share} label="Share my listing" className="btn btn-primary btn-lg" />
+            )}
+            {isSeller && (listing.status === "active" || listing.status === "removed") && (
+              <form action={setListingPrice} className="price-edit">
+                <input type="hidden" name="listing_id" value={listing.id} />
+                <label htmlFor="new-price" className="field-label">
+                  Change price (€)
+                </label>
+                <div className="price-edit-row">
+                  <input
+                    id="new-price"
+                    name="price"
+                    className="input"
+                    type="number"
+                    inputMode="decimal"
+                    min={1}
+                    max={10000}
+                    step={0.01}
+                    defaultValue={Number(listing.price_eur)}
+                    required
+                  />
+                  <button className="btn" type="submit">
+                    Update
+                  </button>
+                </div>
+              </form>
             )}
             {isSeller ? (
               <form action={setListingStatus}>

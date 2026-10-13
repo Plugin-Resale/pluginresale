@@ -29,6 +29,25 @@ export async function getAlertSubscribers(pluginId: number) {
   return data.map((row) => row.user_id as string);
 }
 
+export type PriceReminder = {
+  listing_id: number;
+  seller_id: string;
+  developer_name: string;
+  plugin_name: string;
+  price_eur: number;
+};
+
+// Listings still active 14 days after going live, marked as reminded as they are returned
+// (claim_price_reminders, migration 0068): each one is only ever returned once.
+export async function claimPriceReminders() {
+  const { data, error } = await admin.rpc("claim_price_reminders");
+  if (error) {
+    console.error("claim_price_reminders failed:", error.message);
+    return [];
+  }
+  return data as PriceReminder[];
+}
+
 // Called after delete_my_account() has anonymised the profile. Deleting the auth user erases
 // the email for good; when past deals, messages or reviews still point to the profile, the
 // database refuses it, so the email is replaced instead and the account banned from signing in.

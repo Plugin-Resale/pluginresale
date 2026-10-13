@@ -36,3 +36,19 @@ export async function setListingProof(formData: FormData) {
   }
   revalidatePath(`/listings/${id}`);
 }
+
+// The seller changes the price of their own listing (same rules as the Sell form).
+// RLS only lets the seller update it while the listing is active or removed: a reserved
+// listing keeps its price, and a deal keeps the price it was bought at.
+export async function setListingPrice(formData: FormData) {
+  const id = Number(formData.get("listing_id"));
+  const raw = String(formData.get("price") ?? "").trim().replace(",", ".");
+  const price = Number(raw);
+  if (!Number.isInteger(id) || id <= 0) return;
+  if (!/^\d+(\.\d{1,2})?$/.test(raw) || price < 1 || price > 10000) return;
+
+  const supabase = await createClient();
+  const { error } = await supabase.from("listings").update({ price_eur: price }).eq("id", id);
+  if (error) console.error("set price failed:", error.message);
+  revalidatePath("/", "layout");
+}

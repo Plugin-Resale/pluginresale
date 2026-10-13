@@ -2360,3 +2360,19 @@ img.avatar {
   color: var(--muted);
   line-height: 1.6;
 }
+
+.price-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.price-edit-row {
+  display: flex;
+  gap: 8px;
+}
+
+.price-edit-row .input {
+  flex: 1;
+  min-width: 0;
+}
