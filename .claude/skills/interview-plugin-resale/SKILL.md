@@ -45,7 +45,7 @@ Body, in this order:
 - Link each plugin mentioned to its page when it is in the catalogue: run `node --env-file=.env.local .claude/skills/interview-plugin-resale/scripts/catalogue-lookup.mjs "<name>" ...` and use the `/developers/<dev>/<plugin>` path it prints (check it is the same product and major version).
 - "Where can people follow you" as a bullet list with their links.
 - Then `---` and `## <First name>'s plugins, second-hand`: one bullet per developer of the plugins they mention, with the transfer rules (transferable or not, fee, who pays, how) taken **only** from the lookup output / the developer's official page, never from memory, plus a link to `/developers/<dev>`. If a plugin is not in the catalogue but its developer is, say sellers can add it from the [Sell form](/sell). Close with the Browse/alert + Sell sentence used in the previous interviews.
-- Last line: `*Photos courtesy of <Name>.*` (no photographer credit, Victor's choice).
+- Last line: `*Photos courtesy of <Name>.*` (no photographer credit by default, Victor's choice; if the guest asks for one, credit the photographer there instead and in the social captions).
 - Use the guest's pronouns as they state them; if unclear, write around pronouns.
 
 Victor usually wants to see the text before the guest: a quick PDF of the draft is the same preview script (step 3) without slides.
