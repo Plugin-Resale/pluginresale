@@ -75,7 +75,9 @@ python3 -I .claude/skills/interview-plugin-resale/scripts/carousel.py <config.js
 
 Read the contact sheet it prints and fix anything cut, overlapping or badly cropped (`position`, `size`, shorter text).
 
-**Preview PDF** (article + carousel in one file, what the guest approves):
+**Caption.** Write the Instagram caption now, not at scheduling time: the preview must contain it (Victor, 2026-10-13). Same style as the previous interview post in Schedchie: "Interview: <Name> (@handle) <emoji>", 1-2 lines on who they are, "We talked about ...: swipe →", "Full interview on our blog, link in bio.", photographer credits if the guest asked for them, 5 hashtags. Save it as `public/blog/<slug>/instagram/caption.txt` (committed with the slides). The Facebook version is the same text with the direct article URL instead of "link in bio" and without "swipe →".
+
+**Preview PDF** (article + carousel + Instagram caption in one file, what the guest approves; the script reads `caption.txt` and warns if it is missing):
 
 ```
 node .claude/skills/interview-plugin-resale/scripts/preview-pdf.mjs <slug>
@@ -87,7 +89,7 @@ It writes `~/Downloads/<Name>-interview-Plugin-Resale-preview.pdf`. Send it to V
 
 - Date: two interviews a week, on Tuesday and Friday (Victor, 2026-10-13, slowed down from one every 2 days); take the next free Tuesday or Friday after the latest scheduled interview (`grep -l interview content/blog/*.md` + their `date:`), and say which date to Victor. A post dated in the future appears by itself that day (Paris time).
 - `git mv` the draft to `content/blog/<slug>.md` (drop the `_`), set `date:`, commit + push.
-- Schedchie (group "Plugin Resale"): one post at 18:00 Paris on the publication day for Instagram `pluginresale.official` (17841427360261023) and Facebook "Plugin Resale" (1310570985477213). Slides uploaded with `upload_media` from `https://raw.githubusercontent.com/Plugin-Resale/pluginresale/main/public/blog/<slug>/instagram/slide-N.jpg` (the repo is public; pluginresale.com may challenge bots). Instagram: caption ends with "link in bio", guest invited with `instagram_collaborators` (username without @). Facebook: `facebook_description` with the direct article URL instead of "link in bio". Look at the previous interview post in Schedchie for the caption style. If another post already holds that 18:00 slot, move it to the next day rather than doubling up.
+- Schedchie (group "Plugin Resale"): one post at 18:00 Paris on the publication day for Instagram `pluginresale.official` (17841427360261023) and Facebook "Plugin Resale" (1310570985477213). Slides uploaded with `upload_media` from `https://raw.githubusercontent.com/Plugin-Resale/pluginresale/main/public/blog/<slug>/instagram/slide-N.jpg` (the repo is public; pluginresale.com may challenge bots). Instagram: the approved `caption.txt` text as is, guest invited with `instagram_collaborators` (username without @). Facebook: `facebook_description` = the same text with the direct article URL instead of "link in bio" (and no "swipe →"). If the caption changes after approval, update `caption.txt` too. If another post already holds that 18:00 slot, move it to the next day rather than doubling up.
 
 ## 5. Bookkeeping
 

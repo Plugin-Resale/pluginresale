@@ -3,8 +3,8 @@
 //
 // Usage (from the repo root):
 //   node .claude/skills/interview-plugin-resale/scripts/preview-pdf.mjs <slug>
-// Reads content/blog/_<slug>.md (or <slug>.md) and public/blog/<slug>/instagram/slide-N.jpg,
-// writes ~/Downloads/<Slug-In-Title-Case>-Plugin-Resale-preview.pdf and prints its page count.
+// Reads content/blog/_<slug>.md (or <slug>.md), public/blog/<slug>/instagram/slide-N.jpg and the
+// Instagram caption in public/blog/<slug>/instagram/caption.txt (shown under the slides), writes ~/Downloads/<Slug-In-Title-Case>-Plugin-Resale-preview.pdf and prints its page count.
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -30,10 +30,14 @@ const carDir = path.join(pub, "blog", slug, "instagram");
 const slides = fs.existsSync(carDir)
   ? fs.readdirSync(carDir).filter((f) => /^slide-\d+\.jpg$/.test(f)).sort((a, b) => parseInt(a.slice(6)) - parseInt(b.slice(6)))
   : [];
+const captionFile = path.join(carDir, "caption.txt");
+const caption = fs.existsSync(captionFile) ? fs.readFileSync(captionFile, "utf8").trim() : "";
+if (slides.length && !caption) console.warn(`warning: no ${path.relative(repo, captionFile)}, the preview has no caption`);
+const esc = (t) => t.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 const carousel = slides.length
   ? `<section class="car"><h2>Instagram / Facebook carousel</h2><div class="meta">${slides.length} slides, 1080 × 1350</div><div class="grid">${slides
       .map((f, i) => `<div><img src="file://${carDir}/${f}"><span>${i + 1}/${slides.length}</span></div>`)
-      .join("")}</div></section>`
+      .join("")}</div>${caption ? `<h3>Instagram caption</h3><div class="caption">${esc(caption)}</div>` : ""}</section>`
   : "";
 
 const htmlPage = `<!doctype html><html><head><meta charset="utf-8"><style>
@@ -49,6 +53,7 @@ a{color:#C2410C}figure{margin:16px 0;break-inside:avoid}figure img{width:100%;he
 figure img[height]{max-height:150mm;width:auto;max-width:100%}
 figcaption{font-size:9pt;color:#55545C;margin-top:4px}hr{border:0;border-top:1px solid #D9D4C9;margin:28px 0}
 .car{break-before:page}.car h2{margin-top:0}.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.caption{white-space:pre-wrap;font-size:10pt;border:1px solid #D9D4C9;border-radius:8px;padding:12px 14px;background:#F2EFE8;break-inside:avoid}
 .grid div{break-inside:avoid}.grid img{width:100%;border-radius:4px;border:1px solid #D9D4C9}.grid span{font-family:'IBM Plex Mono';font-size:8pt;color:#55545C}
 </style></head><body><div class="brand">plugin<span>resale</span></div><div class="meta">Preview · Interview · pluginresale.com/blog</div><h1>${title}</h1>${body}${carousel}</body></html>`;
 
