@@ -22,7 +22,7 @@ It was thirteen years ago actually. I needed to do an internship at the end of m
 
 Sigur Rós's studio is really the nicest production studio I've ever been to. They had all the mics (U47s, U67s, AEA R84s...), so many guitars, amps, synths, pianos, organs. It was really crazy. They had a lot of cool outboard too, like a Roland RE-201 tape delay, a Manley Massive Passive, a Smart C2 compressor, an AMS RMX16 reverb...
 
-I spent a lot of time at the studio when there were no sessions, mixing and mastering my own projects. I did a really cool experiment: I composed and recorded an album in my bedroom in Reykjavik with only a Shure SM57 (the classic cheap dynamic mic), a Casio SK-1 toy synth and a broken electric guitar I couldn't plug in, and used Sigur Rós's studio to mix and master it. It's called *Let's Freeze Our Feelings and Split the Hate*. I still love it. I used the Neve console there to sum my mixes, with the Massive Passive and the Smart C2 on the master bus on every song. That AMS reverb was so nice, it was on all the mixes. We also had Dynaudio BM15As. I really liked them in that room, everything I did there sounded really nice.
+I spent a lot of time at the studio when there were no sessions, mixing and mastering my own projects. I did a really cool experiment: I composed and recorded an album in my bedroom in Reykjavik with only a Shure SM57 (the classic cheap dynamic mic), a Casio SK-1 toy synth and a broken electric guitar I couldn't plug in, and used Sigur Rós's studio to mix and master it. It's called *Let's Freeze Our Feelings and Split the Hate*. I still love it. I used the Neve console there to sum my mixes, with the Massive Passive and the Smart C2 on the master bus on every song. That AMS reverb was so nice, it was on all the mixes. We also had Dynaudio BM15A speakers. I really liked them in that room, everything I did there sounded really nice.
 
 Spending that much time in a pro studio is what showed me I was made to live this life. I was there almost every day, either on my own or with Birgir Jón Birgisson, the studio's main engineer. He even offered me the job of studio assistant at the end, but my first band had just started touring and I really wanted to go back to my life in France. Being able to hear all those instruments, mics and effects really helped me make my choices later on.
 
@@ -187,4 +187,4 @@ Here is what the developers say about reselling the plugins she mentions:
 
 TAPE-201 and Weiss Deess aren't in our list yet. Both developers are, so when you sell, you can add them yourself from the [Sell form](/sell). And if you're looking for one, search for it on [Browse](/browse) and set an alert: we'll email you as soon as someone lists it.
 
-*Photos courtesy of Anotyne Nouel.*
+*Studio photos: Alejandra Perez Velasco. Artist photo: Manon Tombe.*
