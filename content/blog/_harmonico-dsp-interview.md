@@ -1,7 +1,7 @@
 ---
 title: "Nicolas Barreau (HARMONICO dsp) on borrowing from physics, adaptive tilt EQ and building plugins as a working engineer"
 description: Paris engineer Nicolas Barreau talks about going from building acoustics to the studio, why he started HARMONICO dsp, how Spectral Mass Rebalance tilts around a moving pivot, his four plugins (including the free widener Airy), and Rayleigh, the depth tool coming in November.
-date: 2026-10-16
+date: 2026-10-20
 image: /blog/harmonico-dsp-interview/portrait.jpg
 ---
 

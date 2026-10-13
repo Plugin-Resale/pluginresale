@@ -85,7 +85,7 @@ It writes `~/Downloads/<Name>-interview-Plugin-Resale-preview.pdf`. Send it to V
 
 ## 4. Publishing (only once the guest has approved)
 
-- Date: one interview every 2 days in October 2026; take the next free slot after the latest scheduled interview (`grep -l interview content/blog/*.md` + their `date:`), and say which date to Victor. A post dated in the future appears by itself that day (Paris time).
+- Date: two interviews a week, on Tuesday and Friday (Victor, 2026-10-13, slowed down from one every 2 days); take the next free Tuesday or Friday after the latest scheduled interview (`grep -l interview content/blog/*.md` + their `date:`), and say which date to Victor. A post dated in the future appears by itself that day (Paris time).
 - `git mv` the draft to `content/blog/<slug>.md` (drop the `_`), set `date:`, commit + push.
 - Schedchie (group "Plugin Resale"): one post at 18:00 Paris on the publication day for Instagram `pluginresale.official` (17841427360261023) and Facebook "Plugin Resale" (1310570985477213). Slides uploaded with `upload_media` from `https://raw.githubusercontent.com/Plugin-Resale/pluginresale/main/public/blog/<slug>/instagram/slide-N.jpg` (the repo is public; pluginresale.com may challenge bots). Instagram: caption ends with "link in bio", guest invited with `instagram_collaborators` (username without @). Facebook: `facebook_description` with the direct article URL instead of "link in bio". Look at the previous interview post in Schedchie for the caption style. If another post already holds that 18:00 slot, move it to the next day rather than doubling up.
 
