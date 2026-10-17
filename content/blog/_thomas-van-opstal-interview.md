@@ -121,7 +121,7 @@ I'm trying to repair a classic Xbox from 2002, but it looks like it's a bit abov
 
 ### Where can people follow you and hear your work?
 
-- Instagram: [@HANDLE](https://www.instagram.com/HANDLE/)
+- Instagram: [@thomasvopstal](https://www.instagram.com/thomasvopstal/)
 
 ---
 
