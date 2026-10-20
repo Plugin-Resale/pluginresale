@@ -474,6 +474,71 @@ main {
   border-color: var(--ink);
 }
 
+/* Blog index: one visual per post, on top on phones, on the left from 600px. */
+.post-card-cover {
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+.post-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 24px 24px;
+  min-width: 0;
+}
+
+.post-thumb {
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: var(--ink);
+  overflow: hidden;
+}
+
+.post-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-thumb-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  color: var(--ground);
+}
+
+.post-thumb-kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e8875a;
+}
+
+.post-thumb-label {
+  font-family: var(--font-display), sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 600px) {
+  .post-card-cover {
+    flex-direction: row;
+  }
+
+  .post-thumb {
+    flex: 0 0 240px;
+    aspect-ratio: auto;
+    min-height: 180px;
+  }
+}
+
 .post-card-title {
   font-family: var(--font-display), system-ui, sans-serif;
   font-size: 24px;
