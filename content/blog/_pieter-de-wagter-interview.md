@@ -110,6 +110,16 @@ My go-to plugins are [FabFilter Pro-Q 4](/developers/fabfilter/pro-q-4), [iZotop
 
 I use them for the more technical part of mastering. Usually on the master bus, but sometimes already on the original mix, before it goes through the analog gear.
 
+<figure>
+  <img src="/blog/pieter-de-wagter-interview/pro-q-4.jpg" alt="FabFilter Pro-Q 4 interface: a high-pass filter and one band on a flat curve over a spectrum analyzer" width="1300" height="782" loading="lazy">
+  <figcaption>FabFilter Pro-Q 4, his EQ for the technical fixes.</figcaption>
+</figure>
+
+<figure>
+  <img src="/blog/pieter-de-wagter-interview/limitless.jpg" alt="DMG Audio Limitless interface: threshold, ceiling and release settings on the left, a multiband spectrum in the middle and loudness meters on the right" width="1600" height="886" loading="lazy">
+  <figcaption>DMG Audio Limitless, one of his three limiters.</figcaption>
+</figure>
+
 ### Is there any piece of gear or software you bought and almost never used?
 
 I'm not going to name analog gear I bought and never used because it wasn't good enough. But I have a few units that are a bit of a luxury, because they are expensive and I don't use them on every project:
