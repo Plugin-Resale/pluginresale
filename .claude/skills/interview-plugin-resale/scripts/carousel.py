@@ -14,9 +14,11 @@
 #   list  : theme, kicker, items: [{title, tag, text}]  (2 to 4 items)
 #   answer: theme, kicker, question, paragraphs: [...], [size]  (a whole Q&A on one slide: the
 #           question as the title, the guest's full answer below, no quote marks; size = answer
-#           font size, default 34, lower it for long answers)
+#           font size, default 34, lower it for long answers; question may be "" on a second slide
+#           that continues a long answer)
 #   shot  : theme, image, kicker, title, text  (a plugin screenshot on top, its name and the guest's
-#           words about it below; image is a file in public/blog/<slug>/, transparent PNG is fine)
+#           words about it below; image is a file in public/blog/<slug>/, transparent PNG is fine;
+#           [imgh] = max image height, default 520, lower it when the text is long)
 #   end   : like photo, footer shows pluginresale.com/blog and sub should say
 #           "Full interview on our blog, link in bio · Follow @handle"
 # "photo" is a file name inside public/blog/<slug>/. "position" is a CSS background-position.
@@ -111,10 +113,10 @@ def render(i, s):
     if t == "answer":
         body = "".join(f'<p style="font-size:{s.get("size", 34)}px;line-height:1.45;margin-top:26px">{esc(x)}</p>' for x in s["paragraphs"])
         return s.get("theme", "light"), LOGO + f'''<div class="mid"><div class="kick">{esc(s["kicker"])}</div>
-<h1 style="font-size:60px;margin-bottom:22px">{esc(s["question"])}</h1>{body}</div>''' + foot(i)
+{f'<h1 style="font-size:60px;margin-bottom:22px">{esc(s["question"])}</h1>' if s["question"] else ""}{body}</div>''' + foot(i)
     if t == "shot":
         return s.get("theme", "dark"), LOGO + f'''<div class="mid" style="padding-bottom:20px">
-<img src="file://{photo_dir}/{s["image"]}" style="max-width:100%;max-height:520px;object-fit:contain;align-self:center;border-radius:12px;margin-bottom:56px">
+<img src="file://{photo_dir}/{s["image"]}" style="max-width:100%;max-height:{s.get("imgh", 520)}px;object-fit:contain;align-self:center;border-radius:12px;margin-bottom:56px">
 <div class="kick">{esc(s["kicker"])}</div><h1 style="font-size:64px">{esc(s["title"])}</h1>
 <p class="sub" style="margin-top:28px">{esc(s["text"])}</p></div>''' + foot(i)
     raise SystemExit(f"unknown slide type {t}")
