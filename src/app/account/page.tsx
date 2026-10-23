@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { formatPrice, type ListingCard } from "@/lib/catalog";
 import { DEAL_STATUS_LABELS, type Deal } from "@/lib/deals";
 import type { Message } from "@/lib/messages";

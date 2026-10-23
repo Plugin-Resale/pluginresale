@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { getCurrentUser } from "@/lib/supabase/user";
 
 export async function Header() {

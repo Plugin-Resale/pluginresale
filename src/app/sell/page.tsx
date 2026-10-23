@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { signInUrl } from "@/lib/next-path";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { redirect } from "next/navigation";
 import { DEVELOPER_COLUMNS, type Developer } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/server";

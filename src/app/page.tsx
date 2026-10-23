@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { ListingGrid } from "@/components/ListingCard";
 import { CATEGORIES, type ListingCard } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/server";

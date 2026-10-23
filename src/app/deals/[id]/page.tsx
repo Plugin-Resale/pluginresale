@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { signInUrl } from "@/lib/next-path";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { notFound, redirect } from "next/navigation";
 import { TransferRules } from "@/components/TransferRules";
 import {

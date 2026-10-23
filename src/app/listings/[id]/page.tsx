@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { signInUrl } from "@/lib/next-path";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { cache } from "react";
 import { notFound } from "next/navigation";
 import { Avatar } from "@/components/Avatar";

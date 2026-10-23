@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { TransferBadge } from "@/components/TransferBadge";
 import { DEVELOPER_COLUMNS, type Developer } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/server";

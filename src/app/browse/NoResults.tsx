@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { BuyNew } from "@/components/BuyNew";
 import type { ShopLinks } from "@/lib/catalog";
 import { createAlert } from "./actions";

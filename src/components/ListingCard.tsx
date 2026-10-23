@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { formatPrice, type ListingCard as Listing } from "@/lib/catalog";
 import { pluginImageUrl } from "@/lib/images";
 import { Rating } from "./Rating";

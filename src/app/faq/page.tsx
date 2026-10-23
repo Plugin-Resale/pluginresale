@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/Link";
 import type { ReactNode } from "react";
 import { getAllPosts } from "@/lib/blog";
 import { FaqAutoOpen } from "./FaqAutoOpen";

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { redirect } from "next/navigation";
 import { ListingGrid } from "@/components/ListingCard";
 import { CATEGORIES, type Category, type ListingCard } from "@/lib/catalog";
