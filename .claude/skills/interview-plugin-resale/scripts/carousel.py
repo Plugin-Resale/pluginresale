@@ -12,10 +12,20 @@
 #   quote : theme ("light"|"dark"), kicker, quote, sub, [size]
 #   photo : photo, kicker, quote, sub, [position], [size]  (photo full bleed, text at the bottom)
 #   list  : theme, kicker, items: [{title, tag, text}]  (2 to 4 items)
+#   answer: theme, kicker, question, paragraphs: [...], [size]  (a whole Q&A on one slide: the
+#           question as the title, the guest's full answer below, no quote marks; size = answer
+#           font size, default 34, lower it for long answers)
+#   shot  : theme, image, kicker, title, text  (a plugin screenshot on top, its name and the guest's
+#           words about it below; image is a file in public/blog/<slug>/, transparent PNG is fine)
 #   end   : like photo, footer shows pluginresale.com/blog and sub should say
 #           "Full interview on our blog, link in bio · Follow @handle"
 # "photo" is a file name inside public/blog/<slug>/. "position" is a CSS background-position.
-# Quotes get the orange quote marks automatically: write them without quote marks.
+# Quotes get the orange quote marks automatically: write them without quote marks. "marks": false
+# on a quote/photo/end slide drops them (a question, or our own text rather than the guest's).
+# Cover options: "kicker" (default "Interview") and "size" (name font size, default 118).
+# Top-level "out" (default "instagram") = the folder under public/blog/<slug>/ the slides go to:
+# use another one (e.g. "instagram-extract-netflix") for a later post made from the same interview,
+# so the original carousel is not overwritten.
 import json, os, subprocess, sys, tempfile, html as h
 from PIL import Image
 
@@ -25,7 +35,7 @@ slug, handle = cfg["slug"], cfg["handle"]
 slides = cfg["slides"]
 N = len(slides)
 photo_dir = os.path.abspath(os.path.join("public", "blog", slug))
-out_dir = os.path.join(photo_dir, "instagram")
+out_dir = os.path.join(photo_dir, cfg.get("out", "instagram"))
 os.makedirs(out_dir, exist_ok=True)
 tmp = tempfile.mkdtemp(prefix="carousel-")
 
@@ -66,8 +76,8 @@ def size(s, photo=False):
         return 72 if n <= 50 else 64 if n <= 80 else 56
     return 150 if n <= 20 else 88 if n <= 50 else 80 if n <= 75 else 68
 
-def q(t):
-    return f'<span class="o">“</span>{esc(t)}<span class="o">”</span>'
+def q(t, marks=True):
+    return f'<span class="o">“</span>{esc(t)}<span class="o">”</span>' if marks else esc(t)
 
 LOGO = '<div class="logo">plugin<span>resale</span></div>'
 
@@ -84,20 +94,29 @@ def render(i, s):
     if t == "cover":
         pos = s.get("position", "center 38%")
         return "light", f'''<div style="position:absolute;top:0;left:0;right:0;height:735px;background:url('file://{photo_dir}/{s["photo"]}') {pos}/cover"></div>
-<div style="position:absolute;left:72px;right:72px;top:800px"><div class="kick">Interview</div>
-<h1 style="font-size:118px;line-height:.98">{esc(s["name"])}</h1>
+<div style="position:absolute;left:72px;right:72px;top:800px"><div class="kick">{esc(s.get("kicker", "Interview"))}</div>
+<h1 style="font-size:{s.get("size", 118)}px;line-height:.98">{esc(s["name"])}</h1>
 <p class="sub" style="margin-top:30px;font-size:30px">{esc(s["subtitle"])}</p></div>
 <div class="foot" style="opacity:1"><span style="font-family:'Bricolage Grotesque';font-weight:700;font-size:32px">plugin<span style="color:#C2410C">resale</span></span><span style="color:#C2410C">Swipe →</span></div>'''
     if t == "quote":
         return s.get("theme", "light"), LOGO + f'''<div class="mid"><div class="kick">{esc(s["kicker"])}</div>
-<h1 style="font-size:{size(s)}px">{q(s["quote"])}</h1><p class="sub">{esc(s.get("sub", ""))}</p></div>''' + foot(i)
+<h1 style="font-size:{size(s)}px">{q(s["quote"], s.get("marks", True))}</h1><p class="sub">{esc(s.get("sub", ""))}</p></div>''' + foot(i)
     if t in ("photo", "end"):
         left = "pluginresale.com/blog" if t == "end" else None
         return "dark", bg(s) + LOGO + f'''<div class="bottom"><div class="kick">{esc(s["kicker"])}</div>
-<h1 style="font-size:{size(s, True)}px">{q(s["quote"])}</h1><p class="sub">{esc(s.get("sub", ""))}</p></div>''' + foot(i, left)
+<h1 style="font-size:{size(s, True)}px">{q(s["quote"], s.get("marks", True))}</h1><p class="sub">{esc(s.get("sub", ""))}</p></div>''' + foot(i, left)
     if t == "list":
         items = "".join(f'<div class="item"><h2>{esc(it["title"])}</h2><div class="tag">{esc(it["tag"])}</div><p>{esc(it["text"])}</p></div>' for it in s["items"])
         return s.get("theme", "light"), LOGO + f'<div class="mid"><div class="kick">{esc(s["kicker"])}</div>{items}</div>' + foot(i)
+    if t == "answer":
+        body = "".join(f'<p style="font-size:{s.get("size", 34)}px;line-height:1.45;margin-top:26px">{esc(x)}</p>' for x in s["paragraphs"])
+        return s.get("theme", "light"), LOGO + f'''<div class="mid"><div class="kick">{esc(s["kicker"])}</div>
+<h1 style="font-size:60px;margin-bottom:22px">{esc(s["question"])}</h1>{body}</div>''' + foot(i)
+    if t == "shot":
+        return s.get("theme", "dark"), LOGO + f'''<div class="mid" style="padding-bottom:20px">
+<img src="file://{photo_dir}/{s["image"]}" style="max-width:100%;max-height:520px;object-fit:contain;align-self:center;border-radius:12px;margin-bottom:56px">
+<div class="kick">{esc(s["kicker"])}</div><h1 style="font-size:64px">{esc(s["title"])}</h1>
+<p class="sub" style="margin-top:28px">{esc(s["text"])}</p></div>''' + foot(i)
     raise SystemExit(f"unknown slide type {t}")
 
 for i, s in enumerate(slides, 1):
