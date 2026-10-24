@@ -5,7 +5,8 @@
 // Usage (from the repo root):
 //   node --env-file=.env.local supabase/scripts/set-plugin-image.mjs <plugin id> <url>          (preview only)
 //   node --env-file=.env.local supabase/scripts/set-plugin-image.mjs <plugin id> <url> --save
-import { writeFile } from "node:fs/promises";
+// <url> can also be a local image file (an official visual Victor saved himself).
+import { readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import sharp from "sharp";
@@ -47,12 +48,19 @@ const { data: plugin, error: pluginError } = await admin
   .single();
 if (pluginError) throw pluginError;
 
-const imageUrl = await findImageUrl(pageUrl);
-const res = await fetch(imageUrl, { headers: HEADERS, signal: AbortSignal.timeout(20000) });
-const type = (res.headers.get("content-type") ?? "").split(";")[0].trim();
-const ext = TYPES[type];
-if (!res.ok || !ext) throw new Error(`${imageUrl}: HTTP ${res.status}, type ${type}`);
-const bytes = Buffer.from(await res.arrayBuffer());
+let imageUrl, ext, bytes;
+if (/^https?:\/\//i.test(pageUrl)) {
+  imageUrl = await findImageUrl(pageUrl);
+  const res = await fetch(imageUrl, { headers: HEADERS, signal: AbortSignal.timeout(20000) });
+  const type = (res.headers.get("content-type") ?? "").split(";")[0].trim();
+  ext = TYPES[type];
+  if (!res.ok || !ext) throw new Error(`${imageUrl}: HTTP ${res.status}, type ${type}`);
+  bytes = Buffer.from(await res.arrayBuffer());
+} else {
+  imageUrl = pageUrl;
+  bytes = await readFile(pageUrl);
+  ext = (await sharp(bytes).metadata()).format;
+}
 if (bytes.length > 5 * 1024 * 1024) throw new Error(`${imageUrl}: larger than 5 MB`);
 
 const preview = join(tmpdir(), `plugin-${plugin.id}.${ext}`);
