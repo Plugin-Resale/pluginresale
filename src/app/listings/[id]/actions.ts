@@ -52,3 +52,21 @@ export async function setListingPrice(formData: FormData) {
   if (error) console.error("set price failed:", error.message);
   revalidatePath("/", "layout");
 }
+
+// The seller edits the version and description of their own listing (same limits as the
+// Sell form). Same RLS as the price: active or removed listings only.
+export async function setListingDetails(formData: FormData) {
+  const id = Number(formData.get("listing_id"));
+  const version = String(formData.get("version") ?? "").trim();
+  const description = String(formData.get("description") ?? "").trim();
+  if (!Number.isInteger(id) || id <= 0) return;
+  if (version.length > 30 || description.length > 2000) return;
+
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("listings")
+    .update({ version: version || null, description })
+    .eq("id", id);
+  if (error) console.error("set details failed:", error.message);
+  revalidatePath("/", "layout");
+}

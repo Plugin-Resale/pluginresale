@@ -939,6 +939,11 @@ main {
   margin-top: 20px;
 }
 
+/* Lines up with the checkbox label text (18px box + 10px gap). */
+.check-hint {
+  margin: -4px 0 0 28px;
+}
+
 .check input {
   width: 18px;
   height: 18px;
@@ -2375,4 +2380,30 @@ img.avatar {
 .price-edit-row .input {
   flex: 1;
   min-width: 0;
+}
+
+.details-edit {
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.details-edit summary {
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.details-edit form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.details-edit .input {
+  width: 100%;
+}
+
+.details-edit .btn {
+  margin-top: 8px;
 }

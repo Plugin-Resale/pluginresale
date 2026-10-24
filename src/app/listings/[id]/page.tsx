@@ -27,7 +27,7 @@ import { getCurrentUser } from "@/lib/supabase/user";
 import { buyerFeeNote } from "@/lib/transfer-fee";
 import { setListingStatus } from "../../account/actions";
 import { startDeal } from "../../deals/actions";
-import { setListingPrice, setListingProof } from "./actions";
+import { setListingDetails, setListingPrice, setListingProof } from "./actions";
 
 const BUY_ERRORS: Record<string, string> = {
   unavailable: "Someone just reserved this license. It may come back if their purchase is cancelled.",
@@ -225,6 +225,38 @@ export default async function ListingPage({
             <p className="seller-note">
               {listing.description || "The seller didn't add a description."}
             </p>
+            {isSeller && (listing.status === "active" || listing.status === "removed") && (
+              <details className="details-edit">
+                <summary>Edit version and description</summary>
+                <form action={setListingDetails}>
+                  <input type="hidden" name="listing_id" value={listing.id} />
+                  <label htmlFor="edit-version" className="field-label">
+                    Version (optional)
+                  </label>
+                  <input
+                    id="edit-version"
+                    name="version"
+                    className="input"
+                    placeholder="e.g. 3.2"
+                    maxLength={30}
+                    defaultValue={listing.version ?? ""}
+                  />
+                  <label htmlFor="edit-description" className="field-label">
+                    Description
+                  </label>
+                  <textarea
+                    id="edit-description"
+                    name="description"
+                    className="input textarea"
+                    maxLength={2000}
+                    defaultValue={listing.description}
+                  />
+                  <button className="btn" type="submit">
+                    Save changes
+                  </button>
+                </form>
+              </details>
+            )}
           </section>
 
           {developer && <TransferRules developer={developer} />}

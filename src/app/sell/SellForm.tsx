@@ -392,6 +392,11 @@ export function SellForm({
             <input type="checkbox" name="private_seller" required />I&apos;m selling as a private
             individual, not as part of a business.
           </label>
+          <p className="hint check-hint">
+            Musicians, producers, studios and teachers selling licenses they bought for their own
+            use are private sellers, whatever their job. Not allowed: shops, resellers, developers,
+            or anyone buying licenses to resell them.
+          </p>
         </div>
 
         {state.error && <p className="notice notice-error">{state.error}</p>}
