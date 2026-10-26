@@ -9,6 +9,11 @@ Emilie Daelemans is a mastering engineer based in Maisons-Alfort, just outside P
 
 We talked about how she got into mastering, what she learned in Brooklyn, her hybrid chain and why compression stays analog, the plugins she relies on, and how playing music shapes the way she listens to a mix.
 
+<figure>
+  <img src="/blog/emilie-daelemans-interview/portrait.jpg" alt="Emilie Daelemans standing by her mastering desk, a speaker and a string of fairy lights behind her" width="853" height="1280">
+  <figcaption>Emilie Daelemans in her studio.</figcaption>
+</figure>
+
 ## Getting started
 
 ### How did you get into sound in the first place?
@@ -31,6 +36,11 @@ I also learned a lot about gear and how a mastering studio is set up. At the tim
 
 I'm listening on a pair of Amphion Two18. Adapting to them was quick, because I used to work on them during my assistant years at Studio Ferber. I really like the clarity and the simplicity of their sound.
 
+<figure>
+  <img src="/blog/emilie-daelemans-interview/room.jpg" alt="A wooden mastering desk with outboard gear between two black speakers on stands, a vintage keyboard on the left" width="1280" height="853" loading="lazy">
+  <figcaption>The mastering desk, between the Amphion Two18.</figcaption>
+</figure>
+
 ### What does your mastering chain look like? What's analog, and what stays in the box?
 
 I use a hybrid setup. It took me a while to find the right balance in the analog realm between efficiency, accuracy and the color I was looking for.
@@ -42,6 +52,11 @@ Actually, I mostly use plugins when I need to do subtractive work, or as a limit
 For me, compression is the hardest process to do purely in digital. I've never found the musical glue with a plugin, whereas it's quick and efficient on analog gear.
 
 Sometimes I think that what I do in analog could be done in the digital domain. I'm aware that what I really like in analog machines is that there are some things you can't control: the electronic components live a life of their own. I guess that's what we call "magic" when we talk about analog sound.
+
+<figure>
+  <img src="/blog/emilie-daelemans-interview/desk.jpg" alt="Close-up of the wooden mastering desk: two analog units with coloured knobs, a keyboard, and a rack with a Burl converter and a Lynx Hilo, a screen behind" width="1280" height="853" loading="lazy">
+  <figcaption>The hybrid chain: analog units on the desk, converters in the rack.</figcaption>
+</figure>
 
 ## Plugins
 
@@ -70,6 +85,11 @@ My gear has mostly been bought second-hand, but I sometimes buy new gear directl
 I ask how they feel about the mixes, and whether they expect a transparent master or would rather bring in a new color.
 
 I also like to receive some references. Sometimes they don't find the words to explain what they expect from mastering. I'm trying to understand what the vibe is, and what emotions they want to communicate through their sound choices.
+
+<figure>
+  <img src="/blog/emilie-daelemans-interview/session.jpg" alt="Three people in a studio full of synthesizers, seen through the control room glass" width="1600" height="1069" loading="lazy">
+  <figcaption>In session.</figcaption>
+</figure>
 
 ### What's the most common problem in the mixes you receive, and what should people do before sending a track to mastering?
 
