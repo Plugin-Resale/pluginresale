@@ -8,7 +8,7 @@
 # (printed at the end) to look at all slides at once.
 #
 # Slide types (each slide is an object with "type"):
-#   cover : photo, name ("First<br>Last"), subtitle, [position]
+#   cover : photo, name ("First<br>Last"), subtitle, [position], [full] (true = photo full bleed, text over it at the bottom)
 #   quote : theme ("light"|"dark"), kicker, quote, sub, [size]
 #   photo : photo, kicker, quote, sub, [position], [size]  (photo full bleed, text at the bottom)
 #   list  : theme, kicker, items: [{title, tag, text}]  (2 to 4 items)
@@ -93,6 +93,14 @@ def bg(s):
 
 def render(i, s):
     t = s["type"]
+    if t == "cover" and s.get("full"):
+        pos = s.get("position", "center 20%")
+        return "dark", f'''<div class="photo" style="background-image:url('file://{photo_dir}/{s["photo"]}');background-position:{pos}"></div>
+<div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom,rgba(23,23,27,.45) 0%,rgba(23,23,27,0) 16%,rgba(23,23,27,0) 50%,rgba(23,23,27,.75) 72%,rgba(23,23,27,.92) 100%)"></div>
+{LOGO}<div style="position:absolute;left:72px;right:72px;bottom:170px;z-index:3"><div class="kick">{esc(s.get("kicker", "Interview"))}</div>
+<h1 style="font-size:{s.get("size", 118)}px;line-height:.98">{esc(s["name"])}</h1>
+<p class="sub" style="margin-top:26px;font-size:30px">{esc(s["subtitle"])}</p></div>
+<div class="foot" style="opacity:1"><span>{h.escape(handle)} × <b>pluginresale.com</b></span><span style="color:#E0592A">Swipe →</span></div>'''
     if t == "cover":
         pos = s.get("position", "center 38%")
         return "light", f'''<div style="position:absolute;top:0;left:0;right:0;height:735px;background:url('file://{photo_dir}/{s["photo"]}') {pos}/cover"></div>
