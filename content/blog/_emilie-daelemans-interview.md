@@ -86,11 +86,6 @@ I ask how they feel about the mixes, and whether they expect a transparent maste
 
 I also like to receive some references. Sometimes they don't find the words to explain what they expect from mastering. I'm trying to understand what the vibe is, and what emotions they want to communicate through their sound choices.
 
-<figure>
-  <img src="/blog/emilie-daelemans-interview/session.jpg" alt="Three people in a studio full of synthesizers, seen through the control room glass" width="1600" height="1069" loading="lazy">
-  <figcaption>In session.</figcaption>
-</figure>
-
 ### What's the most common problem in the mixes you receive, and what should people do before sending a track to mastering?
 
 Most of the problems I find in mixes come from speakers that are too generous in the low end, and also, I guess, from acoustic problems in the mixing environment.
@@ -112,6 +107,11 @@ When I listen to a new mix, I analyze it from a sonic perspective, but then I ta
 You can instantly destroy the groove of a song if you make the wrong compression choice.
 
 I guess I would never have approached mastering the way I do if I didn't play music myself.
+
+<figure>
+  <img src="/blog/emilie-daelemans-interview/session.jpg" alt="Emilie Daelemans and her bandmates from Lianor in a studio full of synthesizers, seen through the control room glass" width="1600" height="1069" loading="lazy">
+  <figcaption>With her band, Lianor.</figcaption>
+</figure>
 
 ## Today
 
