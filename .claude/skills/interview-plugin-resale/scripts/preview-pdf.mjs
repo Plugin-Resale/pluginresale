@@ -2,7 +2,9 @@
 // carousel slides on the last page. Rendered with marked + headless Chrome, site fonts/colours.
 //
 // Usage (from the repo root):
-//   node .claude/skills/interview-plugin-resale/scripts/preview-pdf.mjs <slug>
+//   node .claude/skills/interview-plugin-resale/scripts/preview-pdf.mjs <slug> [--article-only]
+// --article-only leaves the carousel out and writes ~/Downloads/<Slug>-article-Plugin-Resale-preview.pdf
+// (when the Instagram posts go in a separate PDF).
 // Reads content/blog/_<slug>.md (or <slug>.md), public/blog/<slug>/instagram/slide-N.jpg and the
 // Instagram caption in public/blog/<slug>/instagram/caption.txt (shown under the slides), writes ~/Downloads/<Slug-In-Title-Case>-Plugin-Resale-preview.pdf and prints its page count.
 import fs from "node:fs";
@@ -12,6 +14,7 @@ import { execFileSync } from "node:child_process";
 import { marked } from "marked";
 
 const slug = process.argv[2];
+const articleOnly = process.argv.includes("--article-only");
 if (!slug) throw new Error("usage: preview-pdf.mjs <slug>");
 const repo = process.cwd();
 const mdPath = [`content/blog/_${slug}.md`, `content/blog/${slug}.md`].map((p) => path.join(repo, p)).find(fs.existsSync);
@@ -27,7 +30,7 @@ const body = marked
   .replaceAll('href="/', 'href="https://www.pluginresale.com/');
 
 const carDir = path.join(pub, "blog", slug, "instagram");
-const slides = fs.existsSync(carDir)
+const slides = !articleOnly && fs.existsSync(carDir)
   ? fs.readdirSync(carDir).filter((f) => /^slide-\d+\.jpg$/.test(f)).sort((a, b) => parseInt(a.slice(6)) - parseInt(b.slice(6)))
   : [];
 const captionFile = path.join(carDir, "caption.txt");
@@ -61,7 +64,7 @@ const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "preview-"));
 const htmlFile = path.join(tmp, "preview.html");
 fs.writeFileSync(htmlFile, htmlPage);
 const name = slug.split("-").map((w) => (w === "interview" ? w : w[0].toUpperCase() + w.slice(1))).join("-");
-const out = path.join(os.homedir(), "Downloads", `${name}-Plugin-Resale-preview.pdf`);
+const out = path.join(os.homedir(), "Downloads", `${name}${articleOnly ? "-article" : ""}-Plugin-Resale-preview.pdf`);
 execFileSync("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", [
   "--headless=new", "--disable-gpu", "--allow-file-access-from-files", "--no-pdf-header-footer",
   "--virtual-time-budget=8000", `--print-to-pdf=${out}`, `file://${htmlFile}`,
