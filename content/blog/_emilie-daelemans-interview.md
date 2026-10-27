@@ -10,8 +10,8 @@ Emilie Daelemans is a mastering engineer based in Maisons-Alfort, just outside P
 We talked about how she got into mastering, what she learned in Brooklyn, her hybrid chain and why compression stays analog, the plugins she relies on, and how playing music shapes the way she listens to a mix.
 
 <figure>
-  <img src="/blog/emilie-daelemans-interview/portrait.jpg" alt="Emilie Daelemans standing by her mastering desk, a speaker and a string of fairy lights behind her" width="853" height="1280">
-  <figcaption>Emilie Daelemans in her studio.</figcaption>
+  <img src="/blog/emilie-daelemans-interview/portrait.jpg" alt="Emilie Daelemans sitting at her mastering desk, arms resting on it, a keyboard and analog units in front of her" width="1100" height="1650">
+  <figcaption>Emilie Daelemans at her mastering desk.</figcaption>
 </figure>
 
 ## Getting started
@@ -49,7 +49,7 @@ Plugins are very good for surgical work, or to try gear I can't afford yet... Ah
 
 Actually, I mostly use plugins when I need to do subtractive work, or as a limiter at the end of the chain.
 
-For me, compression is the hardest process to do purely in digital. I've never found the musical glue with a plugin, whereas it's quick and efficient on analog gear.
+For me, compression is the hardest process to do solely in digital. I've never found the musical glue with a plugin, whereas it's quick and efficient on analog gear.
 
 Sometimes I think that what I do in analog could be done in the digital domain. I'm aware that what I really like in analog machines is that there are some things you can't control: the electronic components live a life of their own. I guess that's what we call "magic" when we talk about analog sound.
 
