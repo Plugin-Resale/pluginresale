@@ -1,7 +1,7 @@
 ---
 title: "Thomas van Opstal on Red Bull Music Studios, mixing on analog gear and making content that brings in clients"
 description: Amsterdam mixing and mastering engineer Thomas van Opstal talks about becoming head audio at Red Bull Music Studios at 21, turning it into Atlantisstudio, a 16-piece live session in a museum hall, posting daily on social media, his hybrid mixing chain, and the 7,000 plugins on his system.
-date: 2026-10-23
+date: 2026-11-06
 image: /blog/thomas-van-opstal-interview/portrait.jpg
 ---
 
@@ -94,7 +94,7 @@ The big analog setup also helps with wanting to do this for another 30 or 40 yea
 
 ### What are the 3 to 5 plugins you couldn't work without, and why?
 
-I'll get to the list, but first I want to say that throughout my career, I've made a point of not having any tools I couldn't mix without. I feel it's dangerous to rely too heavily on a plugin or a certain piece of gear: when there are license issues, your Mac is outdated or the gear is broken, you can't get that sound anymore. That's why I try to stay away from plugins where I don't understand what's going on under the hood, the magic tools where one knob changes five parameters but you don't know exactly which.
+I'll get to the list, but first I want to say that throughout my career, I've made a point of not having any tools I couldn't mix without. I feel it's dangerous to rely too heavily on a plugin or a certain piece of gear: when there are license issues, your Mac is outdated or the gear is broken, you can't get that sound anymore. That's also why I try to stay away from plugins where I don't understand what's going on under the hood, the magic tools where one knob changes five parameters but you don't know exactly which.
 
 Anyway, if I had to make a list of the plugins I use most:
 
@@ -136,4 +136,4 @@ With over 7,000 plugins on his system, Thomas is probably not the only one sitti
 
 Looking for one of them? Search for it on [Browse](/browse) and set an alert: we'll email you as soon as someone lists it. And if you have licenses you never use, you can list them for free on the [Sell page](/sell).
 
-*Photos courtesy of Thomas van Opstal.*
+*Photos: Friso Boven.*
