@@ -1,0 +1,9 @@
+How a moving-pivot tilt EQ works 🎚️
+
+Nicolas Barreau (@harmonicodsp) explains Spectral Mass Rebalance: the pivot follows the spectral centre of mass, so "rather than simply adding more, it redistributes it."
+
+His full answer in the carousel 👉
+
+Full interview on our blog, link in bio.
+
+#audioplugins #eq #mixingtips #mastering #musicproduction

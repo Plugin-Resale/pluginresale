@@ -1,0 +1,9 @@
+His advice to engineers who want to build plugins 💡
+
+Nicolas Barreau (@harmonicodsp): learn the basics of DSP, start simple with a framework like JUCE, and "start with a real problem you've encountered while working with audio."
+
+His full answer in the carousel 👉
+
+Full interview on our blog, link in bio.
+
+#audioplugins #pluginsdeveloper #dsp #juce #musicproduction
