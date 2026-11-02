@@ -1,5 +1,5 @@
 ---
-title: "Is Reselling Audio Plugins Legal? (EU & US, 2026)"
+title: "Is Reselling Audio Plugins Legal? Yes in the EU, It Depends in the US"
 description: "In the EU, the UsedSoft ruling says yes, under conditions. In the US, the EULA decides. What developers allow and which licenses you can't resell."
 date: 2026-09-24
 ---

@@ -4,7 +4,7 @@ import { ListingGrid } from "@/components/ListingCard";
 import { CATEGORIES, type ListingCard } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/server";
 
-const TITLE = "Plugin Resale – Buy & Sell Used Audio Plugin Licenses";
+const TITLE = "Plugin Resale – Buy & Sell Used & Second-Hand Audio Plugins";
 const DESCRIPTION =
   "Sell the audio plugins you don't use and buy second-hand licenses for less. Free marketplace for producers and engineers. Waves, FabFilter, UAD & more.";
 

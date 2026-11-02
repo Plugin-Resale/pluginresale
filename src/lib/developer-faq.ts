@@ -14,6 +14,35 @@ function feeText(developer: Developer) {
   return null;
 }
 
+// Short form of the fee for the page title ("Free", "€10 fee", "5% fee", "iLok fee"), read
+// from the row: when the wording does not start with an amount, just say a fee exists.
+function feeShort(developer: Developer) {
+  const fee = (developer.fee ?? "").trim();
+  if (/^free\b/i.test(fee)) {
+    // "Free (plus the iLok fee...)", "Free after 9 months", "Free for the first transfer":
+    // the developer charges nothing, but not in every case.
+    return /ilok|after|before|first|if\b|later|except/i.test(fee) ? "Free with conditions" : "Free";
+  }
+  if (!fee && developer.no_fee) return "Free";
+  const amount = fee.match(/^(?:about |approx\.? |~)?([€$£]\s?\d+(?:[.,]\d+)?)/i);
+  if (amount) return `${amount[1].replace(/\s/g, "")} fee`;
+  const percent = fee.match(/^(\d+\s?%)/);
+  if (percent) return `${percent[1].replace(/\s/g, "")} fee`;
+  if (/ilok/i.test(fee)) return "iLok fee";
+  if (fee) return "Paid fee";
+  return null;
+}
+
+// Page title with the answer in it: a searcher typing "<brand> license transfer" sees at a
+// glance whether it is allowed and what it costs, which is what earns the click.
+export function developerTitle(developer: Developer) {
+  const { name } = developer;
+  if (developer.transferable === null) return `${name} License Transfer: Policy Not Verified – What We Know`;
+  if (developer.transferable === false) return `${name} License Transfer: Not Allowed – Policy & Options`;
+  const fee = feeShort(developer);
+  return `${name} License Transfer: Allowed${fee ? ` (${fee})` : ""} – How to Resell`;
+}
+
 export function developerDescription(developer: Developer) {
   const { name } = developer;
   let text: string;

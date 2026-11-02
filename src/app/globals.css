@@ -1228,6 +1228,50 @@ main {
   color: #d6d1c6;
 }
 
+/* Sell landing (visitors who are not signed in): the home steps layout on a light background. */
+.sell-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 48px;
+}
+
+.sell-section {
+  margin: 0 0 48px;
+  max-width: 760px;
+}
+
+.sell-section p {
+  color: var(--muted);
+}
+
+.sell-section a {
+  color: var(--accent-hover);
+  font-weight: 600;
+}
+
+.sell-steps {
+  margin-top: 8px;
+  max-width: none;
+}
+
+.sell-steps .step-num {
+  color: var(--accent);
+}
+
+.sell-steps h3 {
+  font-size: 20px;
+}
+
+.sell-steps p {
+  color: var(--muted);
+}
+
+.sell-landing .how-more {
+  color: var(--muted);
+}
+
 .how-more {
   margin: 40px 0 0;
   color: #d6d1c6;

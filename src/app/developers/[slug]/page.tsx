@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { TransferRules } from "@/components/TransferRules";
 import { getPostsForDeveloper } from "@/lib/blog";
 import { CATEGORIES, DEVELOPER_COLUMNS, type Developer, type Plugin } from "@/lib/catalog";
-import { developerDescription, developerFaq } from "@/lib/developer-faq";
+import { developerDescription, developerFaq, developerTitle } from "@/lib/developer-faq";
 import { createClient } from "@/lib/supabase/server";
 
 // generateMetadata and the page both need it: one database query per request, not two.
@@ -24,7 +24,7 @@ export async function generateMetadata({
 }: PageProps<"/developers/[slug]">): Promise<Metadata> {
   const developer = await getDeveloper((await params).slug);
   if (!developer) return {};
-  const title = `${developer.name} License Transfer: Rules, Fees & How to Resell`;
+  const title = developerTitle(developer);
   const description = developerDescription(developer);
   return {
     title: { absolute: `${title} | Plugin Resale` },

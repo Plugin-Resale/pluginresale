@@ -1,5 +1,5 @@
 ---
-title: "How to Sell Your Ableton Live License (Free Transfer)"
+title: "Sell Your Ableton Live License: Free Official Transfer, Step by Step"
 description: "Ableton transfers Live licenses for free, in a few clicks from your account. The steps, NFR/education rules, and what a used Live 12 Suite is worth."
 date: 2026-10-19
 developer: ableton
