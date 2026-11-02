@@ -1,6 +1,6 @@
 ---
-title: Can I legally resell my audio plugins?
-description: You paid for the plugin, but you only own a license. Here is what EU law, US law and developers' own policies say about reselling it, and which licenses you usually can't sell.
+title: "Is Reselling Audio Plugins Legal? (EU & US, 2026)"
+description: "In the EU, the UsedSoft ruling says yes, under conditions. In the US, the EULA decides. What developers allow and which licenses you can't resell."
 date: 2026-09-24
 ---
 

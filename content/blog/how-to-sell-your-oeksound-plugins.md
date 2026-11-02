@@ -1,6 +1,6 @@
 ---
-title: How to Sell Your oeksound Plugins (Used License Guide)
-description: oeksound lets you resell soothe, Spiff and bloom licenses for a $15 fee per license, in one to two business days. The steps, and the soothe2 / soothe3 upgrade rule that trips up a lot of sellers.
+title: "oeksound License Transfer: soothe, Spiff, bloom"
+description: "oeksound transfers soothe, Spiff and bloom licenses for $15 each, in 1 to 2 business days. Steps + the soothe2/soothe3 upgrade rule that trips up sellers."
 date: 2026-10-16
 developer: oeksound
 ---

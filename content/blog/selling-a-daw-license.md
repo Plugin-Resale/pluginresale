@@ -1,6 +1,6 @@
 ---
-title: "Can you sell your DAW license? Ableton, Cubase, Pro Tools, FL Studio, Logic and more"
-description: A DAW is often the most expensive piece of software a producer owns. Which DAW licenses can be resold, how each publisher handles the transfer, and the ones you can't sell at all.
+title: "Which DAW Licenses Can You Resell? (2026 Guide)"
+description: "Ableton, Cubase, Pro Tools, FL Studio, Logic: which DAW licenses you can resell, how each publisher handles the transfer, and the ones you can't sell at all."
 date: 2026-09-24
 updated: 2026-09-25
 ---

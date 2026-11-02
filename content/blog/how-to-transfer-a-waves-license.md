@@ -1,6 +1,6 @@
 ---
-title: How to transfer a Waves license (and sell your Waves plugins)
-description: Waves allows license transfers, but only if three conditions are met. The requirements, the fee, the step-by-step process and the traps to avoid when you buy or sell a used Waves plugin.
+title: "Waves License Transfer: Rules, Fee & Steps (2026)"
+description: "Waves transfers cost $10 to $150 and need an active Update Plan, a v9+ license and 3 months of ownership. Step-by-step, plus traps for buyers and sellers."
 date: 2026-10-04
 developer: waves
 ---

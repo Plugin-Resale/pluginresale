@@ -1,6 +1,6 @@
 ---
-title: "How to transfer a plugin license: the complete guide"
-description: Every developer moves licenses differently. Here are the five transfer systems you'll run into, what they cost, how long they take, and a checklist for buyers and sellers.
+title: "How to Transfer a Plugin License: 5 Systems Explained"
+description: "Self-service, support request, paid form, iLok or hardware-bound: the 5 ways developers transfer licenses, what each costs, how long it takes, plus checklists."
 date: 2026-09-26
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: How to Sell Your Ableton Live License (Used License Guide)
-description: Ableton lets you transfer a Live license for free, from your own account, in a few clicks. The steps, the education and NFR rules, the fraud warning buyers should know, and how to price a used Live 12 Suite or Standard.
+title: "How to Sell Your Ableton Live License (Free Transfer)"
+description: "Ableton transfers Live licenses for free, in a few clicks from your account. The steps, NFR/education rules, and what a used Live 12 Suite is worth."
 date: 2026-10-19
 developer: ableton
 ---

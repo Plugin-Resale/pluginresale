@@ -1,6 +1,6 @@
 ---
-title: How to Sell Your UAD Plugins (Used License Guide)
-description: UAD plugins can't be sold on their own. They only move with the Apollo, Satellite or UAD-2 hardware they're registered to, and it's all or nothing. How it works, what happens to UADx native plugins, and your real options.
+title: "Can You Sell UAD Plugins? How It Really Works"
+description: "UAD plugins can't be sold alone: they go with the Apollo, Satellite or UAD-2 they're registered to, all or nothing. UADx native and your real options."
 date: 2026-10-05
 developer: universal-audio
 ---
