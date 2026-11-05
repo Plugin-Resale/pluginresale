@@ -9,6 +9,11 @@ Globe Audio Mastering has been mastering records in Bordeaux since 1999. Alexis 
 
 We talked about how each of them got into mastering, what has changed since the days of DAT tapes and CD burning, how two engineers share one studio, custom-modified gear, loudness in the streaming era, what makes a mix easy or hard to master, and the few plugins they keep next to the analog chain.
 
+<figure>
+  <img src="/blog/globe-audio-interview/portrait.jpg" alt="Alexis Bardinet at the mastering desk, wearing glasses and a light polo shirt, one hand on the mouse" width="1100" height="1657">
+  <figcaption>Alexis Bardinet at Globe Audio Mastering, Bordeaux. Photo: Alexandre Dupeyron.</figcaption>
+</figure>
+
 
 ## Career
 
@@ -23,6 +28,11 @@ Then I landed an internship at the Translab mastering studio in Paris, where I e
 **Lorenzo:** I started by studying at the EICAR school in Paris, which got me several internships in studios in the capital. My first one was at Studio Grande Armée and the second at Sodasound. Then, through recording and mixing workshops, I got to work at Studio Caverne. That's how I started getting my first sessions as an engineer and assistant. Around that time, I had also teamed up with two friends from school to set up a studio of our own, Mountain Records. We did everything: recording, mixing, mastering, editing for film. The manager of Caverne, Nicolas Sacco, then put me in touch with Twin Studio Paris, where he had worked for several years. There too, I got to prove myself as an assistant and control-room engineer.
 
 My arrival at Globe Audio came after a period of questioning around the middle or end of Covid. I wanted to open up to new horizons, leave Paris to see what opportunities I could find elsewhere, and get closer to the ocean, which had always been the setting I dreamed of living in. So I followed the classic formula and applied to just about every studio on the French coast, with an interesting cluster around Bordeaux and Toulouse. A year later I met Alexis and did a two-week observation internship through Pôle Emploi (the French employment agency). We got along right away and shared the same vision. That's how I was hired as an assistant, and then started getting my own sessions. It's now been six years since I arrived at Globe Audio.
+
+<figure>
+  <img src="/blog/globe-audio-interview/lorenzo.jpg" alt="Lorenzo Bassaletti at the mastering desk with headphones on, in front of the controller, a screen showing a DAW session and large wall-mounted monitors" width="1600" height="1067" loading="lazy">
+  <figcaption>Lorenzo Bassaletti in the control room.</figcaption>
+</figure>
 
 ### Over more than 25 years, what has changed the most in mastering, and what hasn't changed at all?
 
@@ -54,6 +64,11 @@ As for customised machines, on the Lavry Gold for example, they built an oversiz
 
 They are currently working on a modification of our Tube-Tech HLT 2AM, which we love...
 
+<figure>
+  <img src="/blog/globe-audio-interview/studer.jpg" alt="Close-up of a Studer B67 tape recorder with a silver reel and a red reel" width="1500" height="1001" loading="lazy">
+  <figcaption>One of the four Studer tape machines.</figcaption>
+</figure>
+
 ## Workflow
 
 ### Walk us through a typical master: what do you listen for first, and what does your usual chain look like?
@@ -69,6 +84,11 @@ All of that gives me a good picture of what's going on in the song, so I can dra
 
 As for my usual chain, it often starts with one or two rather coloured EQs, to make the more radical decisions right at the start. Then I refine that vision as I go, with more surgical EQs, and with multiband compressors, which let me work a bit more precisely on each band. Then I go through an output compressor, which brings gain, light saturation and more density to the song. And finally I hit the converter stages, to clip or limit the song. Within that chain, we can bring in lots of different, more drastic colours, with much more coloured EQs (Pultec, Neumann, tape machine, etc.).
 
+<figure>
+  <img src="/blog/globe-audio-interview/console.jpg" alt="Lorenzo Bassaletti leaning over the mastering console, adjusting a control, with outboard units in the foreground and wall-mounted monitors behind" width="1600" height="1067" loading="lazy">
+  <figcaption>Lorenzo Bassaletti at the console.</figcaption>
+</figure>
+
 ### Your client list goes from SCH and Bigflo & Oli to Noir Désir, Ibrahim Maalouf and Katia & Marielle Labèque. How does your approach change between rap, rock, jazz and classical?
 
 **Lorenzo:** My approach changes with the genre and with what the listener is used to hearing in that style. That doesn't mean I'm going to conform to what the public expects. But if we tell one style from another, it's because there are codes attached to it, so some things are inevitably brought forward more than others. I won't necessarily change my basic protocol, as we discussed in the previous question. What changes is mainly the approach to loudness: whether I make a song louder or quieter, depending on the listening levels the public is used to and the density the song needs, so as not to shock the listener with too different an approach, unless that is the artist's decision.
@@ -79,6 +99,11 @@ Because what can also change is what the artist asks for. Without making a big c
 
 Whereas if from the start we reassure the artist, listen to them and do something they like, everyone in the control room is having a great time, the sound engineer signs off, and the rest of the day runs by itself. In the end, that step matters more than the change of style. Adapting to the style is something we know how to do.
 
+<figure>
+  <img src="/blog/globe-audio-interview/session.jpg" alt="Alexis Bardinet with headphones on, hands joined, listening at the desk, with a man sitting on the sofa behind him" width="1100" height="1657" loading="lazy">
+  <figcaption>Alexis Bardinet in session. Photo: Alexandre Dupeyron.</figcaption>
+</figure>
+
 ### Loudness: how do you deal with clients who want it louder, now that streaming normalises everything?
 
 **Lorenzo:** Streaming platforms do normalise every song today. Nevertheless, the question of loudness remains important, because that level also determines the density of a song, its perceived level and its energy. Not to mention its adaptability to different listening situations, in very different places: noisy environments, not always of good quality, or rather poor acoustic conditions. It's something that does affect the intelligibility of the song. So we don't follow the -14 LUFS "standard", since that figure is tied to the platforms' normalisation, for the public's listening comfort. It shouldn't be taken into account for the final master file. So yes, you need to reach relatively high LUFS levels (again, it depends on the style), but it has to be said that this loudness level is still quite powerful today. And so, depending on the artistic requirements and the requests (which can be very different), we can end up with fairly dynamic levels, or with louder levels and much more intensity in extreme cases.
@@ -88,6 +113,11 @@ Whereas if from the start we reassure the artist, listen to them and do somethin
 **Lorenzo:** A mix that is too heavy in the upper mids and highs, without enough control (hi-hats, vocal sibilance, etc.), will be a bit harder to master, because we'll need to control that frequency band and at the same time add some to bring more brightness, detail, intelligibility and adaptability to different playback systems. When we have that problem, it does slow us down a bit. Then there's dynamics. A mix can be too compressed and limited (which is not necessarily a bad thing). But if it's very drastic, it means the person isn't leaving us enough room to offer them more drastic things. We no longer have room in the dynamics to do something contrasted, with colour. Conversely, if the project is too dynamic, with far too much separation, it can be complicated to keep impact and a good hold on the dynamics while being loud and dense. Overall, a mix that is easier to master is a mix that is under control, where everything is in its place, whether it's the relationship in the low end between the bass instruments, a good midrange, big highs. A good mix makes a good master. And if you need it, there's a technical guide on the Globe Audio website with lots of tips: [GAM mastering guide (PDF, in French)](https://static1.squarespace.com/static/5ef09e9f24a1314748ee021a/t/603ccf4e3d06494e3af1e516/1614597978284/GAM+guide+mastering+FR.pdf).
 
 **Alexis:** In the past, the feedback we gave was about files that were too limited or too compressed. Now it's sometimes the opposite: things with too much dynamic range, where people haven't framed and held things enough. What we often tell artists is to bring the necessary glue anyway. That can be done with a plugin compressor, a bus compressor, a 33609 or an SSL. On average, we get files with an RMS around -18 dBFS and peaks around -3 to -6. But there is no absolute rule! It depends on the style, the mixer, the equipment, there are so many parameters... What we often get are mixes that are a bit mono, lacking openness, lacking articulation between kick and bass, often a bit confused. Often some confusion in the low mids, and often upper mids that are a bit aggressive, a bit hard. We no longer give feedback on sibilance, because we know how to control it with all the tools we have. The good rule is to have a mix that is a bit duller, without being completely muffled, but not too bright and aggressive. Small things that, in the end, matter enormously...
+
+<figure>
+  <img src="/blog/globe-audio-interview/hand.jpg" alt="A hand pressing a button on the mastering console, with an orange floor lamp and a monitor speaker in the background" width="1100" height="1649" loading="lazy">
+  <figcaption>On the console.</figcaption>
+</figure>
 
 ## Plugins
 
@@ -105,9 +135,19 @@ Whereas if from the start we reassure the artist, listen to them and do somethin
 
 That said, plugins do serve us for very fine things: for example, we sometimes get stems that need readjusting with a bit of delay, a bit of reverb. One incredible thing for me is iZotope's [RX](/developers/izotope), that one is unbeatable. I find it fabulous, it lets you remove distortions, mouth noises, all the saturations, clean up the tracks before running them through the analog. There, for me, is real added value, and there's no analog equivalent. So for cleaning tools, everything that is really precision work, surgery: yes to plugins. But again, for creativity, instinct, musicality, I feel better in the analog world.
 
+<figure>
+  <img src="/blog/globe-audio-interview/alexis-hand.jpg" alt="Alexis Bardinet's hand turning a knob on an outboard unit, more units with cream knobs around it" width="1600" height="1062" loading="lazy">
+  <figcaption>Alexis Bardinet on the outboard. Photo: Alexandre Dupeyron.</figcaption>
+</figure>
+
 ### Is there a plugin you find overrated, or one you bought and never used?
 
 **Lorenzo:** Not really. Our philosophy here is not to buy equipment if it's of no use to us. If a unit no longer suits us, we don't keep it in our arsenal. That goes for analog gear too. Everything you see in the Globe Audio photos and videos is used.
+
+<figure>
+  <img src="/blog/globe-audio-interview/knobs.jpg" alt="Close-up of cream and black knobs on two outboard units, with a row of orange and green LEDs" width="1600" height="1062" loading="lazy">
+  <figcaption>Part of the chain. Photo: Alexandre Dupeyron.</figcaption>
+</figure>
 
 ## Today
 
@@ -141,4 +181,4 @@ Alexis and Lorenzo keep very few plugins next to their analog chain, and all of 
 
 Looking for one of them? Search for it on [Browse](/browse) and set an alert: we'll email you as soon as someone lists it. And if you have licenses you never use, you can list them for free on the [Sell page](/sell).
 
-*Photos courtesy of Globe Audio Mastering.*
+*Photos courtesy of Globe Audio Mastering. Photos of Alexis Bardinet, the session and the outboard close-ups: Alexandre Dupeyron.*
