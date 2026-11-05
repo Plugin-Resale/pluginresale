@@ -14,6 +14,24 @@ export default function robots(): MetadataRoute.Robots {
       // Meta AI training crawler: thousands of requests a day, used up most of the Vercel CPU quota
       // (Oct 2026). Link previews on Instagram/Facebook use facebookexternalhit, which stays allowed.
       { userAgent: "meta-externalagent", disallow: "/" },
+      // SEO-tool and AI crawlers that bring no visitors: in the Vercel request logs of 5 Nov 2026
+      // they made ~60% of the page requests served by functions (MJ12bot alone ~1,200 a day).
+      {
+        userAgent: [
+          "MJ12bot",
+          "DotBot",
+          "AhrefsBot",
+          "SemrushBot",
+          "Amazonbot",
+          "ElevenlabsCrawler",
+          "Reflectionbot",
+          "ExaSearchBot",
+          "GPTBot",
+          "CCBot",
+          "Bytespider",
+        ],
+        disallow: "/",
+      },
     ],
     sitemap: "https://www.pluginresale.com/sitemap.xml",
   };

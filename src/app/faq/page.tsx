@@ -4,6 +4,9 @@ import type { ReactNode } from "react";
 import { getAllPosts } from "@/lib/blog";
 import { FaqAutoOpen } from "./FaqAutoOpen";
 
+// Links the published blog posts: regenerated every 10 minutes so a scheduled post shows up.
+export const revalidate = 600;
+
 export const metadata: Metadata = {
   title: "FAQ",
   description:

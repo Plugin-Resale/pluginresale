@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import Link from "@/components/Link";
 import { TransferBadge } from "@/components/TransferBadge";
 import { DEVELOPER_COLUMNS, type Developer } from "@/lib/catalog";
-import { createClient } from "@/lib/supabase/server";
+import { createAnonClient } from "@/lib/supabase/anon";
+
+// Policies change a few times a month: cached for an hour, served from the CDN.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Developer transfer rules",
@@ -11,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function DevelopersPage() {
-  const supabase = await createClient();
+  const supabase = createAnonClient();
   const { data: developers, error } = await supabase
     .from("developers")
     .select(DEVELOPER_COLUMNS)

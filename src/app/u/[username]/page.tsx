@@ -4,7 +4,16 @@ import { Avatar } from "@/components/Avatar";
 import { Rating } from "@/components/Rating";
 import { formatDate } from "@/lib/catalog";
 import type { Review, SellerStats } from "@/lib/reviews";
-import { createClient } from "@/lib/supabase/server";
+import { createAnonClient } from "@/lib/supabase/anon";
+
+// Cached for 5 minutes and served from the CDN; a new review or sale shows up within that.
+export const revalidate = 300;
+
+// Nothing is prerendered at build time: each one is rendered on first request, then cached for
+// `revalidate` seconds. Without this export a dynamic route is never cached at all.
+export function generateStaticParams() {
+  return [];
+}
 
 export async function generateMetadata({
   params,
@@ -20,7 +29,7 @@ export async function generateMetadata({
 export default async function SellerProfilePage({ params }: PageProps<"/u/[username]">) {
   const { username } = await params;
 
-  const supabase = await createClient();
+  const supabase = createAnonClient();
   const { data: profile } = await supabase
     .from("profiles")
     .select("id, username, created_at, avatar_path")

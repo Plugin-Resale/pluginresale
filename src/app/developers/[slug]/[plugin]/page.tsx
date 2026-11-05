@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/components/Link";
-import { cache } from "react";
+import { Suspense, cache } from "react";
 import { notFound } from "next/navigation";
 import { BuyNew } from "@/components/BuyNew";
 import { ListingGrid } from "@/components/ListingCard";
@@ -15,15 +15,25 @@ import {
   type ShopLinks,
 } from "@/lib/catalog";
 import { pluginImageUrl } from "@/lib/images";
-import { createClient } from "@/lib/supabase/server";
-import { getCurrentUser } from "@/lib/supabase/user";
-import { createAlert } from "../../../browse/actions";
+import { createAnonClient } from "@/lib/supabase/anon";
+import { AlertButton, AlertNotice } from "./AlertActions";
+
+// Rendered once and served from the CDN for 10 minutes: this is the most crawled page type
+// (~3,700 URLs). Only the alert notice and the "Alert set" state depend on the visitor, and
+// AlertActions resolves those in the browser. A new listing shows up within 10 minutes.
+export const revalidate = 600;
+
+// Nothing is prerendered at build time: each one is rendered on first request, then cached for
+// `revalidate` seconds. Without this export a dynamic route is never cached at all.
+export function generateStaticParams() {
+  return [];
+}
 
 type PluginRow = Plugin & ShopLinks & { image_path: string | null };
 
 // generateMetadata and the page both need it: one pair of queries per request, not two.
 const getPlugin = cache(async (developerSlug: string, pluginSlug: string) => {
-  const supabase = await createClient();
+  const supabase = createAnonClient();
   const { data: developer } = await supabase
     .from("developers")
     .select(DEVELOPER_COLUMNS)
@@ -62,41 +72,25 @@ export async function generateMetadata({
   };
 }
 
-export default async function PluginPage({
-  params,
-  searchParams,
-}: PageProps<"/developers/[slug]/[plugin]">) {
+export default async function PluginPage({ params }: PageProps<"/developers/[slug]/[plugin]">) {
   const { slug, plugin: pluginSlug } = await params;
   const found = await getPlugin(slug, pluginSlug);
   if (!found) notFound();
   const { developer, plugin } = found;
-  const { alert: alertNotice } = await searchParams;
 
   const path = `/developers/${developer.slug}/${plugin.slug}`;
   const name = productName(developer.name, plugin.name);
   const blocked = developer.transferable === false;
 
-  const supabase = await createClient();
-  const [{ data: listings }, { user }] = await Promise.all([
-    blocked
-      ? Promise.resolve({ data: [] as ListingCard[] })
-      : supabase
-          .from("listing_cards")
-          .select("*")
-          .eq("plugin_id", plugin.id)
-          .eq("status", "active")
-          .order("created_at", { ascending: false })
-          .returns<ListingCard[]>(),
-    getCurrentUser(),
-  ]);
-  const { data: alert } =
-    user && !blocked
-      ? await supabase
-          .from("listing_alerts")
-          .select("plugin_id")
-          .eq("plugin_id", plugin.id)
-          .maybeSingle()
-      : { data: null };
+  const { data: listings } = blocked
+    ? { data: [] as ListingCard[] }
+    : await createAnonClient()
+        .from("listing_cards")
+        .select("*")
+        .eq("plugin_id", plugin.id)
+        .eq("status", "active")
+        .order("created_at", { ascending: false })
+        .returns<ListingCard[]>();
 
   const buyNew = <BuyNew links={plugin} placement="plugin" />;
 
@@ -138,15 +132,9 @@ export default async function PluginPage({
         <>
           <section>
             <h2 className="section-title">Used licenses for sale</h2>
-            {alertNotice === "set" && (
-              <p className="notice notice-success">
-                Alert set. We&apos;ll email you as soon as someone lists it. Manage your alerts in{" "}
-                <Link href="/account#alerts">My account</Link>.
-              </p>
-            )}
-            {alertNotice === "error" && (
-              <p className="notice notice-error">Something went wrong. Please try again.</p>
-            )}
+            <Suspense>
+              <AlertNotice />
+            </Suspense>
             {listings && listings.length > 0 ? (
               <>
                 <ListingGrid listings={listings} />
@@ -162,18 +150,7 @@ export default async function PluginPage({
                 </p>
                 <p className="muted">Get an email as soon as someone lists it:</p>
                 <div className="alert-actions">
-                  {alert ? (
-                    <span className="badge badge-ok">✓ Alert set</span>
-                  ) : (
-                    // Signed out: createAlert sends them to sign in first, then back here.
-                    <form action={createAlert}>
-                      <input type="hidden" name="plugin_id" value={plugin.id} />
-                      <input type="hidden" name="back" value={path} />
-                      <button className="btn btn-primary" type="submit">
-                        Alert me
-                      </button>
-                    </form>
-                  )}
+                  <AlertButton pluginId={plugin.id} back={path} />
                   <Link href={`/sell?plugin=${plugin.id}`} className="btn">
                     I own it, sell it
                   </Link>

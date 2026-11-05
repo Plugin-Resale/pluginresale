@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Link from "@/components/Link";
 import { formatPostDate, getAllPosts } from "@/lib/blog";
 
+// Regenerated every 10 minutes at most: a post scheduled for today appears within that, without
+// a redeploy, and the page is served from the CDN in between.
+export const revalidate = 600;
+
 export const metadata: Metadata = {
   title: "Blog",
   description:

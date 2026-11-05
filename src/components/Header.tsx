@@ -1,9 +1,9 @@
+import { AccountLink } from "@/components/AccountLink";
 import Link from "@/components/Link";
-import { getCurrentUser } from "@/lib/supabase/user";
 
-export async function Header() {
-  const { user, profile } = await getCurrentUser();
-
+// No session read here on purpose: the account link resolves it in the browser (AccountLink),
+// so the header never makes a page dynamic. See AccountLink for why.
+export function Header() {
   return (
     <header className="site-header">
       <div className="container">
@@ -33,15 +33,7 @@ export async function Header() {
           />
         </form>
         <div className="header-actions">
-          {user ? (
-            <Link href="/account" className="nav-link">
-              {profile?.username ? `@${profile.username}` : "My account"}
-            </Link>
-          ) : (
-            <Link href="/signin" className="nav-link">
-              Sign in
-            </Link>
-          )}
+          <AccountLink />
           <Link href="/sell" className="btn btn-primary">
             Sell a plugin
           </Link>

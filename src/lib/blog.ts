@@ -1,6 +1,5 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
-import { connection } from "next/server";
 import { marked } from "marked";
 
 // Blog posts live in content/blog/<slug>.md. Each file starts with a front matter block:
@@ -103,9 +102,10 @@ async function readAllPosts() {
   return posts.filter((post) => post !== null).map((post) => post.meta);
 }
 
+// Publication depends on today's date. The pages that call this are regenerated at most every
+// 10 minutes (`export const revalidate` in each of them), so a scheduled post appears within
+// that; do not call it from a route without `revalidate`, which would freeze the date at build.
 export async function getAllPosts(): Promise<PostMeta[]> {
-  // Publication depends on today's date: always render at request time.
-  await connection();
   const now = today();
   return (await readAllPosts())
     .filter((post) => post.date <= now)
@@ -119,7 +119,6 @@ export async function getPostsForDeveloper(developerSlug: string): Promise<PostM
 
 export async function getPost(slug: string): Promise<Post | null> {
   if (!/^[a-z0-9-]+$/.test(slug)) return null;
-  await connection();
   const now = today();
   const post = await readPost(slug);
   if (!post || post.meta.date > now) return null;

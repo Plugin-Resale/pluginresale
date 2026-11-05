@@ -642,6 +642,12 @@ main {
   color: var(--accent);
 }
 
+/* Keeps the "Sign in" / "@username" slot from jumping while AccountLink reads the session. */
+.account-link-placeholder {
+  display: inline-block;
+  min-width: 52px;
+}
+
 /* ---------- Badges ---------- */
 
 .badge {

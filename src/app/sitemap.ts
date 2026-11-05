@@ -1,13 +1,15 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
-import { createClient } from "@/lib/supabase/server";
+import { createAnonClient } from "@/lib/supabase/anon";
 
 const SITE = "https://www.pluginresale.com";
 
-// Every public page Google should know about. Rendered at request time (getAllPosts depends on
-// today's date), so new listings and scheduled blog posts show up without a redeploy.
+// Every public page Google should know about. Regenerated at most once an hour (getAllPosts
+// depends on today's date), so new listings and scheduled blog posts show up without a redeploy.
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const supabase = await createClient();
+  const supabase = createAnonClient();
   const [posts, { data: developers }, { data: listings }, { data: shopPlugins }] =
     await Promise.all([
       getAllPosts(),

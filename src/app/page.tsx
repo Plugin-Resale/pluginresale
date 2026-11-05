@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Link from "@/components/Link";
 import { ListingGrid } from "@/components/ListingCard";
 import { CATEGORIES, type ListingCard } from "@/lib/catalog";
-import { createClient } from "@/lib/supabase/server";
+import { createAnonClient } from "@/lib/supabase/anon";
+
+// Rendered once a minute at most and served from the CDN in between: a new listing shows up
+// within a minute, and the home costs no function time for the visitors (and bots) in between.
+export const revalidate = 60;
 
 const TITLE = "Plugin Resale – Buy & Sell Used & Second-Hand Audio Plugins";
 const DESCRIPTION =
@@ -65,7 +69,7 @@ const STEPS = [
 ];
 
 export default async function Home() {
-  const supabase = await createClient();
+  const supabase = createAnonClient();
   const [{ data: listings }, { data: developers }] = await Promise.all([
     supabase
       .from("listing_cards")

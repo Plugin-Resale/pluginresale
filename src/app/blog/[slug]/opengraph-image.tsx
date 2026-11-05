@@ -6,6 +6,15 @@ import { ogImage } from "@/lib/og";
 export const alt = "Plugin Resale blog";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+// Cached for an hour: the image only changes with a redeploy, but the post may not be published
+// yet (scheduled posts), so it is not fixed at build time.
+export const revalidate = 3600;
+
+// Nothing is prerendered at build time: each one is rendered on first request, then cached for
+// `revalidate` seconds. Without this export a dynamic route is never cached at all.
+export function generateStaticParams() {
+  return [];
+}
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const post = await getPost((await params).slug);

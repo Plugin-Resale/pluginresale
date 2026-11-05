@@ -1,10 +1,18 @@
 import { CATEGORIES, formatPrice, type ListingCard } from "@/lib/catalog";
 import { ogImage } from "@/lib/og";
-import { createClient } from "@/lib/supabase/server";
+import { createAnonClient } from "@/lib/supabase/anon";
 
 export const alt = "Used plugin license for sale on Plugin Resale";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+// Cached for 10 minutes: the price or the Sold / Reserved label can lag by that much.
+export const revalidate = 600;
+
+// Nothing is prerendered at build time: each one is rendered on first request, then cached for
+// `revalidate` seconds. Without this export a dynamic route is never cached at all.
+export function generateStaticParams() {
+  return [];
+}
 
 const STATUS_LABELS: Partial<Record<ListingCard["status"], string>> = {
   reserved: "Reserved",
@@ -13,7 +21,7 @@ const STATUS_LABELS: Partial<Record<ListingCard["status"], string>> = {
 
 export default async function Image({ params }: { params: Promise<{ id: string }> }) {
   const id = Number((await params).id);
-  const supabase = await createClient();
+  const supabase = createAnonClient();
   const { data: listing } =
     Number.isInteger(id) && id > 0
       ? await supabase.from("listing_cards").select("*").eq("id", id).maybeSingle<ListingCard>()

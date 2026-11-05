@@ -6,11 +6,21 @@ import { TransferRules } from "@/components/TransferRules";
 import { getPostsForDeveloper } from "@/lib/blog";
 import { CATEGORIES, DEVELOPER_COLUMNS, type Developer, type Plugin } from "@/lib/catalog";
 import { developerDescription, developerFaq, developerTitle } from "@/lib/developer-faq";
-import { createClient } from "@/lib/supabase/server";
+import { createAnonClient } from "@/lib/supabase/anon";
+
+// Cached for 10 minutes and served from the CDN (197 developer pages, crawled all day long);
+// the active-listing count can lag by that much.
+export const revalidate = 600;
+
+// Nothing is prerendered at build time: each one is rendered on first request, then cached for
+// `revalidate` seconds. Without this export a dynamic route is never cached at all.
+export function generateStaticParams() {
+  return [];
+}
 
 // generateMetadata and the page both need it: one database query per request, not two.
 const getDeveloper = cache(async (slug: string) => {
-  const supabase = await createClient();
+  const supabase = createAnonClient();
   const { data } = await supabase
     .from("developers")
     .select(DEVELOPER_COLUMNS)
@@ -44,7 +54,7 @@ export default async function DeveloperPage({ params }: PageProps<"/developers/[
   const developer = await getDeveloper((await params).slug);
   if (!developer) notFound();
 
-  const supabase = await createClient();
+  const supabase = createAnonClient();
 
   const [{ count: listingCount }, posts] = await Promise.all([
     supabase

@@ -3,6 +3,16 @@ import Link from "@/components/Link";
 import { notFound } from "next/navigation";
 import { formatPostDate, getPost } from "@/lib/blog";
 
+// Regenerated every 10 minutes at most: a scheduled post goes live within that, without a
+// redeploy (getPost hides posts dated in the future), and is served from the CDN in between.
+export const revalidate = 600;
+
+// Nothing is prerendered at build time: each one is rendered on first request, then cached for
+// `revalidate` seconds. Without this export a dynamic route is never cached at all.
+export function generateStaticParams() {
+  return [];
+}
+
 export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): Promise<Metadata> {
   const post = await getPost((await params).slug);
   if (!post) return {};
