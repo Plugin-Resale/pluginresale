@@ -31,6 +31,8 @@ jobs:
           [ ${#PASSPHRASE} -ge 20 ] || { echo "::error::BACKUP_PASSPHRASE missing or shorter than 20 characters"; exit 1; }
 
       - uses: supabase/setup-cli@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           version: latest
 
