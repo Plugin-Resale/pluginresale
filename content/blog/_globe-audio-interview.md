@@ -5,7 +5,7 @@ date: 2026-11-10
 image: /blog/globe-audio-interview/portrait.jpg
 ---
 
-Globe Audio Mastering has been mastering records in Bordeaux since 1999. Alexis Bardinet founded it with Bertrand Reboulleau, and Lorenzo Bassaletti joined the studio in 2021. Their credits run from SCH, Bigflo & Oli and Noir Désir to Ibrahim Maalouf and Katia & Marielle Labèque, and most of their work is still done in the room with the artist, on a chain of 15 to 20 machines, four Studer tape recorders among them.
+Globe Audio Mastering has been mastering records in Bordeaux since 1999. Alexis Bardinet founded it with Bertrand Reboulleau, and Lorenzo Bassaletti joined the studio in 2021. Their credits include Youssou N'Dour, Arthur H, Francis Cabrel, SCH, Salif Keita, Ibrahim Maalouf and Katia & Marielle Labèque, as well as the soundtracks of the films *Les Misérables* and *La Tortue Rouge* (*The Red Turtle*), and their masters have earned many Gold, Platinum and Diamond records over the years. Most of their work is still done in the room with the artist, on a chain of 15 to 20 machines, four Studer tape recorders among them.
 
 We talked about how each of them got into mastering, what has changed since the days of DAT tapes and CD burning, how two engineers share one studio, custom-modified gear, loudness in the streaming era, what makes a mix easy or hard to master, and the few plugins they keep next to the analog chain.
 
@@ -89,7 +89,7 @@ As for my usual chain, it often starts with one or two rather coloured EQs, to m
   <figcaption>Lorenzo Bassaletti at the console.</figcaption>
 </figure>
 
-### Your client list goes from SCH and Bigflo & Oli to Noir Désir, Ibrahim Maalouf and Katia & Marielle Labèque. How does your approach change between rap, rock, jazz and classical?
+### Your credits include Youssou N'Dour, Arthur H, Francis Cabrel, SCH, Salif Keita, Ibrahim Maalouf, Katia & Marielle Labèque and the soundtracks of *Les Misérables* and *La Tortue Rouge*. How does your approach change between rap, rock, jazz and classical?
 
 **Lorenzo:** My approach changes with the genre and with what the listener is used to hearing in that style. That doesn't mean I'm going to conform to what the public expects. But if we tell one style from another, it's because there are codes attached to it, so some things are inevitably brought forward more than others. I won't necessarily change my basic protocol, as we discussed in the previous question. What changes is mainly the approach to loudness: whether I make a song louder or quieter, depending on the listening levels the public is used to and the density the song needs, so as not to shock the listener with too different an approach, unless that is the artist's decision.
 
