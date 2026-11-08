@@ -6,6 +6,7 @@ import { after } from "next/server";
 import { CATEGORIES, FORMATS, formatPrice } from "@/lib/catalog";
 import { emailButton, escapeHtml, sendEmail } from "@/lib/email";
 import { USER_IMAGE_PATH_RE } from "@/lib/images";
+import { parsePrice } from "@/lib/price";
 import { getAlertSubscribers, getUserEmail } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
@@ -39,7 +40,7 @@ export async function createListing(_prev: SellState, formData: FormData): Promi
   const values: SellValues = {
     pluginId: String(formData.get("plugin_id") ?? ""),
     version: String(formData.get("version") ?? "").trim(),
-    price: String(formData.get("price") ?? "").trim().replace(",", "."),
+    price: String(formData.get("price") ?? "").trim(),
     formats: formData.getAll("formats").map(String),
     description: String(formData.get("description") ?? "").trim(),
     paypalEmail: String(formData.get("paypal_email") ?? "").trim(),
@@ -51,7 +52,7 @@ export async function createListing(_prev: SellState, formData: FormData): Promi
   const fail = (error: string): SellState => ({ error, values });
 
   const pluginId = Number(values.pluginId);
-  const price = Number(values.price);
+  const price = parsePrice(values.price);
   const hasPlugin = Number.isInteger(pluginId) && pluginId > 0;
 
   const developerId = Number(values.developerId);
@@ -67,8 +68,8 @@ export async function createListing(_prev: SellState, formData: FormData): Promi
   if (!hasPlugin && values.newPluginName.length > 80) {
     return fail("Plugin name is too long (80 characters max).");
   }
-  if (!/^\d+(\.\d{1,2})?$/.test(values.price) || price < 1 || price > 10000) {
-    return fail("Enter a price between €1 and €10,000.");
+  if (price === null) {
+    return fail("Enter your price as a number between 1 and 10,000 euros, e.g. 95 or 95.50.");
   }
   if (values.version.length > 30) return fail("Version is too long (30 characters max).");
   if (values.description.length > 2000) {

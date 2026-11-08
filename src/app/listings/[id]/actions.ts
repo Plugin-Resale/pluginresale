@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { PROOF_BUCKET, USER_IMAGE_PATH_RE } from "@/lib/images";
+import { parsePrice } from "@/lib/price";
 import { createClient } from "@/lib/supabase/server";
 
 // The seller adds, replaces or removes the license screenshot of their own listing.
@@ -42,10 +43,8 @@ export async function setListingProof(formData: FormData) {
 // listing keeps its price, and a deal keeps the price it was bought at.
 export async function setListingPrice(formData: FormData) {
   const id = Number(formData.get("listing_id"));
-  const raw = String(formData.get("price") ?? "").trim().replace(",", ".");
-  const price = Number(raw);
-  if (!Number.isInteger(id) || id <= 0) return;
-  if (!/^\d+(\.\d{1,2})?$/.test(raw) || price < 1 || price > 10000) return;
+  const price = parsePrice(String(formData.get("price") ?? ""));
+  if (!Number.isInteger(id) || id <= 0 || price === null) return;
 
   const supabase = await createClient();
   const { error } = await supabase.from("listings").update({ price_eur: price }).eq("id", id);
