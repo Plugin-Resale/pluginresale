@@ -16,13 +16,17 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "meta-externalagent", disallow: "/" },
       // SEO-tool and AI crawlers that bring no visitors: in the Vercel request logs of 5 Nov 2026
       // they made ~60% of the page requests served by functions (MJ12bot alone ~1,200 a day).
+      // 9 Nov 2026: SERankingBacklinksBot loaded /signin 568 times in 5 hours (29% of all requests)
+      // and Amzn-SearchBot (a different token from Amazonbot) rendered ~130 uncached plugin pages.
       {
         userAgent: [
           "MJ12bot",
           "DotBot",
           "AhrefsBot",
           "SemrushBot",
+          "SERankingBacklinksBot",
           "Amazonbot",
+          "Amzn-SearchBot",
           "ElevenlabsCrawler",
           "Reflectionbot",
           "ExaSearchBot",
