@@ -2,11 +2,17 @@
 title: "Serge Courtois on mixing Alec Benjamin and Riton, his Pro-Q 3 habit and checking every mix on a phone"
 description: Los Angeles mixing engineer Serge Courtois talks about going from jazz drums to Berklee and LA, his first hour on a new mix, the immersive mixes of Avril Lavigne's Let Go, the five plugins on every session, and why new tools rarely beat a proven setup.
 date: 2026-11-12
+image: /blog/serge-courtois-interview/portrait.jpg
 ---
 
 Serge Courtois is a mixing engineer working between Los Angeles and Luxembourg. A classically trained pianist turned jazz drummer, he double-majored in drum set performance and music production and engineering at Berklee before moving to LA. His credits include Alec Benjamin's *Narrated for You*, Riton's hit "Friday", Ian Asher's music, and the immersive mixes for the 20th anniversary of Avril Lavigne's *Let Go*. He also makes plugins under the name Mountainroad DSP.
 
 We talked about how a drummer who was always the one DJing ended up mixing, the people he learned from, his first hour on a new song, the projects he is proudest of, the five plugins on every session, the most common mistake he hears in the mixes sent to him, and why every new technique has to beat his proven setup first.
+
+<figure>
+  <img src="/blog/serge-courtois-interview/portrait.jpg" alt="Serge Courtois smiling, sitting at his desk next to a computer screen showing a DAW session, in front of a dark floral wall hanging" width="854" height="1280">
+  <figcaption>Serge Courtois in his home studio.</figcaption>
+</figure>
 
 ## Career
 
