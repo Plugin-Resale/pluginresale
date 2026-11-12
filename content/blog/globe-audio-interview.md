@@ -1,7 +1,7 @@
 ---
 title: "Globe Audio Mastering (Alexis Bardinet & Lorenzo Bassaletti) on 25 years of mastering, a 20-machine analog chain and the few plugins they keep"
 description: Bordeaux mastering engineers Alexis Bardinet and Lorenzo Bassaletti of Globe Audio Mastering talk about mastering from DAT to streaming, working with artists in the room, custom-modified gear, loudness, what makes a mix hard to master, and the handful of plugins that complete their analog chain.
-date: 2026-11-13
+date: 2026-11-14
 image: /blog/globe-audio-interview/portrait.jpg
 ---
 
