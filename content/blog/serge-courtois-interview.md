@@ -68,7 +68,7 @@ I've had this plugin for ages and I like what it does. It gives the sound a bit 
 My go-to vocal compressor. I also like the [Tube-Tech CL 1B](/developers/softube/tube-tech-cl-1b), but there's just something about the FET Compressor that I really like. 3:1 ratio, fairly low attack, fast release, and no more than 3 dB of compression (the vocals I get are usually already processed). If the compressor takes too much life out of a vocal, I bring some dry signal back with the mix dial.
 
 **auxCord (Mountainroad DSP)**
-My own plugin, which I use on every mix to check it on my phone. The phone speakers sometimes reveal harsh frequencies that don't catch my ear on my studio setup.
+My own plugin, which I use on every mix. It streams audio wirelessly between my DAW and my phone, so I can check every mix on the phone speakers. They sometimes reveal harsh frequencies that don't catch my ear on my studio setup.
 
 **[Thermionic Culture Vulture](/developers/universal-audio/thermionic-culture-vulture)**
 On drums: around 60% mix, drive at 4, bias at 4, on P1.
@@ -90,6 +90,7 @@ What I would say is: listen to what people have to say, but take it with a grain
 - Website: [sergecourtoismix.com](https://sergecourtoismix.com)
 - Instagram: [@serge_courtois](https://www.instagram.com/serge_courtois/)
 - Facebook: [@sergecourtoismix](https://www.facebook.com/sergecourtoismix)
+- Mountainroad DSP: [mountainroaddsp.com](https://mountainroaddsp.com)
 
 ---
 
@@ -98,7 +99,7 @@ What I would say is: listen to what people have to say, but take it with a grain
 Like many engineers, Serge ends up buying plugins just to open the sessions clients send him, and a lot of them sit unused afterwards. Here is what the developers say about reselling the plugins he uses on every mix:
 
 - **FabFilter Pro-Q ([Pro-Q 3](/developers/fabfilter/pro-q-3), [Pro-Q 4](/developers/fabfilter/pro-q-4))**: about €10 for a License Transfer, bought by the seller in their FabFilter account, then the seller moves the license to the buyer's name and email. FabFilter treats each major version as a separate product, so a Pro-Q 3 can be sold on its own. Educational and NFR licenses can't be transferred, and bundles only as a whole. [FabFilter transfer rules](/developers/fabfilter).
-- **[PSP VintageWarmer2](/developers/psp-audioware/psp-vintage-warmer-2)**: the seller contacts PSP support with both user IDs and the product name, and PSP approves the move, free of charge. The EULA formally describes licenses as non-transferable, but PSP approves transfers on request in practice. [PSP Audioware transfer rules](/developers/psp-audioware).
+- **[PSP VintageWarmer2](/developers/psp-audioware/psp-vintage-warmer-2)**: contact PSP support to ask about a license transfer. [PSP Audioware transfer rules](/developers/psp-audioware).
 - **Softube FET Compressor and [Tube-Tech CL 1B](/developers/softube/tube-tech-cl-1b)**: transferred through iLok License Manager ($25 iLok fee per license or bundle, max $50 per order), not before 90 days after the license was deposited. The FET Compressor isn't in our catalogue yet: sellers can add it themselves from the [Sell form](/sell). [Softube transfer rules](/developers/softube).
 - **[Thermionic Culture Vulture](/developers/universal-audio/thermionic-culture-vulture)**: Universal Audio plug-ins can't be sold on their own: they only move together with the Apollo, Satellite or UAD-2 hardware they are registered to (all plug-ins or none). [Universal Audio transfer rules](/developers/universal-audio).
 
