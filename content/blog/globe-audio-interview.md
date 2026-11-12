@@ -1,7 +1,7 @@
 ---
 title: "Globe Audio Mastering (Alexis Bardinet & Lorenzo Bassaletti) on 25 years of mastering, a 20-machine analog chain and the few plugins they keep"
 description: Bordeaux mastering engineers Alexis Bardinet and Lorenzo Bassaletti of Globe Audio Mastering talk about mastering from DAT to streaming, working with artists in the room, custom-modified gear, loudness, what makes a mix hard to master, and the handful of plugins that complete their analog chain.
-date: 2026-11-10
+date: 2026-11-13
 image: /blog/globe-audio-interview/portrait.jpg
 ---
 
@@ -127,6 +127,8 @@ Whereas if from the start we reassure the artist, listen to them and do somethin
 
 **Alexis:** We do use plugins, even though it's true that for me, most of the albums I've done over 27 years were done on hardware, with an often fairly heavy chain (between 15 and 20 machines). Mind you, that chain also includes digital machines, in particular all the Weiss tools (we own nearly the whole range), as well as the M6000: I love the programs in it. Back to plugins: I'm quite a fan of Sonnox. I do like their limiter, it's something I use quite a bit. I like the [Inflator](/developers/sonnox/oxford-inflator) too, I use it from time to time. And for EQ, Pro-Q as well, which is terrific as a dynamic EQ for post-mastering refinement. It has to be said that for dealing with unwanted noises (clicks, buzz, hum, crackle), the iZotope tools are exceptional... even if I do sometimes like to remove clicks by redrawing them in Pyramix!
 
+*Added by Globe Audio after the interview:* they also like a few FLUX:: plugins: Epure and Pure Limiter, and sometimes [Solera](/developers/flux-audio/solera) and Alchemist.
+
 ### Where does analog still win for you, and where have plugins taken over?
 
 **Lorenzo:** It's quite hard to answer that question, because again, we work mainly in analog, but plugins remain indispensable to us. For me, neither is better than the other. Both have advantages and drawbacks, it all depends on your working habits. Analog gets you drastic, committed colours quickly. There's an intuitive side, thanks to the absence of visuals, that lets us focus on what we hear and feel: we keep the essential and dwell less on details. But plugins bring fine, surgical things and give us more handling on the material we work with. Also, with plugins you can get distortions, but they are easy to correct (unlike analog, which brings clipping or harmonic saturation effects linked to the use of tubes).
@@ -178,6 +180,7 @@ Alexis and Lorenzo keep very few plugins next to their analog chain, and all of 
 - **[FabFilter Pro-Q 4](/developers/fabfilter/pro-q-4)**: about €10 for a License Transfer, bought by the seller in their FabFilter account, then the seller moves the license to the buyer's full name and email. Educational and NFR licenses can't be transferred, and bundles only move as a whole. FabFilter treats each major version as a separate product, so an older [Pro-Q 3](/developers/fabfilter/pro-q-3) can be sold on its own. [FabFilter transfer rules](/developers/fabfilter).
 - **iZotope [Ozone 12](/developers/izotope/ozone-12-advanced) and [RX 12](/developers/izotope/rx-12-advanced)**: free transfer (plus the $25 iLok fee if the product was activated with iLok), requested from iZotope Account Support by the original owner. Only full, purchased licenses: time-limited, educational, NFR and hardware-bundled licenses aren't eligible, and a product can only be transferred once. [iZotope transfer rules](/developers/izotope).
 - **Sonnox [Oxford Limiter](/developers/sonnox/oxford-limiter) and [Oxford Inflator](/developers/sonnox/oxford-inflator)**: no Sonnox fee, only the iLok transfer fee (capped at $50 when several licences go to the same account at once), paid by the seller, who moves the licence to the buyer's iLok User ID in iLok License Manager; Sonnox support then sends the buyer re-registration instructions. Full licences only, at least 90 days old, no NFR. Mind the UAD versions of the same plugins: those only move together with the Universal Audio hardware they are registered to. [Sonnox transfer rules](/developers/sonnox).
+- **FLUX:: [Solera](/developers/flux-audio/solera), Epure, Pure Limiter and Alchemist**: no Flux fee, only the iLok transfer fee, paid by the seller, who moves the license to the buyer's iLok account in iLok License Manager. Flux isn't involved and no permission from Flux is needed. Epure, Pure Limiter and Alchemist aren't in our catalogue yet: sellers can add them from the [Sell form](/sell). [Flux transfer rules](/developers/flux-audio).
 
 Looking for one of them? Search for it on [Browse](/browse) and set an alert: we'll email you as soon as someone lists it. And if you have licenses you never use, you can list them for free on the [Sell page](/sell).
 
