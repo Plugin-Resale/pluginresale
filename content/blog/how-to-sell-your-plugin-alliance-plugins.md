@@ -1,50 +1,56 @@
 ---
 title: How to Sell Your Plugin Alliance Plugins (Used License Guide)
-description: Plugin Alliance license transfers are not currently possible, according to its own support page. What that means if you own bx, SPL or Lindell plugins, what the old policy was, and what to do in the meantime.
+description: Plugin Alliance transfers are open again since its return to founder ownership. How to move a bx, SPL or Lindell license to another user, what support needs from you, and the traps to avoid.
 date: 2026-10-10
+updated: 2026-11-20
 developer: plugin-alliance
 ---
 
 Plugin Alliance has one of the biggest catalogues around: Brainworx, SPL, Lindell, Black Box, Shadow Hills, and dozens more. Between bundles and discounts, a lot of engineers ended up owning plugins they barely touch.
 
-So can you sell them? Right now, the answer is no. Here's the situation.
+So can you sell them? Yes, again. This guide was first published when transfers were closed, and the situation has changed.
+
+## What changed in 2026
+
+Plugin Alliance and Brainworx spent a few years inside the Native Instruments group. On 14 July 2026, founder **Dirk Ulrich bought both companies back**, and they are now independent again as part of his RCKFRC group, alongside Apogee and Manley. Licenses, subscriptions and the activation system kept working through the change.
+
+During that period, Plugin Alliance's support page said license transfers were **not currently possible**. That page is gone. The current support article explains how to transfer a license, so **transfers are open again**.
 
 ## Can you resell a Plugin Alliance license?
 
-**Not at the moment.** Plugin Alliance's own support article on license transfers now says that **license transfers are not currently possible**, and that it's working to resolve the issue.
+**Yes.** Plugin Alliance moves the license for you, between two Plugin Alliance accounts. There is no self-service button: it goes through customer support.
 
-That's why Plugin Alliance plugins can't be listed on Plugin Resale for now: we only list licenses that can actually be transferred.
+To transfer a license, the request to support needs three things:
 
-## It used to be possible
+- the email registered to the **account that currently holds** the license,
+- the email registered to the **recipient's Plugin Alliance account**,
+- the **exact name of each plugin** you want to transfer.
 
-Plugin Alliance did have a transfer policy before. According to our database, it cost **$20 per plugin (maximum $50)**, paid by the buyer, and subscription licenses and licenses that had already been transferred once were excluded.
+The buyer needs a free Plugin Alliance account before the transfer, so ask for the email address they registered it with.
 
-That policy is no longer offered. The support page doesn't say when, or if, transfers will come back, or on what terms. Don't assume the old rules will return as they were.
+## Fees and conditions
 
-## What this means for you
+Plugin Alliance's current article **publishes no fee, no delay and no excluded license type**. Its EULA adds two conditions that matter: your own license ends the moment the software is transferred, and the buyer has to accept the EULA.
 
-**If you own Plugin Alliance plugins you don't use:** there's no official way to pass them on right now. Keep your account and your licenses in order, and check the support page from time to time.
+Two things worth knowing before you set a price:
 
-**If someone offers you a used Plugin Alliance license:** be very careful. Since Plugin Alliance isn't transferring licenses, a seller can't move one into your account through official channels. A shared login or a license file sent by email isn't a transfer, and it can leave you with nothing if the account is closed or the license revoked.
-
-**If you're on a Plugin Alliance subscription:** subscription licenses weren't transferable under the old policy either.
+- The **old policy** charged $20 per plugin (maximum $50), paid by the buyer, and excluded subscription licenses and licenses already transferred once. None of that is published any more. If your license is unusual — a subscription, a bundle, something you received for free — ask support what applies before you sell.
+- Our [Plugin Alliance page](/developers/plugin-alliance) always links to the official source and shows the date we last checked it, so you can verify the current rules yourself.
 
 ## Traps to avoid
 
-**Buying an account instead of a license.** Some sellers offer their whole account login. That's not a license transfer, and the original owner can take the account back at any time.
+**Buying an account instead of a license.** Some sellers offer their whole account login. That's not a license transfer, and the original owner can take the account back at any time. Insist on a real transfer into your own account.
 
-**Believing an old forum post.** Threads describing the old $20 transfer are out of date. Plugin Alliance's own page is the one that counts.
+**Paying before the account email is confirmed.** The transfer request needs the buyer's registered email. Agree on it first, so support doesn't send the license to the wrong account.
 
-## When transfers come back
+**Believing an old forum post — or an old guide.** Threads describing the $20 transfer, and pages saying transfers are impossible, both describe past states. Plugin Alliance's own support article is the one that counts.
 
-If Plugin Alliance reopens transfers, we'll update the [Plugin Alliance page](/developers/plugin-alliance) of our transfer rules database, and you'll be able to list your licenses on Plugin Resale right away. That page always links to Plugin Alliance's official source, so you can check the current status yourself.
+## Sell your Plugin Alliance plugins on Plugin Resale
 
-## Sell other plugins on Plugin Resale
+Plugin Resale is free to list and free to buy, with no commission. Every listing shows the developer's transfer rules right next to the price, so buyers know what they're getting into.
 
-Plenty of developers do allow license transfers today. Plugin Resale is free to list and free to buy, with no commission, and every listing shows the developer's transfer rules next to the price.
-
-Check the rules for the rest of your plugin folder in our [transfer rules database](/developers), then [list what you don't use for free](/sell).
+[List a plugin you don't use](/sell), or check the rules for the rest of your plugin folder in our [transfer rules database](/developers).
 
 ---
 
-*Source: [Plugin Alliance's official License Transfer article](https://support.plugin-alliance.com/hc/en-us/articles/52323567089428-License-Transfer), last checked 29 September 2026. Policies change: check it before you buy or sell.*
+*Sources: [Plugin Alliance's official support article on license transfers](https://support.plugin-alliance.com/hc/en-us/articles/52323567089428-How-do-I-transfer-a-plugin-license) and its [letter from the founder](https://www.plugin-alliance.com/blogs/news/a-letter-from-the-founder), last checked 20 November 2026. Policies change: check them before you buy or sell.*

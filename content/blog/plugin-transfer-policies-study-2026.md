@@ -2,6 +2,7 @@
 title: "We checked the license transfer policies of 197 audio software developers. Here's what we found"
 description: Can you resell your plugins? We went through the official transfer policies of 197 plugin, sample library and DAW makers. More than half allow transfers, sample libraries are the hardest to resell, and fees range from nothing to 25% of the price.
 date: 2026-10-01
+updated: 2026-11-20
 ---
 
 At Plugin Resale, every listing shows the developer's license transfer rules next to the price. To do that, we built a database of transfer policies, going through each developer's official support pages and license agreements one by one.
@@ -43,7 +44,7 @@ A few of the most popular products in music production can't be resold:
 - **Universal Audio**: UAD plug-ins can only be sold together with the hardware they're registered to.
 - **Antares** (Auto-Tune) and **KORG** software: non-transferable under their license agreements.
 - **Cherry Audio**: stopped allowing transfers in 2023.
-- **Plugin Alliance**: self-service transfers are currently unavailable.
+- **Plugin Alliance**: transfers were unavailable when we collected these figures. *Update, 20 November 2026: after the company's return to founder ownership in July 2026, transfers are open again through customer support. See our [Plugin Alliance guide](/blog/how-to-sell-your-plugin-alliance-plugins).*
 - **Positive Grid** (BIAS FX, BIAS Amp): licenses stay tied to the original buyer's account under Positive Grid's terms.
 - **Synchro Arts** (VocALign, Revoice Pro): a license stays with the person who bought it.
 

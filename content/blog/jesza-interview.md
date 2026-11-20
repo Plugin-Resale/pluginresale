@@ -146,7 +146,7 @@ Jesza wonders whether he could resell his older Pro-Q licenses. Here is what the
 - **[Spectrasonics Omnisphere](/developers/spectrasonics/omnisphere)**: $50 per instrument, usually paid by the seller. Only the original purchaser can transfer it, once. [Spectrasonics transfer rules](/developers/spectrasonics).
 - **[Ableton Live](/developers/ableton/live-12-suite)**: free, self-service transfer from your Ableton account. [Ableton transfer rules](/developers/ableton).
 - **UAD plug-ins**: can't be sold on their own, only together with the Apollo or UAD-2 hardware they're registered to. [Universal Audio transfer rules](/developers/universal-audio).
-- **Plugin Alliance (Lindell EQ825, SPL Machine Head...)**: self-service transfers are currently unavailable. [Plugin Alliance transfer rules](/developers/plugin-alliance).
+- **Plugin Alliance (Lindell EQ825, SPL Machine Head...)**: transfers go through Plugin Alliance customer support, which moves the license between two Plugin Alliance accounts. No fee published. [Plugin Alliance transfer rules](/developers/plugin-alliance).
 
 Not in our list? When you sell, you can add a missing plugin yourself from the [Sell form](/sell), as long as its developer is in our list. And if you're looking for one, search for it on [Browse](/browse) and set an alert: we'll email you as soon as someone lists it.
 
