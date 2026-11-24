@@ -30,9 +30,14 @@ jobs:
           [ -n "$DB_PASSWORD" ] || { echo "::error::Missing secret SUPABASE_DB_PASSWORD"; exit 1; }
           [ ${#PASSPHRASE} -ge 20 ] || { echo "::error::BACKUP_PASSPHRASE missing or shorter than 20 characters"; exit 1; }
 
+      # Pinned, not "latest": resolving "latest" calls the GitHub API unauthenticated
+      # and the run of 2026-11-24 failed with "rate limit exceeded". GITHUB_TOKEN lifts
+      # the limit for any API call the action still makes.
       - uses: supabase/setup-cli@v1
         with:
-          version: latest
+          version: 3.4.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Dump roles, schema and data
         env:
